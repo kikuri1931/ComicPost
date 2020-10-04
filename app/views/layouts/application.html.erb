@@ -10,6 +10,30 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar-header navbar-fixed-top " >
+      <div class="container">
+
+        <nav class="nav navbar-nav navbar-left">
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <span>ComicPost</span>
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+            <% else %>
+              <li><%= link_to ' お問い合わせ', contact_path, class: 'glyphicon glyphicon-envelope' %></li>
+              <li><%= link_to ' 新規登録', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
+              <li><%= link_to ' ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in' %></li>
+            <% end %>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+       <%= yield %>
+       
   </body>
 </html>

@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_032009) do
     t.string "name"
     t.string "name_kana"
     t.string "nickname"
+    t.string "profile_image_id"
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
