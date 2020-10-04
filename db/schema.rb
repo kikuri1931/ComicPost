@@ -13,10 +13,13 @@
 ActiveRecord::Schema.define(version: 2020_10_04_032009) do
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "picture_content_id"
+    t.integer "user_id", null: false
+    t.integer "picture_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["picture_content_id"], name: "index_bookmarks_on_picture_content_id"
+    t.index ["user_id", "picture_content_id"], name: "index_bookmarks_on_user_id_and_picture_content_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
