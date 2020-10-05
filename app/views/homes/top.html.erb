@@ -1,5 +1,5 @@
 <div class="image">
-	<%= image_tag('3981710_m.jpg', width: "90%", height:"550px", style: "opacity: 0.6;" ) %>
+	<%= image_tag('sketch.jpg', width: "90%", height:"550px", style: "opacity: 0.6;" ) %>
 	<div class="top-title">
 		<h1>ようこそ、<span>ComicPost</span>へ！！</h1>
 	</div>
@@ -8,14 +8,46 @@
 <h1 class="text-center about-title"><span>ComicPost</span>について知ろう！</h1>
 
 <div class="container">
-	<div class="about-image"></div>
-	<div class="pull-right">
-		<h3>オンラインでプロからマンガ、イラストを学べる</h3>
-		<p class="line-spacing">
-			ComicPostではオンラインで学べるため、好きな場所や時間にマンガやイラストについて学べます。<br>
-			また、プロとして活躍している講師が、1対1であなたの勉強をサポートいたします。<br>
-			※サービスは有料とさせて頂いております。
-		</p>
+	<div class="col-md-12">
+		<div class="col-md-3 about-image1"></div>
+		<div class="col-md-8 col-md-offset-1 about-content">
+			<h3><b>オンラインでプロからマンガ、イラストを学べる</b></h3>
+			<p class="line-spacing">
+				<span>ComicPost</span>ではオンラインで学べるため、好きな場所や時間にマンガやイラストについて学べます。<br>
+				また、プロとして活躍している講師が、1対1であなたの勉強をサポートいたします。<br>
+				※サービスは有料とさせて頂いております。
+			</p>
+		</div>
+	</div>
+
+	<div class="col-md-12">
+		<div class="col-md-5 col-md-offset-2 about-content">
+			<h3><b>自分の作品を投稿できる</b></h3>
+			<p class="line-spacing">
+				自分の作品を<span>ComicPost</span>内で自由に投稿することができます。<br>
+				どんどんイラストや漫画を書いて、投稿していきましょう！<br>
+				※サービスは有料とさせて頂いております。
+			</p>
+		</div>
+		<div class="col-md-3  about-image2"></div>
 	</div>
 	
+	<div class="col-md-12">
+		<div class="col-md-3 about-image3"></div>
+		<div class="col-md-7 col-md-offset-1 about-content">
+			<h3><b>プロまたは受講生が描いたイラストやマンガを無料で<br>見ることができる</b></h3>
+			<p class="line-spacing">
+				<span>ComicPost</span>ではプロとして活躍している講師、受講生のイラストやマンガを無料で閲覧することが<br>
+				できます。<br>
+				また、お気に入りの作品をお気に入りとして保存できます。<br>
+				※サービスを受けるには会員登録が必要です。
+			</p>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<h1 class="text-center sign-up-title">さあ、<span>ComicPost</span>をはじめよう！</h1>
+	<p class="text-center sign-up-title">
+		<%= link_to "新規会員登録はこちら！", new_user_registration_path, class: "btn btn-primary", style: "font-size: 28px; padding: 10px 150px; margin-bottom: 200px;" %>
+	</p>
 </div>
