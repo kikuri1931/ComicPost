@@ -48,29 +48,65 @@ body {
 	margin-top: 61px;
 }
 
-.image {
-	position: relative;
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
+.title {
+	margin-top: 80px;
 }
 
-.top-title h1 {
-	position: absolute;
-	top: 250px;
-	left: 25%;
-	font-size: 50px;
+.line-spacing {
+	line-height: 30px;
 }
 
-.about-title {
-	margin-top:50px;
+.sign-up-text {
+	line-height: 30px;
+    margin-top: 50px;
+    font-size: 18px;
 }
-.about-image {
-	background: url(/images/3530200_s.jpg);
-    background-size: cover;
-    background-position: center;
-    margin-top: 70px;
-    width: 300px;
-    height: 280px;
-    border-radius: 70%;
+
+.sign-up-label {
+	margin-top: 100px;
+	display: flex;
+  	justify-content: center; 
+ 	align-items: center; 
+}
+
+.member-description {
+	display: flex;
+  	justify-content: center; 
+}
+
+.attention {
+	color: red;
+}
+
+.free-attention {
+	margin-top: 100px;
+}
+
+.description-title {
+	margin: 40px 0 10px;
+}
+
+.description {
+	background-color: #F8F8FF;
+	padding-bottom: 50px;
+}
+
+.free-space {
+    margin-top: 220px;
+    text-align: center;
+    p {
+    color: #4f2e00;
+    }
+}
+
+.paid-space {
+	margin-top: 100px;
+	text-align: center;
+	p {
+    color: #4f2e00;
+    }
+}
+
+.form-space {
+	margin-top: 30px;
 }

@@ -14,5 +14,5 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   attachment :profile_image
 
-  enum status: {無料会員: 0,　有料会員: 1,　管理者: 2}
+  enum status: {無料会員: 0,有料会員: 1,管理者: 2}
 end
