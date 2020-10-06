@@ -14,13 +14,22 @@
       <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
-          <%= link_to root_path, class: "navbar-brand" do %>
-            <span>ComicPost</span>
+          <% if user_signed_in? %>
+            <%= link_to user_path(current_user) do %>
+              <span>ComicPost</span>
+              <%= attachment_image_tag current_user, :profile_image, size: "50x50", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "sketch.jpg" %>
+            <% end %>
+          <% else %>
+            <%= link_to root_path, class: "navbar-brand" do %>
+              <span>ComicPost</span>
+            <% end %>
           <% end %>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+              <li><%= link_to ' マンガ', picture_contents_path, class: 'glyphicon glyphicon-book' %></li>
+              <li><%= link_to ' イラスト', picture_contents_path, class: 'glyphicon glyphicon-picture' %></li>
               <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
             <% else %>
               <li><%= link_to ' お問い合わせ', contact_path, class: 'glyphicon glyphicon-envelope' %></li>

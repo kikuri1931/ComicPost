@@ -1,2 +1,34 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-2 profile-image">
+			<%= attachment_image_tag current_user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "sketch.jpg" %>
+		</div>
+
+		<div class="col-md-2 col-md-offset-1 profile">
+			<%if current_user.nickname == nil %>
+				<h1><%= current_user.name %></h1>
+			<% else %>
+				<h1><%= current_user.nickname %></h1>
+			<% end %>
+			<h4><%= current_user.status %></h4>
+		</div>
+
+		<% if @user.id == current_user.id %>
+			<div class="col-md-5">
+				<div class="col-md-12 edit-link">			
+					<%= link_to "登録情報を編集する", edit_user_path(current_user) %>
+				</div>
+				<div class="link">
+					<%= link_to "作品を投稿する", new_picture_content_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
+					<%= link_to "運営とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
+					<%= link_to "講師とチャットする", room_path(current_user), class: "btn btn-warning" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="picture">
+		<h1>イラスト</h1>
+		<h1>マンガ</h1>
+	</div>	
+</div>
