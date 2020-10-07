@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_032009) do
+ActiveRecord::Schema.define(version: 2020_10_07_034044) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 2020_10_04_032009) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "picture_contents", force: :cascade do |t|
-    t.string "title"
-    t.text "introduction"
+  create_table "picture_images", force: :cascade do |t|
+    t.integer "picture_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,10 +73,9 @@ ActiveRecord::Schema.define(version: 2020_10_04_032009) do
   create_table "pictures", force: :cascade do |t|
     t.integer "user_id"
     t.integer "genre_id"
-    t.integer "picture_content_id"
-    t.string "picture_id"
+    t.string "title"
+    t.text "introduction"
     t.integer "status"
-    t.integer "user_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

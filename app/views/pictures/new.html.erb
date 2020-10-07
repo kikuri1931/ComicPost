@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<h1>新規投稿</h1>
+		<%= form_with model:[@picture], url:pictures_path do |f| %>
+			<div class="col-md-5 col-md-offset-1">
+				<%= f.fields_for :picture_images do |pi| %>
+					<%= pi.attachment_field :image, style: "margin-top: 20px;" %>
+				<% end %>
+			</div>
+
+			<div class="col-md-3">
+					<label><%= f.radio_button :status, :マンガ %> マンガ</label>
+					<label><%= f.radio_button :status, :イラスト, style: "margin-left: 50px;" %> イラスト</label><br>
+				<div class="title-space">
+
+					<label class="title-space">タイトル</label><br>
+					<%= f.text_field :title, class: "form-control" %><br>
+					<label>説明</label><br>
+					<%= f.text_area :introduction, class: "form-control", size: "5x5" %><br>
+					<label class="space">ジャンル</label>
+
+	            		<%= f.collection_select :genre_id, Genre.where(is_active: true), :id, :genre %><br>
+	            </div>
+
+				<%= f.submit "投稿する", class: "btn btn-primary", style: "margin-top: 20px; padding: 10px 100px;" %>
+			</div>
+		<% end %>
+	</div>
+</div>

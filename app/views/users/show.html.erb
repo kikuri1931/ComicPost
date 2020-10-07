@@ -1,16 +1,20 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-2 profile-image">
-			<%= attachment_image_tag current_user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "sketch.jpg" %>
+			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
 		</div>
 
 		<div class="col-md-2 col-md-offset-1 profile">
-			<%if current_user.nickname == nil %>
-				<h1><%= current_user.name %></h1>
+			<%if @user.nickname == nil %>
+				<h1><%= @user.name %></h1>
 			<% else %>
-				<h1><%= current_user.nickname %></h1>
+				<h1><%= @user.nickname %></h1>
 			<% end %>
-			<h4><%= current_user.status %></h4>
+			<% if @user.status == "管理者" %>
+				<h4>講師</h4>
+			<% else %>
+				<h4><%= @user.status %></h4>
+			<% end %>
 		</div>
 
 		<% if @user.id == current_user.id %>
@@ -18,17 +22,24 @@
 				<div class="col-md-12 edit-link">			
 					<%= link_to "登録情報を編集する", edit_user_path(current_user) %>
 				</div>
+		<% end %>
 				<div class="link">
-					<%= link_to "作品を投稿する", new_picture_content_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
-					<%= link_to "運営とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
-					<%= link_to "講師とチャットする", room_path(current_user), class: "btn btn-warning" %>
+					<% if @user.status == "有料会員" %>
+						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
+						<%= link_to "運営とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
+						<%= link_to "講師とチャットする", room_path(current_user), class: "btn btn-warning" %>
+					<% elsif @user.status == "管理者" %>
+						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
+						<%= link_to "受講者とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
+					<% end %>
 				</div>
 			</div>
-		<% end %>
 	</div>
 
 	<div class="picture">
-		<h1>イラスト</h1>
-		<h1>マンガ</h1>
+		<% if ['管理者','有料会員'].include?(@user.status) %>
+			<h1>イラスト</h1>
+			<h1>マンガ</h1>
+		<% end %>
 	</div>	
 </div>

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'pictures/new'
+  get 'pictures/edit'
+  get 'pictures/show'
   root 'homes#top'
   get 'contact' => "homes#contact", as: :contact
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
-  resources :picture_contents do
+  resources :pictures do
   	resource :favorites, only: [:create,:destroy]
   	resources :comments, only: [:create, :destroy]
   	resource :bookmarks, only:[:create, :destroy, :show]
