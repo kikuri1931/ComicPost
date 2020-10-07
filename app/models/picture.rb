@@ -3,6 +3,7 @@ class Picture < ApplicationRecord
 	belongs_to :genre
 	has_many :picture_images, dependent: :destroy
 	accepts_nested_attributes_for :picture_images
+	accepts_attachments_for :picture_images, attachment: :image
 	has_many :bookmarks, dependent: :destroy
 	has_many :favorites, dependent: :destroy
 	has_many :comments, dependent: :destroy

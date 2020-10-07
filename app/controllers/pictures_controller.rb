@@ -17,12 +17,20 @@ class PicturesController < ApplicationController
     @picture_images = @picture.picture_images
   end
 
+  def comics
+     @comic_pictures = Picture.where(status: "マンガ")
+  end
+
+  def illustrations
+    @illustration_pictures = Picture.where(status: "イラスト")
+  end
+
   def edit
   end
 
   private
 
   def picture_params
-    params.require(:picture).permit(:title, :introduction, :genre_id, :status, picture_images_attributes:[:id, :image])
+    params.require(:picture).permit(:title, :introduction, :genre_id, :status, picture_images_images: [])
   end
 end

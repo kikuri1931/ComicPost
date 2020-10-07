@@ -3,9 +3,7 @@
 		<h1>新規投稿</h1>
 		<%= form_with model:[@picture], url:pictures_path do |f| %>
 			<div class="col-md-5 col-md-offset-1">
-				<%= f.fields_for :picture_images do |pi| %>
-					<%= pi.attachment_field :image, style: "margin-top: 20px;" %>
-				<% end %>
+				<%= f.attachment_field :picture_images_images, multiple: true %>
 			</div>
 
 			<div class="col-md-3">

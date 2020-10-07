@@ -37,7 +37,7 @@
 						<% @pictures.each do |picture| %>
 							<td>
 								<%= link_to picture_path(picture)do %>
-									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg" %>
+									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin: 0;" %>
 									<%= picture.title %>
 								<% end %>
 							</td>
@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-6 col-md-offset-2">
 			<h2><%= @picture.title %></h2>
 			<h6>
 				<% if @picture.user.nickname == nil %>

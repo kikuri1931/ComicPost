@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit, :update]
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
+  get 'comics' => "pictures#comics",as: :comics
+  get 'illustrations' => "pictures#illustrations",as: :illustrations
   resources :pictures do
   	resource :favorites, only: [:create,:destroy]
   	resources :comments, only: [:create, :destroy]
