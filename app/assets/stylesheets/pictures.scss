@@ -14,7 +14,17 @@
 	display: flex;
 	justify-content: center; 
 }
+.picture-image {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center; 
+}
 
-.picture-space {
-	margin-top: 20px;
+.image {
+	margin-right: 20px;
+}
+
+.picture-details {
+margin-top: 20px;
+	border: solid 1px black;
 }

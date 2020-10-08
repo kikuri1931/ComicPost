@@ -10,6 +10,10 @@ class Picture < ApplicationRecord
 
 	enum status: {イラスト: 0,マンガ: 1}
 
+  def favorited_by?(user)
+	favorites.where(user_id: user.id).exists?
+  end
+
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end

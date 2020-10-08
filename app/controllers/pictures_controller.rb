@@ -11,6 +11,11 @@ class PicturesController < ApplicationController
     redirect_to picture_path(@picture)
   end
 
+  def index
+    @user = User.find(params[:user_id])
+    @pictures = @user.pictures
+  end
+
   def show
   	@picture = Picture.find(params[:id])
     @pictures = @picture.user.pictures.limit(3)
@@ -18,11 +23,21 @@ class PicturesController < ApplicationController
   end
 
   def comics
-     @comic_pictures = Picture.where(status: "マンガ")
+     if params[:user_id]
+        @user = User.find(params[:user_id])
+        @comic_pictures = @user.pictures.where(status: "マンガ")
+      else
+        @comic_pictures = Picture.where(status: "マンガ")
+      end
   end
 
   def illustrations
-    @illustration_pictures = Picture.where(status: "イラスト")
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @illustration_pictures = @user.pictures.where(status: "マンガ")
+    else
+      @illustration_pictures = Picture.where(status: "イラスト")
+    end
   end
 
   def edit

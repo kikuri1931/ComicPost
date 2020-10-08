@@ -14,17 +14,17 @@ ActiveRecord::Schema.define(version: 2020_10_07_034044) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "picture_content_id", null: false
+    t.integer "picture_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["picture_content_id"], name: "index_bookmarks_on_picture_content_id"
-    t.index ["user_id", "picture_content_id"], name: "index_bookmarks_on_user_id_and_picture_content_id", unique: true
+    t.index ["picture_id"], name: "index_bookmarks_on_picture_id"
+    t.index ["user_id", "picture_id"], name: "index_bookmarks_on_user_id_and_picture_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "picture_content_id"
+    t.integer "picture_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_034044) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "picture_content_id"
+    t.integer "picture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

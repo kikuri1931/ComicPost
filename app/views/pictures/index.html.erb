@@ -1,8 +1,12 @@
 <div class="container">
 	<div class="row">
-		<h1 class="title">マンガ</h1>
+		<% if @user.nickname == nil %>
+			<h1 class="title"><%= @user.name %>さんのマンガ・イラスト</h1>
+		<% else %>
+			<h1 class="title"><%= @user.nickname %>さんのマンガ・イラスト</h1>
+		<% end %>
 		<div class="picture-image">
-			<% @comic_pictures.each do |picture| %>
+			<% @pictures.each do |picture| %>
 				<div class="image">
 					<%= link_to picture_path(picture)do %>
 						<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg" %>

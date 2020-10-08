@@ -50,7 +50,7 @@
 				<% end %>
 			</div>
 			<div class="pull-right">
-				<%= link_to "もっと見る", pictures_path %>
+				<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
 			</div>
 
 			<h1 class="title">マンガ</h1>
@@ -65,7 +65,7 @@
 				<% end %>
 			</div>
 			<div class="pull-right">
-				<%= link_to "もっと見る", pictures_path %>
+				<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
 			</div>
 		<% end %>
 	</div>	
