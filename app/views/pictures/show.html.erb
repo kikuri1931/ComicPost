@@ -48,18 +48,30 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-2 picture-details">
-			<% if @picture.favorited_by?(current_user) %>
-				<%= link_to picture_favorites_path(@picture), method: :delete, class: "pull-right", style: "color: red;" do %>
-					<i class="glyphicon glyphicon-heart" ></i>
-					<%= @picture.favorites.count %>いいね
+			<div class="favorite-bookmark">
+				<% unless @picture.user == current_user %> 
+					<% if @picture.bookmark_by?(current_user) %>
+						<%= link_to "お気に入りを外す", picture_bookmarks_path(@picture), method: :delete, class: "btn btn-warning",style: "margin-top: 15px;" %>
+					<% else %>
+						<%= link_to "お気に入り登録", picture_bookmarks_path(@picture), method: :post, class: "btn btn-success",style: "margin-top: 15px;" %>
+					<% end %>
 				<% end %>
-			<% else %>
-				<%= link_to picture_favorites_path(@picture), method: :post, class: "pull-right", style: "color: black;" do %>
-					<i class="glyphicon glyphicon-heart-empty"></i>
-					<%= @picture.favorites.count %>いいね
+
+				<% if @picture.favorited_by?(current_user) %>
+					<%= link_to picture_favorites_path(@picture), method: :delete, style: "color: red; margin: 30px 20px 0 0;" do %>
+						<i class="glyphicon glyphicon-heart" ></i>
+						<%= @picture.favorites.count %>いいね
+					<% end %>
+				<% else %>
+					<%= link_to picture_favorites_path(@picture), method: :post, style: "color: black; margin: 30px 20px 0 0;" do %>
+						<i class="glyphicon glyphicon-heart-empty"></i>
+						<%= @picture.favorites.count %>いいね
+					<% end %>
 				<% end %>
-			<% end %>
+			</div>
+
 			<h2><%= @picture.title %></h2>
+
 			<h6>
 				<%= link_to user_path(@picture.user) do %>
 					<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
@@ -70,6 +82,7 @@
 					<% end %>
 				<% end %>
 			</h6>
+
 			<p><%= @picture.introduction %></p>
 		</div>
 	</div>

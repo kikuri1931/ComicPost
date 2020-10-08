@@ -28,3 +28,8 @@
 margin-top: 20px;
 	border: solid 1px black;
 }
+
+.favorite-bookmark {
+	display: flex;
+	flex-direction: row-reverse;
+}

@@ -11,30 +11,34 @@ class PicturesController < ApplicationController
     redirect_to picture_path(@picture)
   end
 
-  def index
-    @user = User.find(params[:user_id])
-    @pictures = @user.pictures
-  end
-
   def show
-  	@picture = Picture.find(params[:id])
+    @picture = Picture.find(params[:id])
     @pictures = @picture.user.pictures.limit(3)
     @picture_images = @picture.picture_images
   end
 
+  def index
+     @user = User.find(params[:user_id])
+    @pictures = @user.pictures
+  end
+
+  def bookmarks
+    @bookmarks = current_user.bookmarks
+  end
+
   def comics
-     if params[:user_id]
-        @user = User.find(params[:user_id])
-        @comic_pictures = @user.pictures.where(status: "マンガ")
-      else
-        @comic_pictures = Picture.where(status: "マンガ")
-      end
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @comic_pictures = @user.pictures.where(status: "マンガ")
+    else
+      @comic_pictures = Picture.where(status: "マンガ")
+    end
   end
 
   def illustrations
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @illustration_pictures = @user.pictures.where(status: "マンガ")
+      @illustration_pictures = @user.pictures.where(status: "イラスト")
     else
       @illustration_pictures = Picture.where(status: "イラスト")
     end

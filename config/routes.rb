@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'pictures/new'
-  get 'pictures/edit'
-  get 'pictures/show'
   root 'homes#top'
   get 'contact' => "homes#contact", as: :contact
 
@@ -10,10 +7,11 @@ Rails.application.routes.draw do
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
   get 'comics' => "pictures#comics",as: :comics
   get 'illustrations' => "pictures#illustrations",as: :illustrations
+  get 'bookmarks' => "pictures#bookmarks",as: :bookmarks
   resources :pictures do
   	resource :favorites, only: [:create,:destroy]
   	resources :comments, only: [:create, :destroy]
-  	resource :bookmarks, only:[:create, :destroy, :show]
+  	resource :bookmarks, only:[:create, :destroy]
   end
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
