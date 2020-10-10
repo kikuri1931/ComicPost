@@ -29,9 +29,15 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to ' マンガ', comics_path, class: 'glyphicon glyphicon-book' %></li>
-              <li><%= link_to ' イラスト', illustrations_path, class: 'glyphicon glyphicon-picture' %></li>
-              <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+              <% unless current_user.status == "講師" %>
+                <li><%= link_to ' マンガ', comics_path, class: 'glyphicon glyphicon-book' %></li>
+                <li><%= link_to ' イラスト', illustrations_path, class: 'glyphicon glyphicon-picture' %></li>
+                <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+              <% else %>
+                <li><%= link_to ' ジャンル一覧', comics_path, class: 'glyphicon glyphicon-file' %></li>
+                <li><%= link_to ' 会員一覧', users_path, class: 'glyphicon glyphicon-user' %></li>
+                <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+              <% end %>
             <% else %>
               <li><%= link_to ' お問い合わせ', contact_path, class: 'glyphicon glyphicon-envelope' %></li>
               <li><%= link_to ' 新規登録', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>

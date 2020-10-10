@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="title">会員一覧</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>会員ステータス</th>
+						<th>氏名</th>
+						<th>有効/退会</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+						<tr>
+							<td><%= user.status %></td>
+							<td><%= link_to user.name, user_path(user) %></td>
+							<td>
+  								<% if user.is_deleted == false %>
+  									<p>有効</p>
+  								<% else %>
+  									<p>退会済み</p>	
+  								<% end %>
+							</td>
+						</tr>
+					<% end %>	
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+	
