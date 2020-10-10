@@ -10,7 +10,9 @@
 				<div class="image">
 					<%= link_to picture_path(picture)do %>
 						<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg" %>
-						<%= picture.title %>
+						<%= picture.title %><br>
+						<%= picture.status %><br>
+						ジャンル：<%= picture.genre.genre %>
 					<% end %>
 				</div>
 			<% end %>

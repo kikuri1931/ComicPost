@@ -15,6 +15,7 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
     @pictures = @picture.user.pictures.limit(3)
     @picture_images = @picture.picture_images
+    @comment = Comment.new
   end
 
   def index

@@ -21,7 +21,7 @@
 }
 
 .image {
-	margin-right: 20px;
+	margin-right: 24px;
 }
 
 .picture-details {
@@ -32,4 +32,12 @@ margin-top: 20px;
 .favorite-bookmark {
 	display: flex;
 	flex-direction: row-reverse;
+}
+
+.comment {
+	margin-top: 15px;
+}
+
+.picture-title {
+	margin: 5px 0 10px; 
 }

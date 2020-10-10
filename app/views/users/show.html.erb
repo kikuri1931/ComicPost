@@ -10,11 +10,8 @@
 			<% else %>
 				<h1><%= @user.nickname %></h1>
 			<% end %>
-			<% if @user.status == "管理者" %>
-				<h4>講師</h4>
-			<% else %>
-				<h4><%= @user.status %></h4>
-			<% end %>
+
+			<h4><%= @user.status %></h4>
 		</div>
 
 		<% if @user.id == current_user.id %>
@@ -25,22 +22,29 @@
 					<%= link_to "お気に入り", bookmarks_path %>
 				</div>
 		<% end %>
-				<div class="link">
-					<% if @user.status == "有料会員" %>
-						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
-						<%= link_to "運営とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
-						<%= link_to "講師とチャットする", room_path(current_user), class: "btn btn-warning" %>
-					<% elsif @user.status == "管理者" %>
-						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
-						<%= link_to "受講者とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
-					<% end %>
-				</div>
-			</div>
-	</div>
 
+		<div class="link">
+			<% if @user.status == "有料会員" && @user == current_user %>
+				<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
+				<%= link_to "運営とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
+				<%= link_to "講師とチャットする", room_path(current_user), class: "btn btn-warning" %>
+
+			<% elsif @user.status == "講師" && @user == current_user %>
+				<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
+				<%= link_to "受講者とチャットする", room_path(current_user), class: "btn btn-danger", style: "margin-right: 10px;" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="container">
 	<div class="picture">
 		<% if ['管理者','有料会員'].include?(@user.status) %>
-			<h1>イラスト</h1>
+
+			<% if @user.pictures.where(status: "イラスト").exists? %>
+				<h1>イラスト</h1>
+			<% end %>
+
 			<div class="picture-image">
 				<%  @illustration_pictures.each do |picture| %>
 					<div class="image">
@@ -51,11 +55,17 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="pull-right">
-				<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
-			</div>
 
-			<h1 class="title">マンガ</h1>
+			<% if @user.pictures.where(status: "イラスト").count > 5 %>
+				<div class="pull-right">
+					<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
+				</div>
+			<% end %>
+
+			<% if @user.pictures.where(status: "マンガ").exists? %>
+				<h1 class="title">マンガ</h1>
+			<% end %>
+
 			<div class="picture-image">
 				<% @comic_pictures.each do |picture| %>
 					<div class="image">
@@ -66,9 +76,12 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="pull-right">
-				<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
-			</div>
+
+			<% if @user.pictures.where(status: "マンガ").count > 5 %>
+				<div class="pull-right">
+					<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
+				</div>
+			<% end %>
 		<% end %>
 	</div>	
 </div>

@@ -9,7 +9,9 @@
 
 		<div class="col-md-3 col-md-offset-1">
 			<div class="profile-image">
-				<%= attachment_image_tag @picture.user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+				<%= link_to user_path(@picture.user) do %>
+					<%= attachment_image_tag @picture.user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+				<% end %>
 			</div>
 
 			<table class="table">
@@ -17,16 +19,24 @@
 					<% if @picture.user.nickname == nil %>
 						<tr>
 							<th>名前</th>
-							<th><p><%= @picture.user.name %></p></th>
+							<th><%= link_to @picture.user.name, user_path(@picture.user) %></th>
 						</tr>
 					<% else %>
 						<tr>
 							<th>ニックネーム</th>
-							<th><p><%= @picture.user.nickname %></p></th>
+							<th><p><%= link_to @picture.user.nickname, user_path(@picture.user) %></p></th>
 						</tr>
 					<% end %>
+						<tr>
+							<th>ステータス</th>
+							<th><p><%= @picture.user.status %></p></th>
+						</tr>
 				</tbody>
 			</table>
+
+			<% if @picture.user == current_user %>
+				<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-bottom: 10px; padding: 8px 90px;" %>
+			<% end %>
 
 			<h5><b>投稿作品</b></h5>
 			<table class="table">
@@ -43,7 +53,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<%= link_to 'もっと見る', controller: "pictures", action: "index", user_id: @picture.user_id %>
+			<% if @picture.user.pictures.count > 3 %>
+				<%= link_to 'もっと見る', controller: "pictures", action: "index", user_id: @picture.user_id %>
+			<% end %>
 		</div>
 	</div>
 	<div class="row">
@@ -70,7 +82,7 @@
 				<% end %>
 			</div>
 
-			<h2><%= @picture.title %></h2>
+			<h2 class="picture-title"><%= @picture.title %></h2>
 
 			<h6>
 				<%= link_to user_path(@picture.user) do %>
@@ -84,6 +96,42 @@
 			</h6>
 
 			<p><%= @picture.introduction %></p>
+		</div>
+
+		<div class="col-md-6 col-md-offset-2 comment">
+			<h3>コメント</h3>
+			<%= form_with model:[@picture, @comment] do |f| %>
+	        	<%= f.text_area :comment, size: "75x4" %>
+	        	<%= f.submit '送信' %>
+	     	<% end %>
+	    </div>
+
+		<div class="col-md-6 col-md-offset-2 comment">
+			<table>
+				<% @picture.comments.each do |comment| %>
+				    <tr>
+						<td>
+							<%= link_to user_path(comment.user) do %>
+								<%= attachment_image_tag(comment.user, :profile_image, size: "50x50", fallback: "no_image_square.jpg") %><br>
+							<% end %>
+						</td>
+						<td style="padding: 0 350px 0 5px;">
+							<% if comment.user.nickname == nil %>
+								<%= link_to comment.user.name, user_path(comment.user) %><br>
+							<% else %>
+								<%= link_to comment.user.nickname, user_path(comment.user) %><br>
+							<% end %>
+							<%= comment.comment %>
+						</td>
+						<td></td>
+						<% if comment.user == current_user %>
+							<td>
+								<%= link_to "コメント削除", picture_comment_path(comment.picture, comment), method: :delete, remote: true, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
+							</td>
+						<% end %>
+					</tr>	
+				<% end %>
+			</table>
 		</div>
 	</div>
 </div>
