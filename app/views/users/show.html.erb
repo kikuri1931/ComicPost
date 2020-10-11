@@ -3,13 +3,14 @@
 		<div class="col-md-2 profile-image">
 			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
 		</div>
-
-		<div class="col-md-2 col-md-offset-1 profile">
-			<%if @user.nickname == nil %>
-				<h1><%= @user.name %></h1>
+		<%if @user.nickname == nil %>
+				<h2 class="profile"><%= @user.name %></h2>
 			<% else %>
-				<h1><%= @user.nickname %></h1>
+				<h2 class="profile"><%= @user.nickname %></h2>
 			<% end %>
+
+		<div class="col-md-2 col-md-offset-1">
+			
 
 			<h4><%= @user.status %></h4>
 		</div>
@@ -23,14 +24,14 @@
 					<%= link_to "お気に入り", bookmarks_path %>
 				</div>
 				<div class="link">
-					<% if @user.status == "有料会員" && @user == current_user %>
+					<% if @user.status == "有料会員" %>
 						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
 						<% if @user.rooms.exists? %>
 							<% @user.rooms.each do |room| %>
 								<%= link_to "講師とチャットする", room_path(room), class: "btn btn-warning", style: "margin-right: 10px;" %>
 							<% end %>
 						<% end %>
-					<% elsif @user.status == "講師" && @user == current_user %>
+					<% elsif @user.status == "講師" %>
 						<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
 						<%= link_to "My受講生", rooms_path, class: "btn btn-warning", style: "margin-right: 10px;" %>
 					<% end %>
@@ -40,6 +41,12 @@
 
 		<% unless @user == current_user || ['講師'].include?(@user.status) %>
 			<div class="col-md-5 chat-link">
+				<div class="bookmark-link">
+					<%= link_to "登録情報を編集する", edit_user_path(@user) %>
+				</div>
+		<% end %>
+
+		<% unless @user == current_user || ['講師','無料会員'].include?(@user.status) %>
 				<% if @isRoom == true %>
 		  			<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
 		  		<% else %>
