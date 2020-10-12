@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="row">
+		<h2><%= params[:word] %>の検索結果</h2>
+		<% if @range == '1' %>
+			<div class="col-md-8 col-md-offset-2">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>会員ステータス</th>
+							<th>名前</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |user| %>
+							<tr>
+								<td><%= user.status %></td>
+								<td>
+									<% if user.nickname == nil %>
+										<%= link_to user.name, user_path(user) %>
+									<% else %>
+										<%= link_to user.nickname, user_path(user) %>
+									<% end %>
+								</td>
+							</tr>
+						<% end %>	
+					</tbody>
+				</table>
+			</div>
+		<% elsif @range == '4'%>
+			<div class="picture-image">
+				<% @genres.each do |genre| %>
+					<% genre.pictures.each do |picture| %>
+						<div class="image">
+							<%= link_to picture_path(picture), style:"margin-bottom: 50px;" do %>
+								<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg" %>
+								<%= picture.title %><br>
+								ジャンル：<%= picture.genre.genre %><br>
+								<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+								<% if picture.user.nickname == nil %>
+									<%= picture.user.name %>
+								<% else %>
+									<%= picture.user.nickname %>
+								<% end %>
+							<% end %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		<% else %>
+			<div class="picture-image">
+				<% @pictures.each do |picture| %>
+					<div class="image">
+						<%= link_to picture_path(picture), style:"margin-bottom: 50px;" do %>
+							<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg" %>
+							<%= picture.title %><br>
+							ジャンル：<%= picture.genre.genre %><br>
+							<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+							<% if picture.user.nickname == nil %>
+								<%= picture.user.name %>
+							<% else %>
+								<%= picture.user.nickname %>
+							<% end %>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

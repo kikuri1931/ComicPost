@@ -34,12 +34,9 @@ document.addEventListener("turbolinks:load", function(){
 	$('.tab-link1').click(function(event) {
 		$("#tab-forms .tab").show();
 	});
-});
-
-$(function() {
-  $('#slider').slick({
-      dots: true,
-      rtl: true, 
-      autoplaySpeed: 4000, 
-  });
+	$('#slider').slick({
+      	dots: true,
+      	rtl: true, 
+     	autoplaySpeed: 4000, 
+  	});
 });

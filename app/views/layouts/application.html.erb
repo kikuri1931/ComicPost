@@ -28,6 +28,17 @@
             <% end %>
           <% end %>
         </nav>
+
+
+         <div class="navbar-form navbar-left" role="search">
+          <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag (:word) %>
+            <%= select_tag 'range' ,options_for_select([['ユーザー', '1'], ['マンガ', '2'], ['イラスト', '3'], ['ジャンル', '4']]) %>
+          <%= submit_tag "検索" %>
+        </div>
+
+
+    <% end %>
         
         <nav>
           <ul class="nav navbar-nav navbar-right">
