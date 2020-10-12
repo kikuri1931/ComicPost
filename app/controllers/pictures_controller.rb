@@ -1,13 +1,13 @@
 class PicturesController < ApplicationController
   def new
-  	@picture = Picture.new 
-  	@picture.picture_images.build
+    @picture = Picture.new
+    @picture.picture_images.build
   end
 
   def create
-  	@picture = Picture.new (picture_params)
-  	@picture.user_id = current_user.id
-	  @picture.save
+    @picture = Picture.new picture_params
+    @picture.user_id = current_user.id
+    @picture.save
     redirect_to picture_path(@picture)
   end
 
@@ -19,7 +19,7 @@ class PicturesController < ApplicationController
   end
 
   def index
-     @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @pictures = @user.pictures
   end
 

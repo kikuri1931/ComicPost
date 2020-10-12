@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :pictures, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
@@ -14,5 +14,5 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   attachment :profile_image
 
-  enum status: {無料会員: 0,有料会員: 1,講師: 2}
+  enum status: { 無料会員: 0, 有料会員: 1, 講師: 2 }
 end

@@ -1,10 +1,85 @@
 <div class="container">
 	<div class="row">
 		
-		<div class="col-md-5 col-md-offset-2">
-			<% @picture_images.each do |picture_image| %>
-				<%= attachment_image_tag picture_image, :image, size: "396x558", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin-top:20px;" %>
-			<% end %>
+		<div class="col-md-6 col-md-offset-1">
+			<div id="slider" dir="rtl">
+				<% @picture_images.each do |picture_image| %>
+					<%= attachment_image_tag picture_image, :image, size: "396x558", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin-top:20px;" %>
+				<% end %>
+			</div>
+			<div class="col-md-12 picture-details">
+				<div class="favorite-bookmark">
+					<% unless @picture.user == current_user %> 
+						<% if @picture.bookmark_by?(current_user) %>
+							<%= link_to "お気に入りを外す", picture_bookmarks_path(@picture), method: :delete, class: "btn btn-warning",style: "margin-top: 15px;" %>
+						<% else %>
+							<%= link_to "お気に入り登録", picture_bookmarks_path(@picture), method: :post, class: "btn btn-success",style: "margin-top: 15px;" %>
+						<% end %>
+					<% end %>
+
+					<% if @picture.favorited_by?(current_user) %>
+						<%= link_to picture_favorites_path(@picture), method: :delete, style: "color: red; margin: 30px 20px 0 0;" do %>
+							<i class="glyphicon glyphicon-heart" ></i>
+							<%= @picture.favorites.count %>いいね
+						<% end %>
+					<% else %>
+						<%= link_to picture_favorites_path(@picture), method: :post, style: "color: black; margin: 30px 20px 0 0;" do %>
+							<i class="glyphicon glyphicon-heart-empty"></i>
+							<%= @picture.favorites.count %>いいね
+						<% end %>
+					<% end %>
+				</div>
+
+				<h2 class="pictures-title"><%= @picture.title %></h2>
+
+				<h6>
+					<%= link_to user_path(@picture.user) do %>
+						<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+						<% if @picture.user.nickname == nil %>
+							<%= @picture.user.name %>
+						<% else %>
+							<%= @picture.user.nickname %>
+						<% end %>
+					<% end %>
+				</h6>
+
+				<p><%= @picture.introduction %></p>
+			</div>
+			<div class="col-md-12 comment">
+				<h3>コメント</h3>
+				<%= form_with model:[@picture, @comment] do |f| %>
+	        		<%= f.text_area :comment, size: "73x4" %>
+	        		<%= f.submit '送信' %>
+	     		<% end %>
+	    	</div>
+
+			<div class="col-md-12 comment">
+				<table>
+					<% @picture.comments.each do |comment| %>
+				   	 	<tr>
+							<td>
+								<%= link_to user_path(comment.user) do %>
+									<%= attachment_image_tag(comment.user, :profile_image, size: "50x50", fallback: "no_image_square.jpg") %><br>
+								<% end %>
+							</td>
+							<td style="padding: 0 350px 0 5px;">
+								<% if comment.user.nickname == nil %>
+									<%= link_to comment.user.name, user_path(comment.user) %><br>
+								<% else %>
+									<%= link_to comment.user.nickname, user_path(comment.user) %><br>
+								<% end %>
+								<%= comment.comment %>
+							</td>
+							<td></td>
+							<% if comment.user == current_user %>
+								<td>
+									<%= link_to "コメント削除", picture_comment_path(comment.picture, comment), method: :delete, remote: true, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
+								</td>
+							<% end %>
+						</tr>	
+					<% end %>
+				</table>
+			</div>
 		</div>
 
 		<div class="col-md-3 col-md-offset-1">
@@ -56,82 +131,6 @@
 			<% if @picture.user.pictures.count > 3 %>
 				<%= link_to 'もっと見る', controller: "pictures", action: "index", user_id: @picture.user_id %>
 			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 col-md-offset-2 picture-details">
-			<div class="favorite-bookmark">
-				<% unless @picture.user == current_user %> 
-					<% if @picture.bookmark_by?(current_user) %>
-						<%= link_to "お気に入りを外す", picture_bookmarks_path(@picture), method: :delete, class: "btn btn-warning",style: "margin-top: 15px;" %>
-					<% else %>
-						<%= link_to "お気に入り登録", picture_bookmarks_path(@picture), method: :post, class: "btn btn-success",style: "margin-top: 15px;" %>
-					<% end %>
-				<% end %>
-
-				<% if @picture.favorited_by?(current_user) %>
-					<%= link_to picture_favorites_path(@picture), method: :delete, style: "color: red; margin: 30px 20px 0 0;" do %>
-						<i class="glyphicon glyphicon-heart" ></i>
-						<%= @picture.favorites.count %>いいね
-					<% end %>
-				<% else %>
-					<%= link_to picture_favorites_path(@picture), method: :post, style: "color: black; margin: 30px 20px 0 0;" do %>
-						<i class="glyphicon glyphicon-heart-empty"></i>
-						<%= @picture.favorites.count %>いいね
-					<% end %>
-				<% end %>
-			</div>
-
-			<h2 class="picture-title"><%= @picture.title %></h2>
-
-			<h6>
-				<%= link_to user_path(@picture.user) do %>
-					<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
-					<% if @picture.user.nickname == nil %>
-						<%= @picture.user.name %>
-					<% else %>
-						<%= @picture.user.nickname %>
-					<% end %>
-				<% end %>
-			</h6>
-
-			<p><%= @picture.introduction %></p>
-		</div>
-
-		<div class="col-md-6 col-md-offset-2 comment">
-			<h3>コメント</h3>
-			<%= form_with model:[@picture, @comment] do |f| %>
-	        	<%= f.text_area :comment, size: "75x4" %>
-	        	<%= f.submit '送信' %>
-	     	<% end %>
-	    </div>
-
-		<div class="col-md-6 col-md-offset-2 comment">
-			<table>
-				<% @picture.comments.each do |comment| %>
-				    <tr>
-						<td>
-							<%= link_to user_path(comment.user) do %>
-								<%= attachment_image_tag(comment.user, :profile_image, size: "50x50", fallback: "no_image_square.jpg") %><br>
-							<% end %>
-						</td>
-						<td style="padding: 0 350px 0 5px;">
-							<% if comment.user.nickname == nil %>
-								<%= link_to comment.user.name, user_path(comment.user) %><br>
-							<% else %>
-								<%= link_to comment.user.nickname, user_path(comment.user) %><br>
-							<% end %>
-							<%= comment.comment %>
-						</td>
-						<td></td>
-						<% if comment.user == current_user %>
-							<td>
-								<%= link_to "コメント削除", picture_comment_path(comment.picture, comment), method: :delete, remote: true, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
-							</td>
-						<% end %>
-					</tr>	
-				<% end %>
-			</table>
 		</div>
 	</div>
 </div>

@@ -35,3 +35,11 @@ document.addEventListener("turbolinks:load", function(){
 		$("#tab-forms .tab").show();
 	});
 });
+
+$(function() {
+  $('#slider').slick({
+      dots: true,
+      rtl: true, 
+      autoplaySpeed: 4000, 
+  });
+});

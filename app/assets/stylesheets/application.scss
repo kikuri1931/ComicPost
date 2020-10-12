@@ -86,7 +86,7 @@ a:hover {
 
 .wrap{
   width: 90%;
-  max-width: 800px;
+  max-width: 850px;
   margin: 100px auto 0;
 }
 
@@ -109,8 +109,6 @@ a:hover {
   padding: 5px;
   text-align: center;
   background: #d9534f;
-  border-top-right-radius: 50px;
-  border-top-left-radius: 50px;
 }
 
 #tab-menu .tab-link2 {
@@ -120,8 +118,6 @@ a:hover {
   padding: 5px;
   text-align: center;
   background: #5bc0de;
-  border-top-right-radius: 50px;
-  border-top-left-radius: 50px;
 }
 
 #tab-menu .active {
@@ -142,4 +138,3 @@ a:hover {
   color:#000;
   line-height: 2.5;
 }
-
