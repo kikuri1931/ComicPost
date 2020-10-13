@@ -1,0 +1,2 @@
+$("textarea").val("");
+$(".comment_<%= @picture.id %>").html("<%= j(render 'comments/index', picture: @picture) %>");

@@ -2,7 +2,7 @@
   <div class="row">
     <h2 class="chat-title">チャット</h2>
     <div class="col-md-5">
-      <%= form_for @message do |f| %>
+      <%= form_with model: @message, data: {remote: true} do |f| %>
         <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-control" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.submit "投稿",class: 'form-submit'%>
@@ -12,20 +12,6 @@
 </div>
 
 <div class="container message">
-  <% @messages.each do |message| %>
-    <% if message.user.id == current_user.id %>
-      <div class="col-md-5 col-md-offset-7 message">
-        <%= attachment_image_tag message.user, :profile_image, size: "50x50", format: 'jpeg', class: "img-circle pull-left", fallback: "no_image_square.jpg" %><br>
-        <b><%= message.message %></b> <br>
-        <%= message.created_at.strftime("%Y-%m-%d %H:%M")%>
-      </div>
-    <% else %>
-      <div class="col-md-7 message">
-        <%= attachment_image_tag message.user, :profile_image, size: "50x50", format: 'jpeg', class: "img-circle pull-left", fallback: "no_image_square.jpg" %>
-        <b><%= message.message %></b> <br>
-        <%= message.created_at.strftime("%Y-%m-%d %H:%M")%>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render "messages/message", messages: @messages %>
 </div>
 

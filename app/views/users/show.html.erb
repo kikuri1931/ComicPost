@@ -39,14 +39,14 @@
 			</div>
 		<% end %>
 
-		<% unless @user == current_user || ['講師'].include?(@user.status) %>
+		<% unless @user == current_user || ['講師'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
 			<div class="col-md-5 chat-link">
 				<div class="bookmark-link">
 					<%= link_to "登録情報を編集する", edit_user_path(@user) %>
 				</div>
 		<% end %>
 
-		<% unless @user == current_user || ['講師','無料会員'].include?(@user.status) %>
+		<% unless @user == current_user || ['無料会員'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
 				<% if @isRoom == true %>
 		  			<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
 		  		<% else %>
@@ -54,7 +54,7 @@
 		      			<%= fields_for @entry do |e| %>
 		        			<%= e.hidden_field :user_id, value: @user.id %>
 		     			<% end %>
-		      			<%= f.submit "この生徒とチャットを始める", class:"btn btn-primary"%>
+		      			<%= f.submit "この人とチャットを始める", class:"btn btn-primary"%>
 		    		<% end %>
 		  		<% end %>
 		    </div>
