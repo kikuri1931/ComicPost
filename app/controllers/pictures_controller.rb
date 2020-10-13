@@ -28,20 +28,28 @@ class PicturesController < ApplicationController
   end
 
   def comics
+    @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @comic_pictures = @user.pictures.where(status: "マンガ")
+      @comic_pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
+    elsif params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @comic_pictures = @genre.pictures.where(status: "マンガ")
     else
-      @comic_pictures = Picture.where(status: "マンガ")
+      @comic_pictures = Picture.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
     end
   end
 
   def illustrations
+    @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @illustration_pictures = @user.pictures.where(status: "イラスト")
+      @illustration_pictures = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true})
+    elsif params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @illustration_pictures = @genre.pictures.where(status: "イラスト")
     else
-      @illustration_pictures = Picture.where(status: "イラスト")
+      @illustration_pictures = Picture.where(status: "イラスト").joins(:genre).where(genres: {is_active: true})
     end
   end
 
