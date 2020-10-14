@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'homes#top'
-  get 'contact' => "homes#contact", as: :contact
-
+  get 'inquiries/new'
+  post 'inquiries/confirm'
+  post 'inquiries/thanks'
   devise_for :users
   resources :users, only: [:show, :index, :edit, :update]
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'

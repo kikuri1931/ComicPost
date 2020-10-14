@@ -77,7 +77,7 @@ body {
 }
 
 .form-space {
-	margin-top: 30px;
+	padding-top: 30px;
 }
 
 a:hover {
@@ -141,4 +141,10 @@ a:hover {
 
 .navbar-form {
   padding: 20px 50px
+}
+
+.form-background {
+  background-color: #f1f1f1;
+  margin-top: 30px;
+  padding-bottom: 50px;
 }
