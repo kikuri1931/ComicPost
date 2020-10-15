@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ComicPost</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,7 +17,7 @@
     <header class="navbar-header navbar-fixed-top " >
       <div class="container">
 
-        <nav class="nav navbar-nav navbar-left">
+        <nav class="nav navbar-nav pull-left">
           <% if user_signed_in? %>
             <%= link_to user_path(current_user) do %>
               <span>ComicPost</span>
@@ -30,7 +31,7 @@
         </nav>
 
         <% if user_signed_in? %>
-         <div class="navbar-form navbar-left" role="search">
+         <div class="navbar-form pull-left" role="search">
           <%= form_tag(search_path, method: :get) do %>
             <%= text_field_tag (:word) %>
             <%= select_tag 'range' ,options_for_select([['ユーザー', '1'], ['マンガ', '2'], ['イラスト', '3'], ['ジャンル', '4']]) %>
@@ -47,7 +48,7 @@
                 <li><%= link_to ' イラスト', illustrations_path, class: 'glyphicon glyphicon-picture' %></li>
                 <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
               <% else %>
-                <li><%= link_to ' ジャンル一覧', comics_path, class: 'glyphicon glyphicon-file' %></li>
+                <li><%= link_to ' ジャンル一覧', genres_path, class: 'glyphicon glyphicon-file' %></li>
                 <li><%= link_to ' 会員一覧', users_path, class: 'glyphicon glyphicon-user' %></li>
                 <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
               <% end %>
@@ -58,6 +59,11 @@
             <% end %>
           </ul>
         </nav>
+        <div class="pull-right menu">
+          <div class="menu-border"></div>
+          <div class="menu-border"></div>
+          <div class="menu-border"></div>
+        </div>
 
       </div>
     </header>

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center title">
+    <h1 class="text-center page-title">
       会員登録して<span>ComicPost</span>を始めよう！！
-    </h2>
+    </h1>
 
     <p class="text-center sign-up-text ">
       <span>ComicPost</span>では、有料会員と無料会員で受けられるサービスに違いがあります。<br>
@@ -30,7 +30,7 @@
             <h3 class="attention description-title"><b>ご確認ください</b></h3>
             <b>
               <ul>
-                <li class="line-spacing">講義ではZoomを使用します。Zoomの登録をしてくださいますようよろしくお願いします。</li>
+                <li class="line-spacing">講義では ○○○ というWeb会議ツールを使用します。 ○○○ の登録をしてくださいますようよろしくお願いします。</li>
                 <li class="line-spacing">講義の内容を外部に持ち出すことを禁止しています。</li>
                 <li class="line-spacing">自分の作品以外のイラスト、マンガの無断転載は禁止しております。</li>
                 <li class="line-spacing">料金が支払われない場合、上記違反が発覚した場合はサービス利用を中止させていただく場合があります。</li>
@@ -130,11 +130,11 @@
       </div>
 
       <div class="col-md-11 col-md-offset-1 form-space">
-        <%= f.submit "会員登録する", class: "btn btn-primary" %>
+        <%= f.submit "会員登録する", class: "btn btn-primary", style:"margin-left: 15px;" %>
       </div>
     <% end %>
     <div class="col-md-11 col-md-offset-1 form-space">
-      <%= link_to "登録がお済みの方はこちら", new_user_session_path %>
+      <%= link_to "登録がお済みの方はこちら", new_user_session_path, style:"margin-left: 15px;" %>
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :bookmarks, only: [:create, :destroy]
   end
+  resources :genres, only: [:index, :create,:edit, :update]
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show, :index]
   get '/search', to: "searches#search"

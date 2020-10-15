@@ -32,7 +32,7 @@ header {
 	background-color:#e3f2fd;
 }
 
-header .navbar-left span{
+header .pull-left span{
 	font-size: 35px;
 }
 
@@ -52,8 +52,12 @@ body {
 	margin-top: 61px;
 }
 
+.page-title {
+  margin-top: 70px;
+}
+
 .title {
-	margin-top: 80px;
+	margin: 70px 0 10px 120px;
 }
 
 .line-spacing {
@@ -77,7 +81,7 @@ body {
 }
 
 .form-space {
-	padding-top: 30px;
+	padding-top: 20px;
 }
 
 a:hover {
@@ -148,3 +152,25 @@ a:hover {
   margin-top: 30px;
   padding-bottom: 50px;
 }
+
+@media screen and (max-width:768px) {
+  .menu {
+    height: 40px;
+    width: 40px;
+    margin: 5px 0;
+    border: 2px solid #fafafa;
+  }
+  .menu-border {
+    height: 2px;
+    width: 30px;
+    background-color: #fafafa;
+    margin: 8px 3px;
+  }
+  header .navbar-right {
+    display: none;
+  }
+  .image h1 {
+    font-size: 40px;
+  }
+}
+  

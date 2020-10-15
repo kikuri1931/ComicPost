@@ -2,17 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.image {
-	position: relative;
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
+.top-image {
+	background: url(/images/sketch.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center; 
+    opacity:1;
 }
 
-.top-title h1 {
-	position: absolute;
-	top: 250px;
-	left: 25%;
+.topimage-opacity {
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+}
+
+.top-image h1 {
+	padding-top: 245px;
+    text-align: center;
 	font-size: 50px;
 }
 

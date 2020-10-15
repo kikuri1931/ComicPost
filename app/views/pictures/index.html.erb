@@ -7,7 +7,7 @@
 		<% end %>
 		<div class="picture-image">
 			<% @pictures.each do |picture| %>
-				<div class="image">
+				<div class="images">
 					<%= link_to picture_path(picture)do %>
 						<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg" %>
 						<%= picture.title %><br>
