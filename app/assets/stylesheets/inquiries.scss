@@ -1,3 +1,19 @@
 // Place all the styles related to the inquiries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.confirm {
+	background-color: white;
+	padding: 5px;
+	border: 1px solid #d4d0d0;
+   border-radius: 7px;
+}
+
+.thanks-image {
+	display: flex;
+  justify-content: center;
+}
+
+.thanks-text {
+	margin-bottom: 50px;
+}

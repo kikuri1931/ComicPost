@@ -84,8 +84,18 @@ header .navbar-right {
     }
 }
 
-.form-space {
+.signup-formspace {
 	padding-top: 20px;
+}
+
+.form-space {
+  padding-top: 30px;
+}
+
+.form-background {
+  background-color: #f1f1f1;
+  margin-top: 30px;
+  padding-bottom: 50px;
 }
 
 a:hover {
@@ -151,21 +161,15 @@ a:hover {
   padding: 20px 50px
 }
 
-.form-background {
-  background-color: #f1f1f1;
-  margin-top: 30px;
-  padding-bottom: 50px;
-}
-
 @media screen and (max-width:1200px) {
   .about-image1 {
-    margin-top:0;
+    margin-top: 0;
   }
   .about-image2 {
-    margin-top:65px;
+    margin-top: 65px;
   }
   .about-image3 {
-    margin-top:45px;
+    margin-top: 45px;
   }
 }
 
@@ -174,10 +178,10 @@ a:hover {
     margin-top: 60px;
   }
   .about-image2 {
-    margin-top:0;
+    margin-top: 0;
   }
   .about-image3 {
-    margin-top:0;
+    margin-top: 0;
   }
 }
 
