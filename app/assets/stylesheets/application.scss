@@ -24,6 +24,10 @@
   font-style: normal;
 }
 
+body {
+  margin-top: 61px;
+}
+
 header {
 	height: 60px;
 	background-color:#e3f2fd;
@@ -44,12 +48,12 @@ header .navbar-right {
 	padding-top: 5px;
 }
 
-.user-name {
-	padding-top: 10px;
+#sp-menu {
+    display: none;
 }
 
-body {
-	margin-top: 61px;
+.user-name {
+	padding-top: 10px;
 }
 
 .page-title {
@@ -153,24 +157,108 @@ a:hover {
   padding-bottom: 50px;
 }
 
-@media screen and (max-width:768px) {
-  .menu {
-    height: 40px;
-    width: 40px;
-    margin: 5px 0;
-    border: 2px solid #fafafa;
+@media screen and (max-width:1200px) {
+  .about-image1 {
+    margin-top:0;
   }
-  .menu-border {
-    height: 2px;
-    width: 30px;
-    background-color: #fafafa;
-    margin: 8px 3px;
+  .about-image2 {
+    margin-top:65px;
+  }
+  .about-image3 {
+    margin-top:45px;
+  }
+}
+
+@media screen and (max-width:991px) {
+ .about-content {
+    margin-top: 60px;
+  }
+  .about-image2 {
+    margin-top:0;
+  }
+  .about-image3 {
+    margin-top:0;
+  }
+}
+
+@media screen and (max-width:768px) {
+  #hm-icon{
+    position: fixed;
+    right: 20px;
+    top: 5px;
+    z-index: 10;
+  }
+  .menu-trigger,
+  .menu-trigger span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+  }
+  .menu-trigger {
+    position: relative;
+    width: 40px;
+    height: 45px;
+  }
+  .menu-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #337ab7;
+  }
+  .menu-trigger span:nth-of-type(1) {
+    top: 10px;
+  }
+  .menu-trigger span:nth-of-type(2) {
+    top: 26px;
+  }
+  .menu-trigger span:nth-of-type(3) {
+    bottom: 0;
   }
   header .navbar-right {
     display: none;
   }
-  .image h1 {
-    font-size: 40px;
+  .top-image h1 {
+    font-size: 34px;
+  }
+  .about-title {
+    font-size: 28px;
+  }
+  .sign-up-title {
+    margin-top: 100px;
+    font-size: 30px;
+  }
+   .menu-trigger.active span:nth-of-type(1) {
+    transform: translateY(10px) rotate(-45deg);
+    background-color: #fff;
+  }
+  .menu-trigger.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  .menu-trigger.active span:nth-of-type(3) {
+    transform: translateY(-22px) rotate(45deg);
+    background-color: #fff;
+  }
+  #sp-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+  }
+  #sp-menu li{
+    text-align: center;
+    margin-bottom: 30px;
+    list-style: none;
+  }
+  #sp-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
   }
 }
   
