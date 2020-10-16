@@ -10,7 +10,7 @@
 			<div class="col-md-12 picture-details">
 				<div class="favorite-bookmark">
 					<% if @picture.user == current_user %>
-						<%= link_to "作品を全て削除する", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger",style: "margin-top: 15px;" %>
+						<%= link_to "この作品を削除", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger",style: "margin-top: 15px;" %>
 					<% end %> 
 					<div class="picture_<%= @picture.id %>">
 						<%= render 'favorite_bookmark', picture: @picture %>
