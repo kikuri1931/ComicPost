@@ -24,68 +24,42 @@
   font-style: normal;
 }
 
+//全ページ共通CSS
 body {
   margin-top: 61px;
 }
 
-header {
-	height: 60px;
-	background-color:#e3f2fd;
-}
-.nav li a:hover {
-	background-color:#e3f2fd;
-}
-
-header .pull-left span{
-	font-size: 35px;
-}
-
 span {
-	font-family: 'Magnolia';
+  font-family: 'Magnolia';
 }
 
-header .navbar-right {
-	padding-top: 5px;
-}
+header {
+  height: 60px;
+  background-color:#e3f2fd;
 
-#sp-menu {
+  .pull-left span{
+    font-size: 35px;
+  }
+
+  .navbar-right {
+    padding-top: 5px;
+  }
+
+  .navbar-form {
+    padding: 20px 50px
+  }
+
+  .nav li a:hover {
+    background-color:#e3f2fd;
+  }
+
+  #sp-menu {
     display: none;
-}
-
-.user-name {
-	padding-top: 10px;
+  }
 }
 
 .page-title {
   margin-top: 70px;
-}
-
-.title {
-	margin: 70px 0 10px 120px;
-}
-
-.line-spacing {
-	line-height: 30px;
-}
-
-.attention {
-	color: red;
-}
-
-.description-title {
-	margin: 40px 0 10px 25px;
-}
-
-.paid-space {
-	margin-top: 100px;
-	text-align: center;
-	p {
-    color: #4f2e00;
-    }
-}
-
-.signup-formspace {
-	padding-top: 20px;
 }
 
 .form-space {
@@ -99,66 +73,98 @@ header .navbar-right {
 }
 
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
+}
+//全ページ共通CSS
+
+//会員登録画面専用CSS 
+.signup-text {
+  margin-top: 20px;
 }
 
+.signup-title {
+  margin: 70px 0 10px 20px;
+}
+.signup-formspace {
+  padding-top: 20px;
+}
+//会員登録画面専用CSS 
+
+//会員登録画面タブメニューのCSS 
 .wrap{
-  width: 90%;
-  max-width: 850px;
-  margin: 100px auto 0;
+  margin-top: 100px;
+  h2 {
+    font-size: 34px;
+  }
 }
 
 #tab-menu {
-	display: flex;
+  display: flex;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  li {
+    list-style-type: none;
+    width: 50%;
+  }
+
+  .tab-link1 {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
     text-align: center;
-    margin: 0;
-    padding: 0;
+    background: #d9534f;
+  }
+
+  .tab-link2 {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    text-align: center;
+    background: #5bc0de;
+  }
+
+  .active {
+    border: 1px solid #efe9e9;
+    border-bottom: none;
+    background: #fbfeff;;
+    color:black;
+  }
 }
 
-#tab-menu li {
-  list-style-type: none;
-  width: 50%;
-}
+#tab-contents {
+  .tab {
+    padding: 30px;
+    background: #fbfeff;;
+    border: 1px solid #efe9e9;
+    border-top: none;
+  }
 
-#tab-menu a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 5px;
-  text-align: center;
-  background: #d9534f;
-}
+  .line-spacing {
+    line-height: 30px;
+  }
 
-#tab-menu .tab-link2 {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 5px;
-  text-align: center;
-  background: #5bc0de;
-}
+  .attention {
+    color: red;
+  }
 
-#tab-menu .active {
-  border: 1px solid #efe9e9;
-  border-bottom: none;
-  background: #fbfeff;;
-  color:black;
+  .description-title {
+    margin: 40px 0 10px 25px;
+  }
+  .radio-button {
+    margin-top: 100px;
+    text-align: center;
+    p {
+      color: #4f2e00;
+    }
+  }
 }
+//会員登録画面タブメニューのCSS 
 
-#tab-contents .tab {
-  padding: 30px;
-  background: #fbfeff;;
-  border: 1px solid #efe9e9;
-  border-top: none;
-}
-
-#tab-contents p{
-  color:#000;
-  line-height: 2.5;
-}
-
-.navbar-form {
-  padding: 20px 50px
+.user-name {
+  padding-top: 10px;
 }
 
 @media screen and (max-width:1200px) {
@@ -265,4 +271,3 @@ a:hover {
     font-weight: bold;
   }
 }
-  

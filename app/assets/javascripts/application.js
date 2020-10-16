@@ -18,30 +18,46 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function(){
-	$('html,body').animate({ scrollTop: 0 }, 0.1);
-	$('#tab-contents .tab[id != "tab1"]').hide();
+  $('html,body').animate({ scrollTop: 0 }, 0.1);
+  $('#tab-contents .tab[id != "tab1"]').hide();
 
-	$('#tab-menu a').on('click', function(event) {
-  	$("#tab-contents .tab").hide();
-  	$("#tab-menu .active").removeClass("active");
-  	$(this).addClass("active");
-  	$($(this).attr("href")).show();
-  	event.preventDefault();
-	});
-	$('.tab-link2').click(function(event) {
-		$("#tab-forms .tab").hide();
-	});
-	$('.tab-link1').click(function(event) {
-		$("#tab-forms .tab").show();
-	});
-	$('#slider').slick({
-      	dots: true,
-      	rtl: true, 
-     	autoplaySpeed: 4000, 
-  	});
-  	 $('.menu-trigger').on('click', function(event) {
+  $('#tab-menu a').on('click', function(event) {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    event.preventDefault();
+  });
+
+  $('.tab-link2').click(function(event) {
+    $("#forms .tab").hide();
+    var postal_code = document.getElementById('user_postal_code')
+    postal_code.removeAttribute("required","required");
+    var address = document.getElementById('user_address')
+    address.removeAttribute("required","required");
+    var telephone_number = document.getElementById('user_telephone_number')
+    telephone_number.removeAttribute("required","required");
+  });
+
+  $('.tab-link1').click(function(event) {
+    $("#forms .tab").show();
+    var postal_code = document.getElementById('user_postal_code')
+    postal_code.setAttribute("required","required");
+    var address = document.getElementById('user_address')
+    address.setAttribute("required","required");
+    var telephone_number = document.getElementById('user_telephone_number')
+    telephone_number.setAttribute("required","required");
+  });
+  
+  $('#slider').slick({
+        dots: true,
+        rtl: true, 
+      autoplaySpeed: 4000, 
+    });
+     $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
     $('#sp-menu').fadeToggle();
     event.preventDefault();
   });
 });
+

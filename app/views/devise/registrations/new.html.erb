@@ -4,7 +4,7 @@
       会員登録して<span>ComicPost</span>を始めよう！！
     </h1>
 
-    <p class="text-center sign-up-text ">
+    <p class="text-center signup-text">
       <span>ComicPost</span>では、有料会員と無料会員で受けられるサービスに違いがあります。<br>
       違いを理解された上で会員登録してくださいますよう、よろしくお願いいたします。
     </p>
@@ -12,103 +12,126 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="wrap">
+      <!--  タブメニュー -->
+      <div class="col-md-8 col-md-offset-2 wrap">
+        <!--  タブメニュー用リンク -->
         <ul id="tab-menu">
-          <li class="link1"><a href="#tab1" class="active tab-link1"> <h1>有料会員</h1></a></li>
-          <li><a href="#tab2" class="tab-link2"><h1>無料会員</h1></a></li>
+          <li>
+            <a href="#tab1" class="active tab-link1"> <h2>有料会員</h2></a>
+          </li>
+          <li>
+            <a href="#tab2" class="tab-link2"><h2>無料会員</h2></a>
+          </li>
         </ul>
+        <!--  タブメニュー用リンク -->
 
         <div id="tab-contents">
+          <!--  有料会員の説明 -->
           <div id="tab1" class="tab">
-            <h3 class="description-title"><b>有料会員では以下のことができます</b></h3>
+            <h3 class="description-title">
+              <b>有料会員では以下のことができます</b>
+            </h3>
             <ul>
               <li class="line-spacing">チャットで講師に質問、講義を受けることができます。</li>
               <li class="line-spacing">作品（イラスト、マンガ）を自由に投稿できます。</li>
               <li class="line-spacing">気に入った作品をお気に入りにすることができます。</li>
               <li class="line-spacing">他の人の作品にいいね、コメントを残すことができます。</li>
             </ul>
-            <h3 class="attention description-title"><b>ご確認ください</b></h3>
+            <h3 class="attention description-title">
+              <b>ご確認ください</b>
+            </h3>
             <b>
               <ul>
-                <li class="line-spacing">講義では ○○○ というWeb会議ツールを使用します。 ○○○ の登録をしてくださいますようよろしくお願いします。</li>
+                <li class="line-spacing">講義では ○○○ というWeb会議ツールを使用します。 ○○○ の登録をしてくださいますよう、ご協力お願いいたします。</li>
                 <li class="line-spacing">講義の内容を外部に持ち出すことを禁止しています。</li>
                 <li class="line-spacing">自分の作品以外のイラスト、マンガの無断転載は禁止しております。</li>
-                <li class="line-spacing">料金が支払われない場合、上記違反が発覚した場合はサービス利用を中止させていただく場合があります。</li>
+                <li class="line-spacing">料金が支払われない場合、または上記違反が発覚した場合はサービス利用を中止させていただく場合があります。</li>
               </ul>
-              <div class="paid-space">
+              <div class="radio-button">
                 <p>有料会員として登録される場合はこちらにチェックをお願いします。</p>
                 <label><%= f.radio_button :status, :有料会員 %> 有料会員</label>
               </div>
             </b>
-
           </div>
+          <!--  有料会員の説明 -->
 
+          <!--  無料会員の説明 -->
           <div id="tab2" class="tab">
-            <h3 class="description-title"><b>無料会員では以下のことができます</b></h3>
+            <h3 class="description-title">
+              <b>無料会員では以下のことができます</b>
+            </h3>
             <ul>
               <li class="line-spacing">気に入った作品をお気に入りにすることができます。</li>
               <li class="line-spacing">他の人の作品にいいね、コメントを残すことができます。</li>
             </ul>
-            <h3 class="attention description-title"><b>ご確認ください</b></h3>
+            <h3 class="attention description-title">
+              <b>ご確認ください</b>
+            </h3>
             <b>
               <ul>
                 <li class="line-spacing">イラスト、マンガの無断転載は禁止しております。</li>
                 <li class="line-spacing">上記違反が発覚した場合はサービス利用を中止させていただく場合があります。</li>
               </ul>
-              <div class="paid-space">
+              <div class="radio-button">
                 <p>無料会員として登録される場合はこちらにチェックをお願いします。</p>
                 <label><%= f.radio_button :status, :無料会員 %> 無料会員</label>
               </div>
             </b>
           </div>
+          <!--  無料会員の説明 -->
         </div>
       </div>
+       <!--  タブメニュー -->
 
-      <h2 class="col-md-offset-1 title">会員登録</h2>
-
+      <div class="col-md-11 col-md-offset-1">
+        <h2 class="signup-title">会員登録</h2>
+      </div>
+      <!--  会員登録フォーム -->
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>氏名(半角スペースなし)</label><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", :required => true %>
         </div>
       </div>
       
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>氏名(かな、半角スペースなし)</label><br />
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control" %>
+          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control", :required => true %>
         </div>
       </div>
 
-      <div id="tab-forms">
+      <!--  無料会員非表示 -->
+      <div id="forms">
         <div id="tab1" class="tab">
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-4 signup-formspace">
               <label>郵便番号</label><br />
-              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %>
+              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control", :required => true %>
             </div>
           </div>
 
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-8 signup-formspace">
               <label>住所</label><br />
-              <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+              <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", :required => true %>
             </div>
           </div>
 
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-4 signup-formspace">
               <label>電話番号</label><br />
-              <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control" %>
+              <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control", :required => true %>
             </div>
           </div>
         </div>
       </div>
+      <!--  無料会員非表示 -->
 
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>メールアドレス</label><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %>
         </div>
       </div>
 
@@ -118,20 +141,21 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上入力してください)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :required => true %>
         </div>
       </div>
 
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>確認用パスワード</label><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", :required => true %>
         </div>
       </div>
 
       <div class="col-md-11 col-md-offset-1 signup-formspace">
         <%= f.submit "会員登録する", class: "btn btn-primary", style:"margin-left: 15px;" %>
       </div>
+      <!--  会員登録フォーム -->
     <% end %>
     <div class="col-md-11 col-md-offset-1 signup-formspace">
       <%= link_to "登録がお済みの方はこちら", new_user_session_path, style:"margin-left: 15px;" %>
