@@ -90,14 +90,14 @@
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>氏名(半角スペースなし)</label><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", :required => true %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "山田太郎", class: "form-control", :required => true %>
         </div>
       </div>
       
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>氏名(かな、半角スペースなし)</label><br />
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control", :required => true %>
+          <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "やまだたろう", class: "form-control", :required => true %>
         </div>
       </div>
 
@@ -107,21 +107,21 @@
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-4 signup-formspace">
               <label>郵便番号</label><br />
-              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control", :required => true %>
+              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "000-0000", class: "form-control", :required => true %>
             </div>
           </div>
 
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-8 signup-formspace">
               <label>住所</label><br />
-              <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", :required => true %>
+              <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "例：東京都中央区日本橋0-0-0 ○○マンション0号室", class: "form-control", :required => true %>
             </div>
           </div>
 
           <div class="col-md-11 col-md-offset-1">
             <div  class="col-md-4 signup-formspace">
               <label>電話番号</label><br />
-              <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control", :required => true %>
+              <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", placeholder: "000-0000-0000", class: "form-control", :required => true %>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>メールアドレス</label><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@email.com", class: "form-control", :required => true %>
         </div>
       </div>
 
@@ -141,14 +141,14 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上入力してください)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :required => true %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control", :required => true %>
         </div>
       </div>
 
       <div class="col-md-11 col-md-offset-1">
         <div  class="col-md-4 signup-formspace">
           <label>確認用パスワード</label><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", :required => true %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードをもう一度入力してください", class: "form-control", :required => true %>
         </div>
       </div>
 

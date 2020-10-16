@@ -75,6 +75,10 @@ header {
 a:hover {
   text-decoration: none;
 }
+
+.attention {
+  color: red;
+}
 //全ページ共通CSS
 
 //会員登録画面専用CSS 
@@ -146,10 +150,6 @@ a:hover {
     line-height: 30px;
   }
 
-  .attention {
-    color: red;
-  }
-
   .description-title {
     margin: 40px 0 10px 25px;
   }
@@ -165,6 +165,11 @@ a:hover {
 
 .user-name {
   padding-top: 10px;
+}
+
+#error_explanation {
+  background: #ffe6e6;
+  margin-top: 20px;
 }
 
 @media screen and (max-width:1200px) {
