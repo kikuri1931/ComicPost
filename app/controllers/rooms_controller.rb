@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :room_operation_user
   def create
     @room = Room.create
     @currentUserEntry = Entry.create(room_id: @room.id, user_id: current_user.id)
@@ -24,5 +26,11 @@ class RoomsController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id)
+  end
+
+  def room_operation_user
+    if current_user.status == "無料会員"
+      redirect_to user_path(current_user)
+    end
   end
 end

@@ -1,14 +1,18 @@
 <div class="container">
-	<div class="row" style="font-size: 30px;margin-left: 50px;">ジャンル編集</div>
-	<div class="row" style="margin-top: 100px;">
-		<div class="col-lg-1 col-lg-offset-2">ジャンル</div>
-		<%= form_for @genre do |f| %>
-			<div class="col-lg-2"><%= f.text_field :genre %></div>
-			<div class="col-lg-2">
-				<label><%= f.radio_button :is_active, true %> 有効</label>
-				<label><%= f.radio_button :is_active, false %> 無効</label>
-			</div>
-			<div class="col-lg-2"><%= f.submit "変更を保存する",class: "btn btn-primary btn-block" %></div>
+	<div class="row">
+		<h1 class="signin-title">ジャンル編集</h1>
+		<div class="edit-genre">
+			<div class="col-lg-1 col-lg-offset-2">ジャンル</div>
+			<%= form_for @genre do |f| %>
+				<div class="col-lg-2"><%= f.text_field :genre %></div>
+				<div class="col-lg-2">
+					<label><%= f.radio_button :is_active, true %> 有効</label>
+					<label><%= f.radio_button :is_active, false %> 無効</label>
+				</div>
+				<div class="col-sm-3 col-lg-2">
+					<%= f.submit "変更を保存する",class: "btn btn-primary btn-block" %>
+				</div>
 			<% end %>
+		</div>
 	</div>
 </div>

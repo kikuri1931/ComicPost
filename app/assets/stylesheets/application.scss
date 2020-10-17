@@ -36,23 +36,18 @@ span {
 header {
   height: 60px;
   background-color:#e3f2fd;
-
   .pull-left span{
     font-size: 35px;
   }
-
-  .navbar-right {
+  .pull-right {
     padding-top: 5px;
   }
-
   .navbar-form {
     padding: 20px 50px
   }
-
   .nav li a:hover {
     background-color:#e3f2fd;
   }
-
   #sp-menu {
     display: none;
   }
@@ -78,6 +73,34 @@ a:hover {
 
 .attention {
   color: red;
+}
+
+.picture-space {
+  margin: 20px 50px 0 0;
+}
+
+.user-name {
+  padding-top: 30px;
+}
+
+.signin-title {
+  margin: 60px 0 0 110px;
+}
+
+.picture-image {
+  display: flex;
+  align-items: center; 
+  margin: 25px 0;
+}
+
+.picture-title {
+  margin-top: 60px;
+  color: #3a3000; 
+}
+
+#error_explanation {
+  background: #ffe6e6;
+  margin-top: 20px;
 }
 //全ページ共通CSS
 
@@ -163,15 +186,6 @@ a:hover {
 }
 //会員登録画面タブメニューのCSS 
 
-.user-name {
-  padding-top: 10px;
-}
-
-#error_explanation {
-  background: #ffe6e6;
-  margin-top: 20px;
-}
-
 @media screen and (max-width:1200px) {
   .about-image1 {
     margin-top: 0;
@@ -182,22 +196,7 @@ a:hover {
   .about-image3 {
     margin-top: 45px;
   }
-}
-
-@media screen and (max-width:991px) {
- .about-content {
-    margin-top: 60px;
-  }
-  .about-image2 {
-    margin-top: 0;
-  }
-  .about-image3 {
-    margin-top: 0;
-  }
-}
-
-@media screen and (max-width:768px) {
-  #hm-icon{
+   #hm-icon{
     position: fixed;
     right: 20px;
     top: 5px;
@@ -230,20 +229,10 @@ a:hover {
   .menu-trigger span:nth-of-type(3) {
     bottom: 0;
   }
-  header .navbar-right {
+  header .pull-right {
     display: none;
   }
-  .top-image h1 {
-    font-size: 34px;
-  }
-  .about-title {
-    font-size: 28px;
-  }
-  .sign-up-title {
-    margin-top: 100px;
-    font-size: 30px;
-  }
-   .menu-trigger.active span:nth-of-type(1) {
+  .menu-trigger.active span:nth-of-type(1) {
     transform: translateY(10px) rotate(-45deg);
     background-color: #fff;
   }
@@ -274,5 +263,62 @@ a:hover {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+  }
+}
+
+@media screen and (max-width:991px) {
+ .about-content {
+    margin-top: 60px;
+  }
+  .about-image2 {
+    margin-top: 0;
+  }
+  .about-image3 {
+    margin-top: 0;
+  }
+  .genre-search {
+    display: none;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .top-image h1 {
+    font-size: 34px;
+  }
+  .about-title {
+    font-size: 28px;
+  }
+  .sign-up-title {
+    margin-top: 100px;
+    font-size: 30px;
+  }
+  .header {
+    background-color:#e3f2fd;
+  }
+  .profile-image {
+    margin-top: 100px;
+  }
+  .slick-next:before, .slick-prev:before {
+    display: none;
+  }
+  .picture-user {
+  display: none;
+  }
+  .signin-title {
+    margin-left:20px;
+  }
+  .profile-image {
+    margin-top: 50px;
+  }
+}
+@media screen and (max-width:600px) {
+  .signin-title {
+    margin: 120px 0 0 20px;
+  }
+  .picture-space {
+    margin: 20px 20px 0 0;
+  }
+  .profile {
+    margin-top: 50px;
   }
 }

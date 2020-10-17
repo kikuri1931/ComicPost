@@ -1,72 +1,77 @@
 <div class="container">
 	<div class="row">
-		<% if @user.id == current_user.id %>
-			<h2 class="title">登録情報編集</h2>
+		<% if @user == current_user %>
+			<h2 class="signin-title">登録情報編集</h2>
 		<% elsif current_user.status == "講師" %>
-			<h2 class="title"><%= @user.name %>さんの登録情報編集</h2>
+			<h2 class="signin-title"><%= @user.name %>さんの登録情報編集</h2>
 		<% end %>
 
+		<%= render "layouts/errors", validation: @user %>
+
 		<%= form_for @user do |f| %>
+			<!-- ログインしているユーザ用フォーム -->
 			<% if @user.id == current_user.id %>
-				<div class="col-md-4 col-md-offset-1 form-space">
+				<div class="col-sm-5 col-md-4 col-md-offset-1 form-space">
 					<%= f.attachment_field :profile_image %>
 					<div class="col-md-10 form-space">
-		                <label>ニックネーム</label><br />
-		          		<%= f.text_field :nickname, autofocus: true, autocomplete: "name_kana", class: "form-control" %>
-		          	</div>
+		        <label>ニックネーム</label><br />
+		        <%= f.text_field :nickname, autofocus: true, autocomplete: "name_kana", class: "form-control" %>
+		      </div>
 				</div>
+			<!-- ログインしているユーザ用フォーム -->
 
+			<!-- 管理者用フォーム -->
 			<% elsif current_user.status == "講師" %>
-				<div class="col-md-4 col-md-offset-1 form-space">
-					<div class="col-md-12">
+				<div class="col-sm-5 col-md-4 col-md-offset-1 form-space">
+					<div class="col-sm-12 col-md-12">
 						<label>会員ステータス</label><br>
 						<label><%= f.radio_button :status, :無料会員 %> 無料会員</label>
-	    				<label><%= f.radio_button :status, :有料会員 %> 有料会員</label>
-	    			</div>
-	    			<div class="col-md-12 form-space">
+	    			<label><%= f.radio_button :status, :有料会員 %> 有料会員</label>
+	    		</div>
+	    		<div class="col-sm-12 col-md-12 form-space">
 						<label>有効/退会</label><br>
 						<label><%= f.radio_button :is_deleted, "false" %> 有効</label>
-	    				<label><%= f.radio_button :is_deleted, "true" %> 退会</label>
-	    			</div>
+	    			<label><%= f.radio_button :is_deleted, "true" %> 退会</label>
+	    		</div>
 				</div>
+			<!-- 管理者用フォーム -->
 			<% end %>
 
-			<div class="col-md-6">
+			<div class="col-sm-5 col-md-6">
+				<div class="col-md-7 form-space">
+	        <label>氏名(半角スペースなし)</label><br>
+	        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br />
+         </div>
+
+        <div class="col-md-7">
+	        <label>氏名(かな、半角スペースなし)</label><br>
+	        <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control" %><br />
+	      </div>
+
 				<div class="col-md-7">
-	          		<label>氏名(半角スペースなし)</label><br />
-	          		<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br />
-          		</div>
+		      <label>郵便番号</label><br>
+		      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %><br>
+		   	</div>
 
-          		<div class="col-md-7">
-	          		<label>氏名(かな、半角スペースなし)</label><br />
-	                <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control" %><br />
-	            </div>
+		    <div  class="col-md-12">
+         	<label>住所</label><br>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %><br>
+        </div>
 
-				<div class="col-md-7">
-		            <label>郵便番号</label><br />
-		            <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %><br />
-		        </div>
+        <div  class="col-md-7">
+          <label>電話番号</label><br>
+          <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control" %><br>
+        </div>
 
-		        <div  class="col-md-12">
-              		<label>住所</label><br />
-              		<%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %><br />
-            	</div>
+        <div  class="col-md-7">
+         	<label>メールアドレス</label><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %><br >
+        </div>
 
-            	<div  class="col-md-7">
-              		<label>電話番号</label><br />
-              		<%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control" %><br />
-            	</div>
-
-            	<div  class="col-md-7">
-          			<label>メールアドレス</label><br />
-          			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %><br />
-        		</div>
-
-        		<div  class="col-md-7">
-        			<%= f.submit "登録する", class: "btn btn-primary", style: " padding: 10px 115px;" %>
-        		</div>
-      		</div>
-
+        <div  class="col-md-7">
+        	<%= f.submit "登録する", class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
 		<% end %>
 	</div>
 </div>

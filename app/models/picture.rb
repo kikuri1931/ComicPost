@@ -17,4 +17,6 @@ class Picture < ApplicationRecord
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+
+  validates :title, :introduction, :status, presence: true
 end

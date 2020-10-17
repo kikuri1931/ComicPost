@@ -1,4 +1,6 @@
 class GenresController < ApplicationController
+	before_action :authenticate_user!
+	before_action :admin_user
   	def index
 	  @genres = Genre.all
 	  @genre = Genre.new
@@ -24,4 +26,10 @@ class GenresController < ApplicationController
 	def genre_params
 		params.require(:genre).permit(:genre, :is_active)
 	end
+
+	def admin_user
+    unless current_user.status == "講師"
+      redirect_to user_path(current_user)
+    end
+  end
 end

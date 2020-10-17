@@ -54,7 +54,8 @@ document.addEventListener("turbolinks:load", function(){
         rtl: true, 
       autoplaySpeed: 4000, 
     });
-     $('.menu-trigger').on('click', function(event) {
+
+  $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
     $('#sp-menu').fadeToggle();
     event.preventDefault();

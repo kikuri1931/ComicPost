@@ -16,5 +16,5 @@ class User < ApplicationRecord
 
   enum status: { 無料会員: 0, 有料会員: 1, 講師: 2 }
 
-  validates :name, :name_kana, :status, presence: true
+  validates :name, :name_kana, :email, :status, presence: true
 end

@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
-		<h2>ジャンル一覧・追加</h2>
+		<h2 class="signin-title">ジャンル一覧・追加</h2>
 	</div>
-	<div class="row" style="margin: 50px 0 50px 0;">
+	<div class="row new-genre" style="margin: 50px 0 50px 0;">
 		<div class="col-lg-1">ジャンル</div>
 		<%= form_for @genre do |f| %>
 			<div class="col-lg-2"><%= f.text_field :genre %></div>
@@ -10,26 +10,26 @@
 				<label><%= f.radio_button :is_active, true %> 有効</label>
 				<label><%= f.radio_button :is_active, false %> 無効</label>
 			</div>
-			<div class="col-lg-1"><%= f.submit "追加",class: "btn btn-primary btn-block" %></div>
+			<div class="col-sm-3 col-lg-1"><%= f.submit "追加",class: "btn btn-primary btn-block" %></div>
 		<% end %>
 	</div>
-	<div class="row" style="margin-bottom: 20px;font-weight: bold; ">
-		<div class="col-xs-2">ジャンル</div>
-		<div class="col-xs-2">状態</div>
-		<div class="col-xs-2"></div>
+	<div class="row genre-td">
+		<div class="col-xs-4 col-md-2">ジャンル</div>
+		<div class="col-xs-3 col-md-1">状態</div>
+		<div class="col-xs-3 col-md-1"></div>
 	</div>
-	<div style="margin: 10px 0;">
+	<div class="genre-index">
 		<% @genres.each do |genre| %>
 			<div class="row" style="margin-top: 10px;">
-				<div class="col-xs-2"><%= genre.genre %></div>
-				<div class="col-xs-2">
+				<div class="col-xs-4 col-md-2"><%= genre.genre %></div>
+				<div class="col-xs-3 col-md-1">
 					<% if genre.is_active %>
 						<p>有効</p>
 					<% else %>
 						<p>無効</p>
 					<% end %>
 				</div>
-				<div class="col-xs-2"><%= link_to "編集する", edit_genre_path(genre) %></div>
+				<div class="col-xs-4 col-md-2"><%= link_to "編集する", edit_genre_path(genre) %></div>
 			</div>
 		<% end %>
 	</div>

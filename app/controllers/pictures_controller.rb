@@ -1,4 +1,6 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :picture_operation_user, only: [:new,:create,:destroy]
   def new
     @picture = Picture.new
     @picture.picture_images.build
@@ -19,8 +21,12 @@ class PicturesController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:user_id])
-    @pictures = @user.pictures
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @pictures = @user.pictures
+    else
+      @pictures = Picture.joins(:genre).where(genres: {is_active: true})
+    end
   end
 
   def bookmarks
@@ -63,8 +69,13 @@ class PicturesController < ApplicationController
   end
 
   private
-
   def picture_params
     params.require(:picture).permit(:title, :introduction, :genre_id, :status, picture_images_images: [])
+  end
+
+  def picture_operation_user
+    if current_user.status == "無料会員"
+      redirect_to user_path(current_user)
+    end
   end
 end

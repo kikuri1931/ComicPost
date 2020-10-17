@@ -1,0 +1,10 @@
+<% if validation.errors.any? %>
+  <div id="error_explanation" class="col-md-7 col-md-offset-1">
+    <h2 class="attention"><%= validation.errors.count %>箇所の入力ミスがあります。</h2>
+    <ul>
+      <% validation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

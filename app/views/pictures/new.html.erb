@@ -1,26 +1,30 @@
 <div class="container">
 	<div class="row">
-		<h1>新規投稿</h1>
+		<h1 class="signin-title">新規投稿</h1>
+
+		<%= render "layouts/errors", validation: @picture %>
+
 		<%= form_with model:[@picture], url:pictures_path do |f| %>
-			<div class="col-md-5 col-md-offset-1">
-				<%= f.attachment_field :picture_images_images, multiple: true %>
+			<div class="col-sm-4 col-md-5 col-sm-offset-1 col-md-offset-1">
+				<%= f.attachment_field :picture_images_images, multiple: true, class: "form-space" %>
 			</div>
 
-			<div class="col-md-3">
-					<label><%= f.radio_button :status, :マンガ %> マンガ</label>
-					<label><%= f.radio_button :status, :イラスト, style: "margin-left: 50px;" %> イラスト</label><br>
-				<div class="title-space">
+			<div class="col-sm-5 col-sm-offset-1 col-md-3">
+				<label><%= f.radio_button :status, :マンガ %> マンガ</label>
+				<label>
+					<%= f.radio_button :status, :イラスト, style: "margin-left: 50px;" %> イラスト
+				</label><br>
 
+				<div class="title-space">
 					<label class="title-space">タイトル</label><br>
 					<%= f.text_field :title, class: "form-control" %><br>
 					<label>説明</label><br>
 					<%= f.text_area :introduction, class: "form-control", size: "5x5" %><br>
 					<label class="space">ジャンル</label>
+					<%= f.collection_select :genre_id, Genre.where(is_active: true), :id, :genre %><br>
+	    </div>
 
-	            		<%= f.collection_select :genre_id, Genre.where(is_active: true), :id, :genre %><br>
-	            </div>
-
-				<%= f.submit "投稿する", class: "btn btn-primary", style: "margin-top: 20px; padding: 10px 100px;" %>
+				<%= f.submit "投稿する", class: "btn btn-primary btn-block", style: "margin-top: 20px;" %>
 			</div>
 		<% end %>
 	</div>
