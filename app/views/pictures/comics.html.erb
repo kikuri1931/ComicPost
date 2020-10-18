@@ -23,7 +23,7 @@
 			<% @comic_pictures.each do |picture| %>
 				<div class="picture-space">
 					<%= link_to picture_path(picture), style:"margin-bottom: 50px;" do %>
-						<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %><br>
+						<%= attachment_image_tag picture.picture_images[0], :image, size: "170x170", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %><br>
 						<%= picture.title %><br>
 						ジャンル：<%= picture.genre.genre %><br>
 						<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>

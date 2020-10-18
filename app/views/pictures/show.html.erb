@@ -83,7 +83,7 @@
 						<% @pictures.each do |picture| %>
 							<td>
 								<%= link_to picture_path(picture)do %>
-									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin: 0;" %>
+									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin: 0;" %><br>
 									<%= picture.title %>
 								<% end %>
 							</td>

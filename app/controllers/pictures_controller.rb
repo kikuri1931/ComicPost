@@ -9,8 +9,11 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new picture_params
     @picture.user_id = current_user.id
-    @picture.save
-    redirect_to picture_path(@picture)
+    if @picture.save
+      redirect_to picture_path(@picture)
+    else 
+      render :new
+    end
   end
 
   def show
@@ -21,6 +24,7 @@ class PicturesController < ApplicationController
   end
 
   def index
+    @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
       @pictures = @user.pictures
