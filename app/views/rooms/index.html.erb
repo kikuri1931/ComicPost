@@ -1,25 +1,31 @@
 <div class="container">
-	<h1 class="signin-title">My受講生一覧</h1>
+	<h1 class="signin-title">チャット相手</h1>
 	<div class="col-md-5 message">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>名前</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @rooms.each do |room| %>
+		<% if  @rooms.exists? %>
+			<table class="table">
+				<thead>
 					<tr>
-						<td>
-							<% entry = room.entries.where.not(user_id: current_user) %>
-							<%= entry[0].user.name %>
-						</td>
-						<td><%= link_to "チャットする", room_path(room), class: "btn btn-warning" %></td>
+						<th>名前</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @rooms.each do |room| %>
+						<tr>
+							<td>
+								<% entry = room.entries.where.not(user_id: current_user) %>
+								<%= entry[0].user.name %>
+							</td>
+							<td>
+								<%= link_to "チャットする", room_path(room), class: "btn btn-warning" %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p>チャット相手はいません。</p>
+		<% end %>
 	</div>
 </div>
 	

@@ -84,7 +84,7 @@ a:hover {
 }
 
 .signin-title {
-  margin: 60px 0 0 110px;
+  margin-top: 60px;
 }
 
 .picture-image {
@@ -288,15 +288,8 @@ a:hover {
   .about-title {
     font-size: 28px;
   }
-  .sign-up-title {
-    margin-top: 100px;
-    font-size: 30px;
-  }
-  .header {
-    background-color:#e3f2fd;
-  }
   .profile-image {
-    margin-top: 100px;
+    margin-top: 80px;
   }
   .slick-next:before, .slick-prev:before {
     display: none;
@@ -304,7 +297,7 @@ a:hover {
   .picture-user {
   display: none;
   }
-  .signin-title {
+  .edituser-title {
     margin-left:20px;
   }
   .profile-image {
@@ -312,13 +305,31 @@ a:hover {
   }
 }
 @media screen and (max-width:600px) {
-  .signin-title {
+  .signup-text {
+    margin: 20px;
+  }
+  .header {
+    background-color:#e3f2fd;
+  }
+  .edituser-title {
     margin: 120px 0 0 20px;
   }
   .picture-space {
-    margin: 20px 20px 0 0;
+    margin: 20px 20px 0 10px;
+  }
+  .profile-image {
+    margin-top: 120px;
   }
   .profile {
     margin-top: 50px;
+  }
+  .pictures {
+    margin-top:120px;
+  }
+  .signin-title {
+    margin: 130px 0 0 20px;
+  }
+  .no-bookmark {
+    padding: 30px 0 0 20px;
   }
 }

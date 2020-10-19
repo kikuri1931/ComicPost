@@ -1,4 +1,5 @@
 <div class="favorite-bookmark">
+	<!-- お気に入り登録 -->
 	<% unless picture.user == current_user %> 
 		<% if picture.bookmark_by?(current_user) %>
 			<%= link_to "お気に入りを外す", picture_bookmarks_path(picture), method: :delete, remote: true, class: "btn btn-warning",style: "margin-top: 15px;" %>
@@ -6,7 +7,9 @@
 			<%= link_to "お気に入り登録", picture_bookmarks_path(picture), method: :post, remote: true, class: "btn btn-success",style: "margin-top: 15px;" %>
 		<% end %>
 	<% end %>
+	<!-- お気に入り登録 -->
 
+	<!-- いいね機能 -->
 	<% if picture.favorited_by?(current_user) %>
 		<%= link_to picture_favorites_path(picture), method: :delete, style: "color: red; margin: 30px 20px 0 0;", remote: true do %>
 			<i class="glyphicon glyphicon-heart" ></i>
@@ -18,4 +21,5 @@
 			<%= picture.favorites.count %>いいね
 		<% end %>
 	<% end %>
+	<!-- いいね機能 -->
 </div>

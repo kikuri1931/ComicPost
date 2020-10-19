@@ -2,11 +2,15 @@
 	<div class="row">
 		
 		<div class="col-md-6 col-md-offset-1">
+			<!-- イラスト・マンガスライダー表示 -->
 			<div id="slider" dir="rtl" class="pictures">
 				<% @picture_images.each do |picture_image| %>
-					<%= attachment_image_tag picture_image, :image, size: "396x558", format: 'jpeg', fallback: "no_image_square.jpg" %>
+					<%= attachment_image_tag picture_image, :image, format: 'jpeg', fallback: "no_image_square.jpg" %>
 				<% end %>
 			</div>
+			<!-- イラスト・マンガスライダー表示 -->
+
+			<!-- イラスト・マンガ詳細表示 -->
 			<div class="col-md-12 picture-details">
 				<div class="favorite-bookmark">
 					<% if @picture.user == current_user %>
@@ -21,7 +25,7 @@
 
 				<h6>
 					<%= link_to user_path(@picture.user) do %>
-						<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+						<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %><br>
 						<% if @picture.user.nickname == nil %>
 							<%= @picture.user.name %>
 						<% else %>
@@ -30,21 +34,26 @@
 					<% end %>
 				</h6>
 
-				<p><%= @picture.introduction %></p>
+				<p><%= simple_format(@picture.introduction) %></p>
 			</div>
+			<!-- イラスト・マンガ詳細表示 -->
+
+			<!-- コメント送信・一覧表示 -->
 			<div class="col-md-12 comment">
 				<h3>コメント</h3>
 				<%= form_with model:[@picture, @comment], data: {remote: true} do |f| %>
 	        		<%= f.text_area :comment, rows: "4", class: "form-control" %>
 	        		<%= f.submit '送信' %>
 	     		<% end %>
-	    	</div>
+	    </div>
 
 			<div class="comment_<%= @picture.id %>">
 				<%= render 'comments/index', picture: @picture  %>
 			</div>
 		</div>
+		<!-- コメント送信・一覧表示 -->
 
+		<!-- 投稿ユーザ詳細表示 -->
 		<div class="col-md-3 col-md-offset-1 picture-user">
 			<div class="profile-image">
 				<%= link_to user_path(@picture.user) do %>
@@ -77,6 +86,7 @@
 			<% end %>
 
 			<h5><b>投稿作品</b></h5>
+
 			<table class="table">
 				<tbody>
 					<tr>	
@@ -91,9 +101,11 @@
 					</tr>
 				</tbody>
 			</table>
+
 			<% if @picture.user.pictures.count > 3 %>
 				<%= link_to 'もっと見る', controller: "pictures", action: "index", user_id: @picture.user_id %>
 			<% end %>
 		</div>
+		<!-- 投稿ユーザ詳細表示 -->
 	</div>
 </div>
