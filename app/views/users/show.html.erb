@@ -65,7 +65,7 @@
 	<!-- @userの投稿イラスト一覧 -->
 	<% if @user.pictures.where(status: "イラスト").exists? %>
 		<h2 class="picture-title">イラスト</h2>
-		<%= render "pictures/picture", pictures:  @illustration_pictures %>
+		<%= render "pictures/users_picture", pictures:  @illustration_pictures %>
 	<% end %>
 
 	<% if @user.pictures.where(status: "イラスト").count > 5 %>
@@ -78,7 +78,7 @@
 	<!-- @userの投稿マンガ一覧 -->
 	<% if @user.pictures.where(status: "マンガ").exists? %>
 		<h2 class="picture-title">マンガ</h2>
-		<%= render "pictures/picture", pictures:  @comic_pictures %>
+		<%= render "pictures/users_picture", pictures:  @comic_pictures %>
 	<% end %>
 
 	<% if @user.pictures.where(status: "マンガ").count > 5 %>
@@ -91,7 +91,7 @@
 	<!-- 未投稿時及び無料会員用オススメ一覧(ログインユーザのみ) -->
 	<% if @user.pictures.empty? %>
 		<h2 class="picture-title">おすすめ作品</h2>
-		<%= render "pictures/picture", pictures:  @pictures %>
+		<%= render "pictures/users_picture", pictures:  @pictures %>
 
 　　<% if @pictures.count > 5 %>
 			<div class="pull-right">

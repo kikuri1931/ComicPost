@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      picture:
+        title: 題名
+        introduction: 説明
+        status: マンガまたはイラスト

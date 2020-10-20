@@ -76,7 +76,7 @@ a:hover {
 }
 
 .picture-space {
-  margin: 20px 50px 0 0;
+  margin: 30px 40px 0 0;
 }
 
 .user-name {
@@ -96,6 +96,10 @@ a:hover {
 .picture-title {
   margin-top: 60px;
   color: #3a3000; 
+}
+
+.nothing {
+  padding-top: 30px;
 }
 
 #error_explanation {
@@ -332,10 +336,19 @@ a:hover {
   .chat-title {
     padding: 130px 0 0 20px;
   }
-  .no-bookmark {
+  .nothing {
     padding: 30px 0 0 20px;
   }
   .fixed-space {
     height: 190px;
+  }
+  .inquiry-title {
+    padding-top: 20px;
+  }
+  .thanks-title {
+    margin-top: 50px;
+  }
+  .thanks-text {
+    margin: 50px;
   }
 }

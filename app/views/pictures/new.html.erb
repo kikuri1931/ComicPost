@@ -2,7 +2,9 @@
 	<div class="row">
 		<h1 class="signin-title">新規投稿</h1>
 
-		<%= form_with model:[@picture], url:pictures_path do |f| %>
+		<%= render "layouts/errors", validation: @picture %>
+
+		<%= form_with model:[@picture], url:pictures_path, local: true do |f| %>
 			<div class="col-sm-4 col-md-5 col-md-offset-1">
 				<%= f.attachment_field :picture_images_images, multiple: true, class: "form-space" %>
 			</div>
