@@ -76,6 +76,8 @@ gem 'font-awesome-rails'
 gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'dotenv-rails'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 group :production do
   gem 'mysql2'
 end

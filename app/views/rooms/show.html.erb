@@ -1,17 +1,23 @@
-<div class="container">
+<div id="footer" class="container">
   <div class="row">
-    <h2 class="signin-title">チャット</h2>
-    <div class="col-md-5">
-      <%= form_with model: @message, data: {remote: true} do |f| %>
-        <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-control" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿",class: 'form-submit'%>
-      <% end %>
+    <div class="col-xs-12 fixed-space"></div>
+    <div class="col-xs-12 chat-title" style="position: fixed;">
+      <h2><%= @entry[0].user.name %></h2>
+    </div>
+    <div class="message">
+      <%= render "messages/message", messages: @messages %>
+    </div>
+    <div class="col-xs-12 message-form" style="position: fixed;">
+      <div class="col-md-6 col-md-offset-2 message-form">
+        <%= form_with model: @message, data: {remote: true} do |f| %>
+          <%= f.text_area :message, rows:"4", placeholder: "メッセージを入力して下さい" , class:"form-control" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "送信",class: 'form-submit'%>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container message">
-  <%= render "messages/message", messages: @messages %>
-</div>
+
 

@@ -3,5 +3,64 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .message {
-	margin-top: 20px;
+	margin-top: 30px;
+}
+
+.message-form {
+    bottom: 0;
+    padding: 10px;
+    background: white;
+}
+
+.fixed-space {
+   height: 170px;
+}
+
+.chat-title {
+	padding-top: 60px;
+    background: white;
+    z-index: 10;
+}
+
+.mymessage {
+  margin: 10px 0;
+   b {
+		display: inline-block;
+	  position: relative; 
+	  padding: 8px;
+	  border-radius: 12px;
+	  background: #30e852;
+	  &:after {
+		  content: "";
+		  position: absolute;
+		  top: 15px; 
+		  right: -19px;
+		  border: 8px solid transparent;
+		  border-left: 18px solid #30e852;
+		  -webkit-transform: rotate(-35deg);
+		  transform: rotate(-35deg);
+		}
+	}
+}
+
+.other-message {
+  margin: 10px 0;
+   b {
+	  display: inline-block;
+	  position: relative; 
+	  padding: 10px;
+	  border-radius: 12px;
+	  background: #edf1ee;
+	  &:after {
+		  content: "";
+		  display: inline-block;
+		  position: absolute;
+		  top: 15px; 
+		  left: -19px;
+		  border: 8px solid transparent;
+		  border-right: 18px solid #edf1ee;
+		  -webkit-transform: rotate(35deg);
+		  transform: rotate(35deg);
+		}
+	}
 }
