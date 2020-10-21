@@ -5,8 +5,13 @@
 			<div class="col-md-12 picture-image">
 		 		<%= render "picture_index", pictures: @pictures %>
 		 	</div>
-		<% else %>
+		<% elsif params[:genre_id]  %>
 		 	<%= render "genres/genre", genres: @genres %>
+			<div class="col-md-9 picture-image">
+				<%= render "picture_index", pictures: @pictures %>
+			</div>
+		<% else %>
+			<%= render "genres/genre", genres: @genres %>
 			<div class="col-md-9 picture-image">
 				<%= render "picture_index", pictures: @pictures %>
 			</div>
