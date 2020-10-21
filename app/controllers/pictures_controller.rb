@@ -27,7 +27,10 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures
+      @pictures = @user.pictures.joins(:genre).where(genres: {is_active: true})
+    elsif params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @pictures = @genre.pictures
     else
       @pictures = Picture.joins(:genre).where(genres: {is_active: true})
     end
