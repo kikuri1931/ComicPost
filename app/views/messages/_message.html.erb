@@ -1,7 +1,7 @@
 <% messages.each do |message| %>
   <% if message.user.id == current_user.id %>
     <!-- ログインユーザメッセージ -->
-    <div class="col-xs-9 col-xs-offset-3 col-md-5 col-md-offset-7 message mymessage">
+    <div class="col-xs-9 col-xs-offset-3 col-md-5 col-md-offset-7 message1 mymessage">
       <div class="col-xs-10">
         <b><%= simple_format(message.message) %></b> <br>
         <%= message.created_at.strftime("%Y-%m-%d %H:%M")%>
@@ -12,7 +12,7 @@
 
     <!-- 相手のメッセージ -->
     <div class="col-xs-12">
-      <div class="col-xs-9 col-md-5 message other-message">
+      <div class="col-xs-9 col-md-5 message2 other-message">
         <div class="col-xs-3 col-md-2">
           <%= attachment_image_tag message.user, :profile_image, size: "50x50", format: 'jpeg', class: "img-circle pull-left", fallback: "no_image_square.jpg" %>
         </div>

@@ -26,12 +26,12 @@
 					<div class="col-sm-12 col-md-12">
 						<label>会員ステータス</label><br>
 						<label><%= f.radio_button :status, :無料会員 %> 無料会員</label>
-	    			<label><%= f.radio_button :status, :有料会員 %> 有料会員</label>
+	    			<label><%= f.radio_button :status, :有料会員, style: "margin-left: 20px;" %> 有料会員</label>
 	    		</div>
 	    		<div class="col-sm-12 col-md-12 form-space">
 						<label>有効/退会</label><br>
 						<label><%= f.radio_button :is_deleted, "false" %> 有効</label>
-	    			<label><%= f.radio_button :is_deleted, "true" %> 退会</label>
+	    			<label><%= f.radio_button :is_deleted, "true", style: "margin-left: 20px;" %> 退会</label>
 	    		</div>
 				</div>
 			<!-- 管理者用フォーム -->

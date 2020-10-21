@@ -1,15 +1,15 @@
 <div class="container">
 	<div class="row">
 		<h1 class="signin-title">マンガ</h1>
-		<% unless params[:user_id] %>
+		<% if params[:user_id] %>
+			<div class="col-md-12 picture-image">
+		 		<%= render "picture_index", pictures: @pictures %>
+		 	</div>
+		<% else %>
 			<%= render "genres/genre", genres: @genres %>
 			<div class="col-md-9 picture-image">
 				<%= render "picture_index", pictures: @pictures %>
-			</div>
-		<% else %>
-		 	<div class="col-md-12 picture-image">
-		 		<%= render "picture_index", pictures: @pictures %>
-		 	</div>
+			</div>		 	
 		<% end %>
 	</div>
 </div>

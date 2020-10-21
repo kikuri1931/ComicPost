@@ -4,8 +4,8 @@
 		<div class="edit-genre">
 			<div class="col-lg-1 col-lg-offset-2">ジャンル</div>
 			<%= form_for @genre do |f| %>
-				<div class="col-lg-2"><%= f.text_field :genre %></div>
-				<div class="col-lg-2">
+				<div class="col-sm-3"><%= f.text_field :genre %></div>
+				<div class="col-sm-2">
 					<label><%= f.radio_button :is_active, true %> 有効</label>
 					<label><%= f.radio_button :is_active, false %> 無効</label>
 				</div>
