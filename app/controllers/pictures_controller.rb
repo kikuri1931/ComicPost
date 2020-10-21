@@ -38,6 +38,7 @@ class PicturesController < ApplicationController
   end
 
   def comics
+    @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
       @pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
@@ -46,7 +47,6 @@ class PicturesController < ApplicationController
       @pictures = @genre.pictures.where(status: "マンガ")
     else
       @pictures = Picture.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
-      @genres = Genre.where(is_active: true)
     end
   end
 
