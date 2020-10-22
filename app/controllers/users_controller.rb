@@ -29,11 +29,13 @@ class UsersController < ApplicationController
     end
     # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
     
-    @comic_pictures = @user.pictures.where(status: "マンガ").order(id: "DESC").limit(5)
-    @illustration_pictures = @user.pictures.where(status: "イラスト").order(id: "DESC").limit(5)
+    @comic_pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true}).order(id: "DESC").limit(5)
+    @user_comics = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
+    @illustration_pictures = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true}).order(id: "DESC").limit(5)
+    @user_illustrations = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true})
 
     if Favorite.exists?
-      @pictures = Picture.find(Favorite.group(:picture_id).order('count(picture_id) desc').limit(5).pluck(:picture_id))
+      @pictures = Picture.find(Favorite.group(:picture_id).joins(:genre).where(genres: {is_active: true}).order('count(picture_id) desc').limit(5).pluck(:picture_id))
     else
       @pictures = Picture.joins(:genre).where(genres: {is_active: true}).order(id: "DESC").limit(5)
     end

@@ -63,12 +63,12 @@
 
 <div class="container">
 	<!-- @userの投稿イラスト一覧 -->
-	<% if @user.pictures.where(status: "イラスト").exists? %>
+	<% if @user_illustrations.exists? %>
 		<h2 class="picture-title">イラスト</h2>
 		<%= render "pictures/users_picture", pictures:  @illustration_pictures %>
 	<% end %>
 
-	<% if @user.pictures.where(status: "イラスト").count > 5 %>
+	<% if @user_illustrations.count > 5 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
 		</div>
@@ -76,12 +76,12 @@
 	<!-- @userの投稿イラスト一覧 -->
 
 	<!-- @userの投稿マンガ一覧 -->
-	<% if @user.pictures.where(status: "マンガ").exists? %>
+	<% if @user_comics.exists? %>
 		<h2 class="picture-title">マンガ</h2>
 		<%= render "pictures/users_picture", pictures:  @comic_pictures %>
 	<% end %>
 
-	<% if @user.pictures.where(status: "マンガ").count > 5 %>
+	<% if @user_comics.count > 5 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
 		</div>
@@ -89,14 +89,16 @@
 	<!-- @userの投稿マンガ一覧 -->
 
 	<!-- 未投稿時及び無料会員用オススメ一覧(ログインユーザのみ) -->
-	<% if @user.pictures.empty? %>
-		<h2 class="picture-title">おすすめ作品</h2>
-		<%= render "pictures/users_picture", pictures:  @pictures %>
+	<%if @user == current_user %>
+		<% if @user.pictures.empty? || @user_illustrations.empty? && @user_comics.empty? %>
+			<h2 class="picture-title">おすすめ作品</h2>
+			<%= render "pictures/users_picture", pictures:  @pictures %>
 
-　　<% if @pictures.count > 5 %>
-			<div class="pull-right">
-				<%= link_to "もっと見る", pictures_path %>
-			</div>
+	　　<% if @pictures.count > 5 %>
+				<div class="pull-right">
+					<%= link_to "もっと見る", pictures_path %>
+				</div>
+			<% end %>
 		<% end %>
 	<% end %>
 	<!-- 未投稿時及び無料会員用オススメ一覧(ログインユーザのみ) -->

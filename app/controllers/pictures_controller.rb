@@ -1,7 +1,8 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
   before_action :picture_add_user, only: [:new,:create]
-  before_action :picture_operation_user, only: [:edit, :update, :destroy]
+  before_action :picture_destroy_user, only: [:destroy]
+  before_action :picture_edit_user, only: [:edit, :update]
   def new
     @picture = Picture.new
     @picture.picture_images.build
@@ -97,10 +98,18 @@ class PicturesController < ApplicationController
     end
   end
 
-  def picture_operation_user
+  def picture_destroy_user
     @picture = Picture.find(params[:id])
     unless @picture.user == current_user || current_user.status == "講師"
       redirect_to user_path(current_user)
     end
   end
+
+  def picture_edit_user
+    @picture = Picture.find(params[:id])
+    unless @picture.user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+
 end
