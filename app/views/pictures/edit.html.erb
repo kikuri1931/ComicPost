@@ -1,2 +1,9 @@
-<h1>Pictures#edit</h1>
-<p>Find me in app/views/pictures/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+		<h1 class="signin-title">作品編集</h1>
+
+		<%= render "layouts/errors", validation: @picture %>
+
+		<%= render "picture_form", picture: @picture %>
+	</div>
+</div>

@@ -18,7 +18,13 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function(){
-  $('html,body').animate({ scrollTop: 0 }, 0.1);
+  if(document.URL.match('/rooms/*')) {
+    $(window).scrollTop(document.body.scrollHeight);
+  }
+  else{
+    $('html,body').animate({ scrollTop: 0 }, 0.1);
+  }
+
   $('#tab-contents .tab[id != "tab1"]').hide();
 
   $('#tab-menu a').on('click', function(event) {
@@ -48,17 +54,17 @@ document.addEventListener("turbolinks:load", function(){
     var telephone_number = document.getElementById('user_telephone_number')
     telephone_number.setAttribute("required","required");
   });
-  
-  $('#slider').slick({
-        dots: true,
-        rtl: true, 
-      autoplaySpeed: 4000, 
-    });
+
+  $('#slider').not('.slick-initialized').slick({
+    dots: true,
+    rtl: true, 
+    autoplaySpeed: 4000, 
+  });
 
   $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
     $('#sp-menu').fadeToggle();
     event.preventDefault();
   });
-});
 
+});

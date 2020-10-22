@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
-  before_action :picture_operation_user, only: [:new,:create,:destroy]
+  before_action :picture_add_user, only: [:new,:create]
+  before_action :picture_operation_user, only: [:edit, :update, :destroy]
   def new
     @picture = Picture.new
     @picture.picture_images.build
@@ -70,6 +71,15 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
   end
 
+  def update
+    @picture = Picture.find(params[:id])
+    if @picture.update(picture_params)
+      redirect_to picture_path(@picture)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @picture = Picture.find(params[:id])
     @picture.destroy
@@ -81,8 +91,15 @@ class PicturesController < ApplicationController
     params.require(:picture).permit(:title, :introduction, :genre_id, :status, picture_images_images: [])
   end
 
-  def picture_operation_user
+  def picture_add_user
     if current_user.status == "無料会員"
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def picture_operation_user
+    @picture = Picture.find(params[:id])
+    unless @picture.user == current_user || current_user.status == "講師"
       redirect_to user_path(current_user)
     end
   end

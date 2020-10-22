@@ -2,10 +2,14 @@
 	<div class="row">
 		<h1 class="signin-title">イラスト</h1>
 		<% if params[:user_id] %>
+			<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 			<div class="col-md-12 picture-image">
 		 		<%= render "picture_index", pictures: @pictures %>
 		 	</div>
+		 	<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
+
 		<% else %>
+			<!-- ジャンル検索、illustrationリンクを押したときの処理 -->
 			<div class="col-md-3">
 				<table class="genre-search">
 					<thead>
@@ -27,6 +31,7 @@
 			<div class="col-md-9 picture-image">
 				<%= render "picture_index", pictures: @pictures %>
 			</div>
+			<!-- ジャンル検索、illustrationリンクを押したときの処理 -->
 		<% end %>
 	</div>
 </div>
