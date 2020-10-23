@@ -38,7 +38,35 @@
 
 		<!-- 講師専用リンク -->
 		<% unless @user == current_user || ['講師'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
-			<div class="col-md-5">
+			<div class="col-md-7">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th class="warning">氏名</th>
+							<td><%= @user.name %></td>
+						</tr>
+						<tr>
+							<th class="warning">氏名(かな)</th>
+							<td><%= @user.name_kana %></td>
+						</tr>
+						<tr>
+							<th class="warning">郵便番号</th>
+							<td><%= @user.postal_code %></td>
+						</tr>
+						<tr>
+							<th class="warning">住所</th>
+							<td><%= @user.address %></td>
+						</tr>
+						<tr>
+							<th class="warning">電話番号</th>
+							<td><%= @user.telephone_number %></td>
+						</tr>
+						<tr>
+							<th class="warning">メールアドレス</th>
+							<td><%= @user.email %></td>
+						</tr>
+					</tbody>
+				</table>
 				<div class="user-link">
 					<%= link_to "登録情報を編集する", edit_user_path(@user) %>
 				</div>
@@ -46,16 +74,16 @@
 		<% unless @user.is_deleted == true %>
 			<% unless @user == current_user || ['無料会員'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
 					<% if @isRoom == true %>
-			  			<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
-			  		<% else %>
-			   			<%= form_for @room do |f| %>
-			      			<%= fields_for @entry do |e| %>
-			        			<%= e.hidden_field :user_id, value: @user.id %>
-			     			<% end %>
-			      			<%= f.submit "この人とチャットを始める", class:"btn btn-primary"%>
-			    		<% end %>
-			  		<% end %>
-			    </div>
+			  		<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
+			  	<% else %>
+			   		<%= form_for @room do |f| %>
+			      	<%= fields_for @entry do |e| %>
+			        	<%= e.hidden_field :user_id, value: @user.id %>
+			     	  <% end %>
+			      	<%= f.submit "この人とチャットを始める", class:"btn btn-primary"%>
+			    	<% end %>
+			  	<% end %>
+			  </div>
 			<% end %>
 		<% end %>
 		<!-- 講師専用リンク -->

@@ -2,7 +2,7 @@
 	<div class="row">
 		<h2 class="signin-title"><%= @user.name %>さんの支払い情報</h2>
 
-		<% if @user.status == "有料会員" %>
+		<% if @user.status == "有料会員" && @user.is_deleted == false %>
 			<div class="col-md-7">
 				<h3>今月のお支払い</h3>
 				
@@ -28,9 +28,13 @@
 				<% end %>
 				<!-- 有料会員支払い確認フォーム -->
 			</div>
+		<% elsif @user.is_deleted == true  %>
+			 <div class="col-md-7">
+				<h3>退会済みです。</h3>
+			</div>
 		<% else %>
 			<div class="col-md-7">
-				<h4>現在、無料会員です。</h4>
+				<h3>現在、無料会員です。</h3>
 			</div>
 		<% end %>
 
@@ -62,8 +66,8 @@
 							<tr>
 								<td><%= payment.created_at.strftime("%Y-%m-%d") %></td>
 								<td>
-									<%= payment.payment.to_s(:delimited, delimiter: ',') %>(税込み
-									<%= (payment.payment * Payment.tax).floor.to_s(:delimited, delimiter: ',') %>)
+									<%= payment.payment.to_s(:delimited, delimiter: ',') %>円 (税込み
+									<%= (payment.payment * Payment.tax).floor.to_s(:delimited, delimiter: ',') %>円)
 								</td>
 								<td><%= payment.status %></td>
 							</tr>	
