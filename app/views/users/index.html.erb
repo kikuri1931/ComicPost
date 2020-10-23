@@ -10,6 +10,7 @@
 						<th>会員ステータス</th>
 						<th>氏名</th>
 						<th>有効/退会</th>
+						<th>支払い</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,6 +25,7 @@
   									<p>退会済み</p>	
   								<% end %>
 							</td>
+							<td><%= link_to "支払い情報へ", user_payments_path(user) %></td>
 						</tr>
 					<% end %>	
 				</tbody>

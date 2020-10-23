@@ -1,9 +1,18 @@
 <div class="container">
 	<div class="row">
 		
-		<div class="col-md-6 col-md-offset-1">
+		<div class="col-md-6 col-md-offset-1 pictures">
+			<div class="edit-destroy">
+				<% if @picture.user == current_user || current_user.status == "講師" %>
+					<%= link_to "この作品を削除", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger",style: "margin: 0 0 5px 10px;" %>
+				<% end %> 
+				<% if @picture.user == current_user %>
+					<%= link_to "編集・画像再選択", edit_picture_path(@picture), class: "btn btn-success",style: "margin-bottom: 5px;" %>
+				<% end %>
+			</div>
+
 			<!-- イラスト・マンガスライダー表示 -->
-			<div id="slider" dir="rtl" class="pictures">
+			<div id="slider" dir="rtl">
 				<% @picture_images.each do |picture_image| %>
 					<%= attachment_image_tag picture_image, :image, format: 'jpeg', fallback: "no_image_square.jpg" %>
 				<% end %>
@@ -13,9 +22,6 @@
 			<!-- イラスト・マンガ詳細表示 -->
 			<div class="col-md-12 picture-details">
 				<div class="favorite-bookmark">
-					<% if @picture.user == current_user %>
-						<%= link_to "この作品を削除", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger",style: "margin-top: 15px;" %>
-					<% end %> 
 					<div class="picture_<%= @picture.id %>">
 						<%= render 'favorite_bookmark', picture: @picture %>
 					</div>
@@ -26,7 +32,7 @@
 				<h6>
 					<%= link_to user_path(@picture.user) do %>
 						<%= attachment_image_tag @picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
-						<% if @picture.user.nickname == nil %>
+						<% if @picture.user.nickname.empty? %>
 							<%= @picture.user.name %>
 						<% else %>
 							<%= @picture.user.nickname %>
@@ -63,7 +69,7 @@
 
 			<table class="table">
 				<tbody>
-					<% if @picture.user.nickname == nil %>
+					<% if @picture.user.nickname.empty? %>
 						<tr>
 							<th>名前</th>
 							<th><%= link_to @picture.user.name, user_path(@picture.user) %></th>

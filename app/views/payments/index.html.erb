@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="row">
+		<h2 class="signin-title"><%= @user.name %>さんの支払い情報</h2>
+
+		<% if @user.status == "有料会員" %>
+			<div class="col-md-7">
+				<h3>今月のお支払い</h3>
+				
+				<!-- 有料会員支払い確認フォーム -->
+				<%= form_with model: [@user, @payment], local: true do |f| %>
+					<div class="col-md-5">
+						<h4 class="attention">
+							<%= Payment.this_month_payment.to_s(:delimited, delimiter: ',') %>円
+						 	(税込み<%= Payment.taxin_payment.floor.to_s(:delimited, delimiter: ',') %> 円)
+						</h4>
+					</div>
+					<div class="col-md-5">
+			  			<% if @paid_payment.exists? %>
+			  				<label></label>
+			  				<%= f.select :status, Payment.statuses.keys.to_a, {}, disabled: "disabled", style: "padding:5px 20px;" %>
+			  				<%= f.submit "支払い済み", class: "btn btn-primary", disabled: "disabled" %>
+			  			<% else %>
+			  				<label></label>
+			  				<%= f.select :status, Payment.statuses.keys.to_a, {},style: "padding:5px 20px;" %>
+			  				<%= f.submit "更新", data: { confirm: '一度更新すると削除できません。更新しますか？' }, class: "btn btn-primary" %>
+			  			<% end %>
+		  			</div>
+				<% end %>
+				<!-- 有料会員支払い確認フォーム -->
+			</div>
+		<% else %>
+			<div class="col-md-7">
+				<h4>現在、無料会員です。</h4>
+			</div>
+		<% end %>
+
+		<!-- 支払合計金額 -->
+		<div class="col-md-5 total_payment">
+			<h3>今までのお支払い</h3>
+			<div class="col-md-12">
+				<h4>
+					<%= @user.payments.sum(:payment).to_s(:delimited, delimiter: ',') %>円
+					(税込み<%= @user.payments.sum(:taxin_payment).to_s(:delimited, delimiter: ',') %>円)
+				</h4>
+			</div>
+		</div>
+		<!-- 支払合計金額 -->
+
+		<!-- 支払金額詳細 -->
+		<div class="col-md-8 col-md-offset-2 payment_index">
+			<% if @payments.exists? %>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>支払い確認日</th>
+							<th>支払金額</th>
+							<th>支払状況</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @payments.each do |payment| %>
+							<tr>
+								<td><%= payment.created_at.strftime("%Y-%m-%d") %></td>
+								<td>
+									<%= payment.payment.to_s(:delimited, delimiter: ',') %>(税込み
+									<%= (payment.payment * Payment.tax).floor.to_s(:delimited, delimiter: ',') %>)
+								</td>
+								<td><%= payment.status %></td>
+							</tr>	
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+		<!-- 支払金額詳細 -->
+	</div>
+</div>

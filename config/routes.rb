@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   post 'inquiries/confirm'
   post 'inquiries/thanks'
   devise_for :users
-  resources :users, only: [:show, :index, :edit, :update]
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
+  resources :users, only: [:show, :index, :edit, :update] do
+    resources :payments, only: [:create, :index]
+  end
   get 'comics' => "pictures#comics", as: :comics
   get 'illustrations' => "pictures#illustrations", as: :illustrations
   get 'bookmarks' => "pictures#bookmarks", as: :bookmarks

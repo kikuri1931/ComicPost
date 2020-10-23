@@ -13,11 +13,10 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
-document.addEventListener("turbolinks:load", function(){
+$(document).ready( function(){
   if(document.URL.match('/rooms/*')) {
     $(window).scrollTop(document.body.scrollHeight);
   }
@@ -54,8 +53,8 @@ document.addEventListener("turbolinks:load", function(){
     var telephone_number = document.getElementById('user_telephone_number')
     telephone_number.setAttribute("required","required");
   });
-
-  $('#slider').not('.slick-initialized').slick({
+ console.log('own-load');
+  $('#slider').slick({
     dots: true,
     rtl: true, 
     autoplaySpeed: 4000, 

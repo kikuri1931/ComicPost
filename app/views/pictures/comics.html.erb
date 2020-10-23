@@ -3,9 +3,17 @@
 		<h1 class="signin-title">マンガ</h1>
 		<% if params[:user_id] %>
 			<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
-			<div class="col-md-12 picture-image">
-		 		<%= render "picture_index", pictures: @pictures %>
-		 	</div>
+			<% if @user.is_deleted == false && ['有料会員','講師'].include?(current_user.status) %>
+				<div class="col-md-12 picture-image">
+					<%= render "picture_index", pictures: @pictures %>
+				</div>
+			<% elsif @user.is_deleted == true && current_user.status == "講師" %>
+				<div class="col-md-12 picture-image">
+					<%= render "userpicture_index", pictures: @pictures %>
+				</div>
+			<% else %>
+				<p class="nothing">作品はありません</p>
+			<% end %>
 		 	<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 
 		<% else %>

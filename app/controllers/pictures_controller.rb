@@ -20,6 +20,9 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
+    if @picture.user.is_deleted == true && ['有料会員', '無料会員'].include?(current_user.status)
+      redirect_to user_path(current_user)
+    end
     @pictures = @picture.user.pictures.limit(3)
     @picture_images = @picture.picture_images
     @comment = Comment.new

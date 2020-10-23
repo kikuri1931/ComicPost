@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :payments, dependent: :destroy
   has_many :pictures, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
@@ -15,6 +16,12 @@ class User < ApplicationRecord
   attachment :profile_image
 
   enum status: { 無料会員: 0, 有料会員: 1, 講師: 2 }
+
+  # 有効会員のみログインできる機能
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
+  # 有効会員のみログインできる機能
 
   validates :name, :name_kana, :email, :status, presence: true
 end

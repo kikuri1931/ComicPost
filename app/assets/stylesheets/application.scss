@@ -307,6 +307,9 @@ a:hover {
   .profile-image {
     margin-top: 50px;
   }
+  .withdraw {
+    margin-top: 30px;
+  }
 }
 @media screen and (max-width:600px) {
   .signup-text {
@@ -350,5 +353,8 @@ a:hover {
   }
   .thanks-text {
     margin: 50px;
+  }
+  .total_payment {
+    margin-top: 30px;
   }
 }
