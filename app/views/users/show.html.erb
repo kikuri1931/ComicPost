@@ -5,7 +5,7 @@
 			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
 		</div>
 		<div class="col-md-9 col-md-offset-1">
-		<%if @user.nickname.empty? %>
+		<%if @user.nickname.blank? %>
 			<h2 class="profile"><%= @user.name %></h2>
 		<% else %>
 			<h2 class="profile"><%= @user.nickname %></h2>

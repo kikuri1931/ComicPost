@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :edit_possible_user, only: [:edit,:update]
+  before_action :index_user, only: [:index]
 
   def index
     @users = User.where(status: ['無料会員', '有料会員'])
@@ -71,6 +72,12 @@ class UsersController < ApplicationController
   def edit_possible_user
     @user = User.find(params[:id])
     unless @user == current_user || current_user.status == "講師"
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def index_user
+    unless current_user.status == "講師"
       redirect_to user_path(current_user)
     end
   end

@@ -2,7 +2,7 @@
 	<div class="row">
 		<% if params[:user_id] %>
 			<!-- 作品詳細で「もっと見る」を押したときの処理 -->
-			<% if @user.nickname.empty? %>
+			<% if @user.nickname.blank? %>
 				<h1 class="signin-title"><%= @user.name %>さんのマンガ・イラスト</h1>
 			<% else %>
 				<h1 class="signin-title"><%= @user.nickname %>さんのマンガ・イラスト</h1>

@@ -17,7 +17,7 @@
 								<tr>
 									<td><%= user.status %></td>
 									<td>
-										<% if user.nickname.empty? %>
+										<% if user.nickname.blank? %>
 											<%= link_to user.name, user_path(user) %>
 										<% else %>
 											<%= link_to user.nickname, user_path(user) %>
