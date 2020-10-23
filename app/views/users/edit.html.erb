@@ -33,6 +33,11 @@
 						<label><%= f.radio_button :is_deleted, "false" %> 有効</label>
 	    			<label><%= f.radio_button :is_deleted, "true", style: "margin-left: 20px;" %> 退会</label>
 	    		</div>
+
+	    		<div class="col-sm-12 col-md-12 form-space">
+						<label class="attention">講師として登録しますか？</label><br>
+						<label><%= f.radio_button :status, :講師 %> はい</label>
+	    		</div>
 				</div>
 			<!-- 管理者用フォーム -->
 			<% end %>
@@ -88,7 +93,7 @@
         </div>
 
         <div  class="col-md-7">
-        	<%= f.submit "登録する", class: "btn btn-primary btn-block" %>
+        	<%= f.submit "登録する", data: { confirm: '入力内容にお間違いないですか？' }, class: "btn btn-primary btn-block" %>
         </div>
         <% if @user == current_user %>
 	        <div  class="col-xs-5 col-sm-5 withdraw">
