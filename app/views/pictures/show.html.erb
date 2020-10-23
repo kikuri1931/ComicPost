@@ -71,17 +71,17 @@
 				<tbody>
 					<% if @picture.user.nickname.blank? %>
 						<tr>
-							<th>名前</th>
+							<th class="nowrap">名前</th>
 							<th><%= link_to @picture.user.name, user_path(@picture.user) %></th>
 						</tr>
 					<% else %>
 						<tr>
-							<th>ニックネーム</th>
+							<th class="nowrap">ニックネーム</th>
 							<th><p><%= link_to @picture.user.nickname, user_path(@picture.user) %></p></th>
 						</tr>
 					<% end %>
 						<tr>
-							<th>ステータス</th>
+							<th class="nowrap">ステータス</th>
 							<th><p><%= @picture.user.status %></p></th>
 						</tr>
 				</tbody>
@@ -99,8 +99,10 @@
 						<% @pictures.each do |picture| %>
 							<td>
 								<%= link_to picture_path(picture)do %>
-									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin: 0;" %><br>
-									<%= picture.title %>
+									<%= attachment_image_tag picture.picture_images[0], :image, size: "80x80", format: 'jpeg', fallback: "no_image_square.jpg", style: "margin: 0;" %>
+									<div class="post-nowrap">
+										<span class="index-title"><%= picture.title %></span>
+									</div>
 								<% end %>
 							</td>
 						<% end %>

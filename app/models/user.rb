@@ -24,4 +24,5 @@ class User < ApplicationRecord
   # 有効会員のみログインできる機能
 
   validates :name, :name_kana, :email, :status, presence: true
+  validates :nickname, length: {maximum: 25}
 end

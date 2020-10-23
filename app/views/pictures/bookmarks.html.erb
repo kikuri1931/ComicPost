@@ -6,16 +6,20 @@
 				<% @bookmarks.each do |bookmark| %>
 					<div class="picture-space">
 						<%= link_to picture_path(bookmark.picture)do %>
-							<%= attachment_image_tag bookmark.picture.picture_images[0], :image, size: "170x170", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %><br>
-							<%= bookmark.picture.title %><br>
+							<%= attachment_image_tag bookmark.picture.picture_images[0], :image, size: "170x170", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %>
+							<div class="index-nowrap">
+								<span class="index-title"><%= bookmark.picture.title %></span>
+							</div>
 						<% end %>
 						<%= link_to user_path(bookmark.user)do %>
 							<%= attachment_image_tag bookmark.picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
-							<% if bookmark.picture.user.nickname.blank? %>
-								<%= bookmark.picture.user.name %>
-							<% else %>
-								<%= bookmark.picture.user.nickname %>
-							<% end %>
+							<div class="index-nowrap">
+								<% if bookmark.picture.user.nickname.blank? %>
+									<span class="index-title"><%= bookmark.picture.user.name %></span>
+								<% else %>
+									<span class="index-title"><%= bookmark.picture.user.nickname %></span>
+								<% end %>
+							</div>
 						<% end %>
 					</div>
 				<% end %>

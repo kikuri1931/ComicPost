@@ -58,5 +58,28 @@ margin-top: 70px;
 
 .edit-destroy {
 	display: flex;
-  flex-direction: row-reverse;
+  	flex-direction: row-reverse;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.post-nowrap {
+	width: 80px;
+}
+
+.index-title {
+	display: block;
+	white-space: nowrap;
+  	overflow: hidden;
+ 	text-overflow: ellipsis;
+}
+
+.index-nowrap {
+	width: 170px;
+}
+
+.user-picture-nowrap {
+	width: 180px;
 }

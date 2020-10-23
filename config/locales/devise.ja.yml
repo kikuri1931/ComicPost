@@ -4,6 +4,7 @@ ja:
       user: 
         name: 氏名
         name_kana: 氏名(かな)
+        nickname: ニックネーム
         status: 有料会員または無料会員ボタン
         email: Eメール
         password: パスワード
