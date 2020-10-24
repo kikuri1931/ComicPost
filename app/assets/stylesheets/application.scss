@@ -53,10 +53,6 @@ header {
   }
 }
 
-.page-title {
-  margin-top: 70px;
-}
-
 .form-space {
   padding-top: 30px;
 }
@@ -69,11 +65,11 @@ header {
 
 a {
   color: #454582;
+  &:hover {
+    color: #2a2d2f;
+    text-decoration: none;
+  }
 } 
-
-a:hover {
-  text-decoration: none;
-}
 
 .attention {
   color: red;
@@ -113,6 +109,10 @@ a:hover {
 //全ページ共通CSS
 
 //会員登録画面専用CSS 
+.registration-title {
+  margin-top: 70px;
+}
+
 .signup-text {
   margin-top: 20px;
 }

@@ -11,16 +11,19 @@
 					</thead>
 					<tbody>
 						<% @rooms.each do |room| %>
-							<tr>
-								<td>
-									<% entry = room.entries.where.not(user_id: current_user) %>
-									<%= attachment_image_tag  entry[0].user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
-									<%= entry[0].user.name %>
-								</td>
-								<td>
-									<%= link_to "チャットする", room_path(room), id: "chat-in", class: "btn btn-warning" %>
-								</td>
-							</tr>
+							<% entry = room.entries.where.not(user_id: current_user) %>
+							<% unless entry[0].user.status == "無料会員" %>
+								<tr>
+									<td>
+										
+										<%= attachment_image_tag  entry[0].user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+										<%= entry[0].user.name %>
+									</td>
+									<td>
+										<%= link_to "チャットする", room_path(room), id: "chat-in", class: "btn btn-warning" %>
+									</td>
+								</tr>
+							<% end %>
 						<% end %>
 					</tbody>
 				</table>

@@ -5,11 +5,11 @@
 			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
 		</div>
 		<div class="col-md-9 col-md-offset-1">
-		<%if @user.nickname.blank? %>
-			<h2 class="profile"><%= @user.name %></h2>
-		<% else %>
-			<h2 class="profile"><%= @user.nickname %></h2>
-		<% end %>
+			<%if @user.nickname.blank? %>
+				<h2 class="profile"><%= @user.name %></h2>
+			<% else %>
+				<h2 class="profile"><%= @user.nickname %></h2>
+			<% end %>
 		</div>
 
 		<div class="col-md-2 col-md-offset-1">	
@@ -28,7 +28,7 @@
 					<%= link_to "お気に入り", bookmarks_path %>
 				</div>
 
-				<% if ['講師','有料会員'].include?(@user.status) %>
+				<% if ["講師","有料会員"].include?(@user.status) %>
 					<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
 					<%= link_to "チャットする", rooms_path, class: "btn btn-warning", style: "margin-right: 10px;" %>	
 				<% end %>
@@ -92,12 +92,12 @@
 
 <div class="container">
 	<!-- @userの投稿イラスト一覧 -->
-	<% if @user_illustrations.exists? %>
+	<% if  @illustration_pictures.exists? %>
 		<h2 class="picture-title">イラスト</h2>
 		<%= render "pictures/users_picture", pictures:  @illustration_pictures %>
 	<% end %>
 
-	<% if @user_illustrations.count > 5 %>
+	<% if  @illustration_pictures.count > 4 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
 		</div>
@@ -105,12 +105,12 @@
 	<!-- @userの投稿イラスト一覧 -->
 
 	<!-- @userの投稿マンガ一覧 -->
-	<% if @user_comics.exists? %>
+	<% if @comic_pictures.exists? %>
 		<h2 class="picture-title">マンガ</h2>
 		<%= render "pictures/users_picture", pictures:  @comic_pictures %>
 	<% end %>
 
-	<% if @user_comics.count > 5 %>
+	<% if @comic_pictures.count > 4 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
 		</div>
@@ -119,7 +119,7 @@
 
 	<!-- 未投稿時及び無料会員用オススメ一覧(ログインユーザのみ) -->
 	<%if @user == current_user %>
-		<% if @user.pictures.empty? || @user_illustrations.empty? && @user_comics.empty? %>
+		<% if @user.pictures.empty? || @illustration_pictures.empty? && @comic_pictures.empty? %>
 			<h2 class="picture-title">おすすめ作品</h2>
 			<div class="picture-image">
 				<%= render "pictures/picture_index", pictures:  @pictures %>

@@ -23,6 +23,43 @@ class User < ApplicationRecord
   end
   # 有効会員のみログインできる機能
 
+  # ユーザ検索機能
+  def self.search_user(word)
+    where(is_deleted: false).where("name LIKE?","%#{word}%")
+                            .or(where(is_deleted: false)
+                            .where("nickname LIKE?","%#{word}%"))
+  end
+  # ユーザ検索機能
+
+  # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
+  def login_user_check_entry(other_user)
+    result = {
+      isRoom: false,
+      roomId: nil,
+      room: nil,
+      entry: nil
+    }
+
+    currentUserEntry = entries
+    userEntry = other_user.entries
+    isRoom = false
+    currentUserEntry.each do |cu|
+      userEntry.each do |u|
+        if cu.room_id == u.room_id
+          isRoom = true
+          result[:isRoom] = isRoom
+          result[:roomId] = cu.room_id
+        end
+      end
+    end
+    unless isRoom
+      result[:room] = Room.new
+      result[:entry] = Entry.new
+    end
+    result
+  end
+   # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
+
   validates :name, :name_kana, :email, :status, presence: true
   validates :nickname, length: {maximum: 25}
 end

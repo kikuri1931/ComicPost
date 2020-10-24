@@ -34,5 +34,4 @@ https://docs.google.com/spreadsheets/d/1pKVlUx5OYAUSI4iOtNO_syqNiwhMHS1NcS54BaXr
 
 ## 使用素材
 - photoAC : https://www.photo-ac.com
-- pixabay : https://pixabay.com
 - いらすとや : https://www.irasutoya.com

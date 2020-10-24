@@ -53,7 +53,7 @@ $(document).ready( function(){
     var telephone_number = document.getElementById('user_telephone_number')
     telephone_number.setAttribute("required","required");
   });
- console.log('own-load');
+
   $('#slider').slick({
     dots: true,
     rtl: true, 

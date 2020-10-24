@@ -17,6 +17,15 @@ class Picture < ApplicationRecord
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+   
+  # ユーザ詳細画面にて投稿された作品を表示するロジック
+  def self.user_picture_limit5(status)
+    where(status: status).joins(:genre)
+                         .where(genres: {is_active: true})
+                         .order(id: "DESC")
+                         .limit(5)
+  end
+  # ユーザ詳細画面にて投稿された作品を表示するロジック
 
   validates :title, :introduction, :status, presence: true
 end

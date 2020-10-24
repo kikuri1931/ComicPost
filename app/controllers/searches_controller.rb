@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 		word = params[:word]
 
 		if @range == '1'
-			@users = User.where(is_deleted: false).where("name LIKE?","%#{word}%").or(User.where(is_deleted: false).where("nickname LIKE?","%#{word}%"))
+			@users = User.search_user(word)
 		elsif @range == '2'
 			@pictures = Picture.where(status: "マンガ").where("title LIKE?","%#{word}%")
 		elsif @range == '3'
