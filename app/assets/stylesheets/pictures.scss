@@ -40,11 +40,13 @@ margin-top: 70px;
 
 .genre-search {
 	margin-top:50px;
-	border: 1px solid black;
+	border: 4px solid #5f5e5d;
 	th {
 		font-size: 20px; 
-		border-bottom: 1px solid black; 
+		border-bottom: 3px double #5f5e5d; 
 		padding: 5px;
+		background: #5f5e5d;
+		color: white;
 	}
 	td {
 		padding: 15px 100px 10px 5px; 
@@ -82,4 +84,9 @@ margin-top: 70px;
 
 .user-picture-nowrap {
 	width: 180px;
+}
+
+.index-pagetitle {
+	background: linear-gradient(to right, #ececec, #FFF);
+	padding: 10px;
 }

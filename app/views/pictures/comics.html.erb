@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h1 class="signin-title">マンガ</h1>
+		<h1 class="signin-title index-pagetitle">マンガ</h1>
 		<% if params[:user_id] %>
 			<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 			<% if @user.is_deleted == false %>
@@ -26,6 +26,9 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr>
+							<td><%= link_to ' イラスト', illustrations_path %></td>
+						</tr>
 						<% @genres.each do |genre| %>
 							<tr>
 								<td>

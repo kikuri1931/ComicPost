@@ -5,7 +5,7 @@
 			<% if @user.nickname.blank? %>
 				<h1 class="signin-title"><%= @user.name %>さんのマンガ・イラスト</h1>
 			<% else %>
-				<h1 class="signin-title"><%= @user.nickname %>さんのマンガ・イラスト</h1>
+				<h1 class="signin-title index-pagetitle"><%= @user.nickname %>さんのマンガ・イラスト</h1>
 			<% end %>
 
 			<% if @user.is_deleted == false %>
@@ -25,9 +25,9 @@
 		<% else %>
 			<!-- オススメ作品、作品一覧を押したときの処理 -->
 			<% if current_user.status == "講師" %>
-				<h1 class="signin-title">作品一覧</h1>
+				<h1 class="signin-title index-pagetitle">作品一覧</h1>
 			<% else %> 
-				<h1 class="signin-title">おすすめ作品</h1>
+				<h1 class="signin-title index-pagetitle">おすすめ作品</h1>
 			<% end %>
 			<div class="col-md-3">
 				<table class="genre-search">
