@@ -10,7 +10,7 @@
 	<div class="row">
 		<!-- ユーザプロフィール -->
 		<div class="col-sm-5 col-md-2 profile-image">
-			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
+			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: "jpeg", class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
 		</div>
 		<div class="col-md-9 col-md-offset-1">
 			<%if @user.nickname.blank? %>
