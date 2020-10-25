@@ -3,6 +3,7 @@ class PicturesController < ApplicationController
   before_action :picture_add_user, only: [:new,:create]
   before_action :picture_destroy_user, only: [:destroy]
   before_action :picture_edit_user, only: [:edit, :update]
+
   def new
     @picture = Picture.new
     @picture.picture_images.build
@@ -20,9 +21,11 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
-    if @picture.user.is_deleted == true && ['有料会員', '無料会員'].include?(current_user.status)
+    if @picture.user.is_deleted && ['有料会員', '無料会員'].include?(current_user.status)
       redirect_to user_path(current_user)
     end
+    @picture_destroy_user = @picture.user == current_user ||
+                            current_user.status == "講師"
     @pictures = @picture.user.pictures.limit(3)
     @picture_images = @picture.picture_images
     @comment = Comment.new
@@ -32,12 +35,13 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @user_deleted_admin_accsess = check_registration(@user, current_user)
+      @pictures = @user.pictures.genre_active.page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.page(params[:page]).per(20)
     else
-      @pictures = Picture.joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @pictures = Picture.genre_active.page(params[:page]).per(20)
     end
   end
 
@@ -49,12 +53,13 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @user_deleted_admin_accsess = check_registration(@user, current_user)
+      @pictures = @user.pictures.picture_status("マンガ").page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.where(status: "マンガ").page(params[:page]).per(20)
     else
-      @pictures = Picture.where(status: "マンガ").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @pictures = Picture.picture_status("マンガ").page(params[:page]).per(20)
     end
   end
 
@@ -62,12 +67,13 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @user_deleted_admin_accsess = check_registration(@user, current_user)
+      @pictures = @user.pictures.picture_status("イラスト").page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.where(status: "イラスト").page(params[:page]).per(20)
     else
-      @pictures = Picture.where(status: "イラスト").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
+      @pictures = Picture.picture_status("イラスト").page(params[:page]).per(20)
     end
   end
 
@@ -92,7 +98,8 @@ class PicturesController < ApplicationController
 
   private
   def picture_params
-    params.require(:picture).permit(:title, :introduction, :genre_id, :status, picture_images_images: [])
+    params.require(:picture)
+          .permit(:title, :introduction, :genre_id, :status, picture_images_images: [])
   end
 
   def picture_add_user
@@ -115,4 +122,7 @@ class PicturesController < ApplicationController
     end
   end
 
+  def check_registration(user, login_user)
+    user.is_deleted && login_user.status == "講師"
+  end
 end

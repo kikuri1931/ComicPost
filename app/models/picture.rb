@@ -10,6 +10,8 @@ class Picture < ApplicationRecord
 
   enum status: { イラスト: 0, マンガ: 1 }
 
+  scope :genre_active,  -> { joins(:genre).where(genres: {is_active: true}) }
+
   # ログインユーザがすでにいいねしているか確かめるロジック
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
@@ -31,6 +33,12 @@ class Picture < ApplicationRecord
   # 検索窓でイラストまたはマンガを探すロジック
   def self.search_picture(status, word)
     where(status: status).where("title LIKE?","%#{word}%")
+  end
+
+  # ジャンルが有効で、マンガまたはイラストを取得するロジック
+  def self.picture_status(status)
+    where(status: status).joins(:genre)
+                         .where(genres: {is_active: true})
   end
 
   validates :title, :introduction, :status, presence: true
