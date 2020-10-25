@@ -1,5 +1,6 @@
 <div class="container">
 	<h1 class="signin-title">チャット相手</h1>
+		<!-- @roomsが存在しており、相手ユーザが無料会員でなければ一覧表示する -->
 		<% if  @rooms.exists? %>
 			<div class="col-md-5 col-md-offset-3 message">
 				<table class="table">
@@ -31,6 +32,8 @@
 					<%= paginate @rooms %>
 				</div>
 			</div>
+			<!-- @roomsが存在しており、相手ユーザが無料会員でなければ一覧表示する -->
+
 		<% else %>
 			<div class="message">
 				<p>チャット相手はいません。</p>
