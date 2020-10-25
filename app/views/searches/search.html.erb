@@ -38,11 +38,12 @@
 
 		<% elsif @range == '4'%>
 			<!-- ジャンル検索結果 -->
-			<% if @genres.exists? %>
+			<% if @genre_pictures.exists? %>
 				<div class="picture-image">
-					<% @genres.each do |genre| %>
-						<%= render "pictures/picture_index", pictures: genre.pictures %>
-					<% end %>
+					<%= render "pictures/picture_index", pictures: @genre_pictures %>
+					<div class="col-xs-12 center">
+						<%= paginate @genre_pictures %>
+					</div>
 				</div>
 			<% else %>
 				<p class="nothing">該当するジャンルはいません</p>
