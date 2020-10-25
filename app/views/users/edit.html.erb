@@ -2,9 +2,9 @@
 	<div class="row">
 		<!-- 題名 -->
 		<% if @user == current_user %>
-			<h2 class="edituser-title">登録情報編集</h2>
+			<h2 class="edit-user-title">登録情報編集</h2>
 		<% elsif current_user.status == "講師" %>
-			<h2 class="edituser-title"><%= @user.name %>さんの登録情報編集</h2>
+			<h2 class="edit-user-title"><%= @user.name %>さんの登録情報編集</h2>
 		<% end %>
 		<!-- 題名 -->
 

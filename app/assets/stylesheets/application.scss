@@ -304,6 +304,9 @@ a {
   .picture-user {
   display: none;
   }
+  .edit-user-title {
+    margin-left:20px;
+  }
 }
 
 @media screen and (max-width:768px) {
@@ -315,9 +318,6 @@ a {
   }
   .profile-image {
     margin-top: 80px;
-  }
-  .edituser-title {
-    margin-left:20px;
   }
   .profile-image {
     margin-top: 50px;
@@ -333,7 +333,7 @@ a {
   .header {
     background-color:#e3f2fd;
   }
-  .edituser-title {
+  .edit-user-title {
     margin: 120px 0 0 20px;
   }
   .picture-space {
