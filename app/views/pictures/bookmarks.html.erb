@@ -1,18 +1,19 @@
 <div class="container">
 	<div class="row">
 		<h1 class="signin-title index-pagetitle">お気に入り</h1>
+		<!-- お気に入りが存在したら表示 -->
 		<% if @bookmarks.exists? %>
 			<div class="picture-image">
 				<% @bookmarks.each do |bookmark| %>
 					<div class="picture-space">
 						<%= link_to picture_path(bookmark.picture)do %>
-							<%= attachment_image_tag bookmark.picture.picture_images[0], :image, size: "170x170", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %>
+							<%= attachment_image_tag bookmark.picture.picture_images[0], :image, size: "170x170", format: "jpeg", fallback: "no_image_square.jpg", style: "border-radius: 10px;" %>
 							<div class="index-nowrap">
 								<span class="index-title"><%= bookmark.picture.title %></span>
 							</div>
 						<% end %>
 						<%= link_to user_path(bookmark.user)do %>
-							<%= attachment_image_tag bookmark.picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+							<%= attachment_image_tag bookmark.picture.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
 							<div class="index-nowrap">
 								<% if bookmark.picture.user.nickname.blank? %>
 									<span class="index-title"><%= bookmark.picture.user.name %></span>
@@ -27,6 +28,7 @@
 			<div class="col-xs-12 center">
 				<%= paginate @bookmarks %>
 			</div>
+			<!-- お気に入りが存在したら表示 -->
 		<% else %>
 			<div class="nothing">
 				<p>お気に入りはありません</p>
