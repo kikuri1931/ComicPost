@@ -2,14 +2,20 @@
 	<div class="row">
 		
 		<div class="col-md-6 col-md-offset-1 pictures">
+			<!-- イラスト・マンガ編集削除 -->
 			<div class="edit-destroy">
-				<% if @picture.user == current_user || current_user.status == "講師" %>
-					<%= link_to "この作品を削除", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger",style: "margin: 0 0 5px 10px;" %>
+				<% if @picture_destroy_user %>
+					<div class="edit">
+						<%= link_to "この作品を削除", picture_path(@picture), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+					</div>
 				<% end %> 
 				<% if @picture.user == current_user %>
-					<%= link_to "編集・画像再選択", edit_picture_path(@picture), class: "btn btn-success",style: "margin-bottom: 5px;" %>
+					<div class="destroy">
+						<%= link_to "編集・画像再選択", edit_picture_path(@picture), class: "btn btn-success" %>
+					</div>
 				<% end %>
 			</div>
+			<!-- イラスト・マンガ編集削除 -->
 
 			<!-- イラスト・マンガスライダー表示 -->
 			<div id="slider" dir="rtl">
@@ -48,9 +54,9 @@
 			<div class="col-md-12 comment">
 				<h3>コメント</h3>
 				<%= form_with model:[@picture, @comment], data: {remote: true} do |f| %>
-	        		<%= f.text_area :comment, rows: "4", class: "form-control" %>
-	        		<%= f.submit '送信' %>
-	     		<% end %>
+	        <%= f.text_area :comment, rows: "4", class: "form-control" %>
+	        <%= f.submit '送信' %>
+	     	<% end %>
 	    </div>
 
 			<div class="comment_<%= @picture.id %>">
@@ -59,8 +65,8 @@
 		</div>
 		<!-- コメント送信・一覧表示 -->
 
-		<!-- 投稿ユーザ詳細表示 -->
 		<div class="col-md-3 col-md-offset-1 picture-user">
+			<!-- 投稿ユーザプロフィール -->
 			<div class="profile-image">
 				<%= link_to user_path(@picture.user) do %>
 					<%= attachment_image_tag @picture.user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
@@ -86,11 +92,13 @@
 						</tr>
 				</tbody>
 			</table>
+			<!-- 投稿ユーザプロフィール -->
 
 			<% if @picture.user == current_user %>
 				<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-bottom: 10px; padding: 8px 90px;" %>
 			<% end %>
 
+			<!-- 投稿ユーザの投稿作品 -->
 			<h5><b>投稿作品</b></h5>
 
 			<table class="table">
@@ -113,7 +121,7 @@
 			<% if @picture.user.pictures.count > 3 %>
 				<%= link_to 'もっと見る', controller: "pictures", action: "index", user_id: @picture.user_id %>
 			<% end %>
+			<!-- 投稿ユーザの投稿作品 -->
 		</div>
-		<!-- 投稿ユーザ詳細表示 -->
 	</div>
 </div>

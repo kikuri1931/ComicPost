@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
 		<h1 class="signin-title index-pagetitle">イラスト</h1>
+		<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 		<% if params[:user_id] %>
-			<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
-			<% if @user.is_deleted == false %>
+			<% if !@user.is_deleted %>
 				<div class="col-md-12 picture-image">
 					<%= render "picture_index", pictures: @pictures %>
 				</div>
 				<div class="col-xs-12 center">
 					<%= paginate @pictures %>
 				</div>
-			<% elsif @user.is_deleted == true && current_user.status == "講師" %>
+			<% elsif @user_deleted_admin_accsess %>
 				<div class="col-md-12 picture-image">
 					<%= render "userpicture_index", pictures: @pictures %>
 				</div>
@@ -23,7 +23,7 @@
 		 	<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 
 		<% else %>
-			<!-- ジャンル検索、illustrationリンクを押したときの処理 -->
+			<!-- ジャンル検索、イラストリンクを押したときの処理 -->
 			<div class="col-md-3">
 				<table class="genre-search">
 					<thead>
@@ -51,7 +51,7 @@
 					<%= paginate @pictures %>
 				</div>
 			</div>
-			<!-- ジャンル検索、illustrationリンクを押したときの処理 -->
+			<!-- ジャンル検索、イラストリンクを押したときの処理 -->
 		<% end %>
 	</div>
 </div>
