@@ -19,7 +19,7 @@
 							<td><%= user.status %></td>
 							<td><%= link_to user.name, user_path(user) %></td>
 							<td>
-  								<% if user.is_deleted == false %>
+  								<% unless user.is_deleted %>
   									<p>有効</p>
   								<% else %>
   									<p>退会済み</p>	

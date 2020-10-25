@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user.is_deleted == true && ["有料会員", "無料会員"].include?(current_user.status)
+    if @user.is_deleted && ["有料会員", "無料会員"].include?(current_user.status)
       redirect_to user_path(current_user)
     end
     # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
@@ -26,7 +26,17 @@ class UsersController < ApplicationController
     # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
     @comic_pictures = @user.pictures.user_picture_limit5("マンガ")
     @illustration_pictures = @user.pictures.user_picture_limit5("イラスト")
-    @pictures = Picture.joins(:genre).where(genres: {is_active: true}).limit(5)   
+    @pictures = Picture.joins(:genre).where(genres: {is_active: true}).limit(5)
+    @admin_user = @user != current_user && 
+                  ['講師'].include?(current_user.status) && 
+                  ['有料会員','無料会員'].include?(@user.status) 
+    @admin_chat_link = !@user.is_deleted && 
+                       @user != current_user && 
+                       ["有料会員", "講師"].include?(@user.status) && 
+                       ["講師"].include?(current_user.status)
+    @user_picture_empty = @user.pictures.empty? ||
+                          @illustration_pictures.empty? && 
+                          @comic_pictures.empty?
   end
 
   def edit

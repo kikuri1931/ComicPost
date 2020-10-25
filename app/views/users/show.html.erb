@@ -1,3 +1,4 @@
+<!-- 更新成功alert -->
 <% if flash[:alert] %>
   <div class="alert alert-success">
     <%= flash[:alert] %>
@@ -5,6 +6,8 @@
 <% end %>
 <div class="container">
 	<div class="row">
+<!-- 更新成功alert -->
+
 		<!-- ユーザプロフィール -->
 		<div class="col-sm-5 col-md-2 profile-image">
 			<%= attachment_image_tag @user, :profile_image, size: "200x200", format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image_square.jpg" %>
@@ -35,15 +38,15 @@
 
 				<% if ["講師","有料会員"].include?(@user.status) %>
 					<%= link_to "作品を投稿する", new_picture_path, class: "btn btn-primary", style: "margin-right: 10px;" %>
-					<%= link_to "チャットする", rooms_path, class: "btn btn-warning", style: "margin-right: 10px;" %>	
+					<%= link_to "チャットする", rooms_path, class: "btn btn-warning" %>	
 				<% end %>
 			</div>
 		<% end %>
 		<!-- マイページ用リンク -->
 
-		<!-- 講師専用リンク -->
-		<% unless @user == current_user || ['講師'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
-			<div class="col-md-7">
+		<div class="col-md-7">
+			<!-- 講師専用会員情報閲覧・編集 -->
+			<% if @admin_user%>
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
@@ -75,23 +78,24 @@
 				<div class="user-link">
 					<%= link_to "登録情報を編集する", edit_user_path(@user) %>
 				</div>
-		<% end %>
-		<% unless @user.is_deleted == true %>
-			<% unless @user == current_user || ['無料会員'].include?(@user.status) || ['有料会員','無料会員'].include?(current_user.status)%>
-					<% if @isRoom == true %>
-			  		<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
-			  	<% else %>
-			   		<%= form_for @room do |f| %>
-			      	<%= fields_for @entry do |e| %>
-			        	<%= e.hidden_field :user_id, value: @user.id %>
-			     	  <% end %>
-			      	<%= f.submit "この人とチャットを始める", class:"btn btn-primary"%>
-			    	<% end %>
-			  	<% end %>
-			  </div>
 			<% end %>
-		<% end %>
-		<!-- 講師専用リンク -->
+			<!-- 講師専用会員情報閲覧・編集 -->
+
+			<!-- 講師専用チャット開始ボタン -->
+			<% if @admin_chat_link %>
+				<% if @isRoom %>
+			  	<%= link_to "チャットする", room_path(@roomId), class: "btn btn-primary" %>
+			  <% else %>
+			   	<%= form_for @room do |f| %>
+			      <%= fields_for @entry do |e| %>
+			        <%= e.hidden_field :user_id, value: @user.id %>
+			     	<% end %>
+			      <%= f.submit "この人とチャットを始める", class:"btn btn-primary"%>
+			    <% end %>
+			  <% end %>
+			<% end %>
+			<!-- 講師専用チャット開始ボタン -->
+		</div>
 	</div>
 </div>
 
@@ -124,7 +128,7 @@
 
 	<!-- 未投稿時及び無料会員用オススメ一覧(ログインユーザのみ) -->
 	<%if @user == current_user %>
-		<% if @user.pictures.empty? || @illustration_pictures.empty? && @comic_pictures.empty? %>
+		<% if @user_picture_empty %>
 			<h2 class="picture-title">おすすめ作品</h2>
 			<div class="picture-image">
 				<%= render "pictures/picture_index", pictures:  @pictures %>

@@ -1,10 +1,12 @@
 <div class="container">
 	<div class="row">
+		<!-- 題名 -->
 		<% if @user == current_user %>
 			<h2 class="edituser-title">登録情報編集</h2>
 		<% elsif current_user.status == "講師" %>
 			<h2 class="edituser-title"><%= @user.name %>さんの登録情報編集</h2>
 		<% end %>
+		<!-- 題名 -->
 
 		<%= render "layouts/errors", validation: @user %>
 
@@ -14,7 +16,7 @@
 				<div class="col-sm-5 col-md-4 col-md-offset-1 form-space">
 					<%= f.attachment_field :profile_image %>
 					<div class="col-md-10 form-space">
-		        <label>ニックネーム</label><br />
+		        <label>ニックネーム</label><br>
 		        <%= f.text_field :nickname, autofocus: true, autocomplete: "name_kana", class: "form-control" %>
 		      </div>
 				</div>
@@ -45,12 +47,12 @@
 			<div class="col-sm-5 col-md-6">
 				<div class="col-md-7 form-space">
 	        <label>氏名(半角スペースなし)</label><br>
-	        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", :required => true %><br />
+	        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", :required => true %><br>
          </div>
 
         <div class="col-md-7">
 	        <label>氏名(かな、半角スペースなし)</label><br>
-	        <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control", :required => true %><br />
+	        <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class: "form-control", :required => true %><br>
 	      </div>
 
 	      <!-- 有料会員登録必須 -->
@@ -70,7 +72,7 @@
 	          <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "form-control", :required => true %><br>
 	        </div>
 	        <!-- 有料会員登録必須 -->
-	       <% else %>
+	      <% else %>
 	       	<div class="col-md-7">
 			      <label>郵便番号</label><br>
 			      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %><br>
@@ -89,17 +91,19 @@
 
         <div  class="col-md-7">
          	<label>メールアドレス</label><br>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %><br >
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :required => true %><br>
         </div>
 
         <div  class="col-md-7">
         	<%= f.submit "登録する", data: { confirm: '入力内容にお間違いないですか？' }, class: "btn btn-primary btn-block" %>
         </div>
+        <!-- 退会リンク -->
         <% if @user == current_user %>
 	        <div  class="col-xs-5 col-sm-5 withdraw">
 	        	<%= link_to "退会する" , withdraw_path, method: :patch, "data-confirm" => "今までのサービスが利用できなくなります。本当に退会しますか？", class: "btn btn-danger btn-block" %>
 	        </div>
 	      <% end %>
+	      <!-- 退会リンク -->
       </div>
 		<% end %>
 	</div>
