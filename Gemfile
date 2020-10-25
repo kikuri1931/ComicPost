@@ -53,6 +53,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop-airbnb'
+  gem 'font-awesome-rails'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
@@ -72,13 +74,12 @@ gem 'kaminari', '~> 1.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'pry-rails'
-gem 'font-awesome-rails'
 gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'bxslider-rails'
 gem 'dotenv-rails'
 gem 'ed25519'
-gem 'bcrypt_pbkdf'
+
 group :production do
   gem 'mysql2'
 end
