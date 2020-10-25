@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :message_operation_user
   before_action :set_room
+  
   def create
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @message = Message.create(message_params)

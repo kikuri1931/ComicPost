@@ -1,4 +1,12 @@
-<div id="footer" class="container">
+<!-- 保存失敗alert -->
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+<!-- 保存失敗alert -->
+
+<div class="container">
   <div class="row">
     <div class="col-xs-12 fixed-space"></div>
     <div class="col-xs-12 chat-title" style="position: fixed;">
@@ -16,7 +24,7 @@
         <%= form_with model: @message, data: {remote: true} do |f| %>
           <%= f.text_area :message, rows:"4", placeholder: "メッセージを入力して下さい" , class:"form-control" %>
           <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.submit "送信",class: 'form-submit'%>
+          <%= f.submit "送信", class: 'form-submit'%>
         <% end %>
       </div>
     </div>
