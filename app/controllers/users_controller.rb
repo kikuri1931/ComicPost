@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :index_access_user, only: [:index]
 
   def index
-    @users = User.where(status: ["無料会員", "有料会員"])
+    @users = User.where(status: ["無料会員", "有料会員"]).page(params[:page]).per(10)
   end
 
   def show

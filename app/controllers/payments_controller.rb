@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
 	def index
 		@user = User.find(params[:user_id])
 		@payment= Payment.new
-		@payments = @user.payments.order(id: "DESC")
+		@payments = @user.payments.order(id: "DESC").page(params[:page]).per(10)
 		@paid_payment = @payments.where(created_at: Time.current.all_month)		
 	end
 

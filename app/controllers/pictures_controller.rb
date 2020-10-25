@@ -32,29 +32,29 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.joins(:genre).where(genres: {is_active: true})
+      @pictures = @user.pictures.joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures
+      @pictures = @genre.pictures.page(params[:page]).per(20)
     else
-      @pictures = Picture.joins(:genre).where(genres: {is_active: true})
+      @pictures = Picture.joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     end
   end
 
   def bookmarks
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.page(params[:page]).per(20)
   end
 
   def comics
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
+      @pictures = @user.pictures.where(status: "マンガ").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.where(status: "マンガ")
+      @pictures = @genre.pictures.where(status: "マンガ").page(params[:page]).per(20)
     else
-      @pictures = Picture.where(status: "マンガ").joins(:genre).where(genres: {is_active: true})
+      @pictures = Picture.where(status: "マンガ").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     end
   end
 
@@ -62,12 +62,12 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @pictures = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true})
+      @pictures = @user.pictures.where(status: "イラスト").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.where(status: "イラスト")
+      @pictures = @genre.pictures.where(status: "イラスト").page(params[:page]).per(20)
     else
-      @pictures = Picture.where(status: "イラスト").joins(:genre).where(genres: {is_active: true})
+      @pictures = Picture.where(status: "イラスト").joins(:genre).where(genres: {is_active: true}).page(params[:page]).per(20)
     end
   end
 

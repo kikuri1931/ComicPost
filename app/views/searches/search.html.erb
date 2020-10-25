@@ -28,6 +28,9 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="col-xs-12 center">
+					<%= paginate @users %>
+				</div>
 			<% else %>
 			  <p class="nothing">該当するユーザはいません</p>
 			<% end %>
@@ -51,6 +54,9 @@
 			<% if @pictures.exists? %>
 				<div class="picture-image">
 					<%= render "pictures/picture_index", pictures: @pictures %>
+				</div>
+				<div class="col-xs-12 center">
+					<%= paginate @pictures %>
 				</div>
 			<% else %>
 				<p class="nothing">該当する作品はいません</p>

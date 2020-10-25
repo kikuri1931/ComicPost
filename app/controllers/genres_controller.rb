@@ -2,7 +2,7 @@ class GenresController < ApplicationController
 	before_action :authenticate_user!
 	before_action :admin_user
   	def index
-	  @genres = Genre.all
+	  @genres = Genre.all.page(params[:page]).per(10)
 	  @genre = Genre.new
 	end
 

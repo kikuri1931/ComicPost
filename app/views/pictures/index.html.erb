@@ -12,9 +12,15 @@
 				<div class="col-md-12 picture-image">
 					<%= render "picture_index", pictures: @pictures %>
 				</div>
+				<div class="col-xs-12 center">
+					<%= paginate @pictures %>
+				</div>
 			<% elsif @user.is_deleted == true && current_user.status == "講師" %>
 				<div class="col-md-12 picture-image">
 					<%= render "userpicture_index", pictures: @pictures %>
+				</div>
+				<div class="col-xs-12 center">
+					<%= paginate @pictures %>
 				</div>
 			<% else %>
 				<p class="nothing">作品はありません</p>
@@ -55,6 +61,9 @@
 			</div>
 			<div class="col-md-9 picture-image">
 				<%= render "picture_index", pictures: @pictures %>
+				<div class="col-xs-12 center">
+					<%= paginate @pictures %>
+				</div>
 			</div>
 			<!-- オススメ作品、作品一覧を押したときの処理 -->
 		<% end -%>

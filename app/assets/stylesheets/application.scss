@@ -102,6 +102,17 @@ a {
   padding-top: 30px;
 }
 
+.profile-image {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center; 
+}
+
+.center {
+  display: flex;
+  justify-content: center; 
+}
+
 #error_explanation {
   background: #ffe6e6;
   margin-top: 20px;
@@ -287,6 +298,12 @@ a {
   .genre-search {
     display: none;
   }
+  .slick-next:before, .slick-prev:before {
+    display: none;
+  }
+  .picture-user {
+  display: none;
+  }
 }
 
 @media screen and (max-width:768px) {
@@ -298,12 +315,6 @@ a {
   }
   .profile-image {
     margin-top: 80px;
-  }
-  .slick-next:before, .slick-prev:before {
-    display: none;
-  }
-  .picture-user {
-  display: none;
   }
   .edituser-title {
     margin-left:20px;
