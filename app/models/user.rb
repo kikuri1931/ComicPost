@@ -21,7 +21,6 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-  # 有効会員のみログインできる機能
 
   # ユーザ検索機能
   def self.search_user(word)
@@ -29,7 +28,6 @@ class User < ApplicationRecord
                             .or(where(is_deleted: false)
                             .where("nickname LIKE?","%#{word}%"))
   end
-  # ユーザ検索機能
 
   # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
   def login_user_check_entry(other_user)
@@ -58,7 +56,6 @@ class User < ApplicationRecord
     end
     result
   end
-   # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
 
   validates :name, :name_kana, :email, :status, presence: true
   validates :nickname, length: {maximum: 25}

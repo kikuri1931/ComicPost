@@ -10,10 +10,12 @@ class Picture < ApplicationRecord
 
   enum status: { イラスト: 0, マンガ: 1 }
 
+  # ログインユーザがすでにいいねしているか確かめるロジック
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
 
+  # ログインユーザがすでにお気に入り登録しているか確かめるロジック
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
@@ -25,7 +27,11 @@ class Picture < ApplicationRecord
                          .order(id: "DESC")
                          .limit(5)
   end
-  # ユーザ詳細画面にて投稿された作品を表示するロジック
+
+  # 検索窓でイラストまたはマンガを探すロジック
+  def self.search_picture(status, word)
+    where(status: status).where("title LIKE?","%#{word}%")
+  end
 
   validates :title, :introduction, :status, presence: true
 end
