@@ -10,12 +10,6 @@
 	margin-right: 20px;
 }
 
-.picture-image {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center; 
-}
-
 .picture-details {
 margin-top: 70px;
 	border: solid 1px black;
@@ -95,4 +89,8 @@ margin-top: 70px;
 
 .bookmark {
 	margin-top: 15px;
+}
+
+.picture-space {
+  margin: 30px 45px 0 0;
 }

@@ -74,27 +74,14 @@ a {
   color: red;
 }
 
-.picture-space {
-  margin: 30px 45px 0 0;
-}
-
-.user-name {
-  padding-top: 30px;
-}
-
 .signin-title {
   margin-top: 60px;
 }
 
 .picture-image {
   display: flex;
+  flex-wrap: wrap;
   align-items: center; 
-  margin: 25px 0;
-}
-
-.picture-title {
-  margin-top: 60px;
-  color: #3a3000; 
 }
 
 .nothing {
