@@ -13,7 +13,6 @@ class MessagesController < ApplicationController
     end
 
   private
-
   def set_room
     @room = Room.find(params[:message][:room_id])
   end
