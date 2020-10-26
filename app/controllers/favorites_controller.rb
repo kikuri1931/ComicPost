@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
   def destroy
     @picture = Picture.find(params[:picture_id])
     favorite = current_user.favorites.find_by(picture_id: @picture.id)
-    if current_user.favorites.find_by(picture_id: @picture.id) != nil
+    if current_user.favorites.find_by(picture_id: @picture.id) 
       favorite.destroy
    end
   end
