@@ -2,7 +2,7 @@
 	<% pictures.each do |picture| %>
 		<div class="picture-space">
 			<%= link_to picture_path(picture), style: "line-height: 40px;" do %>
-				<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %><br>
+				<%= attachment_image_tag picture.picture_images[0], :image, size: "180x180", format: "jpeg", fallback: "no_image_square.jpg", style: "border-radius: 10px;" %><br>
 				<div class="user-picture-nowrap">
 					<span class="index-title"><%= picture.title %></span>
 				</div>
