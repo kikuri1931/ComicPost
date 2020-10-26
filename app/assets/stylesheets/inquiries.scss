@@ -6,7 +6,7 @@
 	background-color: white;
 	padding: 5px;
 	border: 1px solid #d4d0d0;
-   border-radius: 7px;
+  border-radius: 7px;
 }
 
 .thanks-image {
@@ -24,4 +24,13 @@
 
 .inquiry-title {
 	padding-top: 30px;
+}
+
+@media screen and (max-width:600px) {
+  .inquiry-title {
+    padding-top: 20px;
+  }
+  .thanks-text {
+    margin: 50px;
+  }
 }

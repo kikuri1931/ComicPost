@@ -192,15 +192,6 @@ a {
 //会員登録画面タブメニューのCSS 
 
 @media screen and (max-width:1200px) {
-  .about-image1 {
-    margin-top: 0;
-  }
-  .about-image2 {
-    margin-top: 65px;
-  }
-  .about-image3 {
-    margin-top: 45px;
-  }
    #hm-icon{
     position: fixed;
     right: 20px;
@@ -224,29 +215,31 @@ a {
     width: 100%;
     height: 3px;
     background-color: #337ab7;
-  }
-  .menu-trigger span:nth-of-type(1) {
-    top: 10px;
-  }
-  .menu-trigger span:nth-of-type(2) {
-    top: 26px;
-  }
-  .menu-trigger span:nth-of-type(3) {
-    bottom: 0;
+    &:nth-of-type(1) {
+      top: 10px;
+    }
+    &:nth-of-type(2) {
+      top: 26px;
+    }
+    &:nth-of-type(3) {
+      bottom: 0;
+    }
   }
   header .pull-right {
     display: none;
   }
-  .menu-trigger.active span:nth-of-type(1) {
-    transform: translateY(10px) rotate(-45deg);
-    background-color: #fff;
-  }
-  .menu-trigger.active span:nth-of-type(2) {
-    opacity: 0;
-  }
-  .menu-trigger.active span:nth-of-type(3) {
-    transform: translateY(-22px) rotate(45deg);
-    background-color: #fff;
+  .menu-trigger.active span {
+    &:nth-of-type(1) {
+      transform: translateY(10px) rotate(-45deg);
+      background-color: #fff;
+    }
+    &:nth-of-type(2) {
+      opacity: 0;
+    }
+    &:nth-of-type(3) {
+      transform: translateY(-22px) rotate(45deg);
+      background-color: #fff;
+    }
   }
   #sp-menu {
     position: fixed;
@@ -258,60 +251,19 @@ a {
     min-height: 100%;
     display: none;
     z-index: 9;
-  }
-  #sp-menu li{
-    text-align: center;
-    margin-bottom: 30px;
-    list-style: none;
-  }
-  #sp-menu a{
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    li{
+      text-align: center;
+      margin-bottom: 30px;
+      list-style: none;
+    }
+    a{
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  } 
 }
 
-@media screen and (max-width:991px) {
- .about-content {
-    margin-top: 60px;
-  }
-  .about-image2 {
-    margin-top: 0;
-  }
-  .about-image3 {
-    margin-top: 0;
-  }
-  .genre-search {
-    display: none;
-  }
-  .slick-next:before, .slick-prev:before {
-    display: none;
-  }
-  .picture-user {
-  display: none;
-  }
-  .edit-user-title {
-    margin-left:20px;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .top-image h1 {
-    font-size: 34px;
-  }
-  .about-title {
-    font-size: 28px;
-  }
-  .profile-image {
-    margin-top: 80px;
-  }
-  .profile-image {
-    margin-top: 50px;
-  }
-  .withdraw {
-    margin-top: 30px;
-  }
-}
 @media screen and (max-width:600px) {
   .signup-text {
     margin: 20px;
@@ -319,43 +271,13 @@ a {
   .header {
     background-color:#e3f2fd;
   }
-  .edit-user-title {
-    margin: 120px 0 0 20px;
-  }
-  .picture-space {
-    margin: 20px 20px 0 10px;
-  }
-  .profile-image {
-    margin-top: 120px;
-  }
-  .profile {
-    margin-top: 50px;
-  }
-  .pictures {
-    margin-top:120px;
-  }
   .signin-title {
     margin: 130px 0 0 20px;
-  }
-  .chat-title {
-    padding: 130px 0 0 20px;
   }
   .nothing {
     padding: 30px 0 0 20px;
   }
-  .fixed-space {
-    height: 190px;
-  }
-  .inquiry-title {
-    padding-top: 20px;
-  }
   .thanks-title {
     margin-top: 50px;
-  }
-  .thanks-text {
-    margin: 50px;
-  }
-  .total_payment {
-    margin-top: 30px;
   }
 }

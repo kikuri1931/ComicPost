@@ -5,3 +5,9 @@
 .payment_index {
 	margin-top: 50px;
 }
+
+@media screen and (max-width:600px) {
+  .total_payment {
+    margin-top: 30px;
+  }
+}
