@@ -24,7 +24,7 @@ $(document).ready( function(){
     $('html,body').animate({ scrollTop: 0 }, 0.1);
   }
 
-  $('#tab-contents .tab[id != "tab1"]').hide();
+  $('#tab-contents .tab[id != "paid"]').hide();
 
   $('#tab-menu a').on('click', function(event) {
     $("#tab-contents .tab").hide();
@@ -34,8 +34,8 @@ $(document).ready( function(){
     event.preventDefault();
   });
 
-  $('.tab-link2').click(function(event) {
-    $("#forms .tab").hide();
+  $('.free-link').click(function(event) {
+    $("#paid-forms .tab").hide();
     var postal_code = document.getElementById('user_postal_code')
     postal_code.removeAttribute("required","required");
     var address = document.getElementById('user_address')
@@ -44,8 +44,8 @@ $(document).ready( function(){
     telephone_number.removeAttribute("required","required");
   });
 
-  $('.tab-link1').click(function(event) {
-    $("#forms .tab").show();
+  $('.paid-link').click(function(event) {
+    $("#paid-forms .tab").show();
     var postal_code = document.getElementById('user_postal_code')
     postal_code.setAttribute("required","required");
     var address = document.getElementById('user_address')
