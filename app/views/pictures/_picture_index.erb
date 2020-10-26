@@ -1,15 +1,15 @@
 <% pictures.each do |picture| %>
-	<% if picture.user.is_deleted == false %>
+	<% if !picture.user.is_deleted %>
 		<div class="picture-space">
 			<%= link_to picture_path(picture), style:"margin-bottom: 50px;" do %>
-				<%= attachment_image_tag picture.picture_images[0], :image, size: "170x170", format: 'jpeg', fallback: "no_image_square.jpg", style: "border-radius: 10px;" %>
+				<%= attachment_image_tag picture.picture_images[0], :image, size: "170x170", format: "jpeg", fallback: "no_image_square.jpg", style: "border-radius: 10px;" %>
 				<div class="index-nowrap">
 					<span class="index-title"><%= picture.title %></span>
 				</div>
 			<% end %>
 			
 			<%= link_to user_path(picture.user)do %>
-				<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+				<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
 				<div class="index-nowrap">
 					<% if picture.user.nickname.blank? %>
 						<span class="index-title"><%= picture.user.name %></span>
