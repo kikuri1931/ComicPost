@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 		elsif @range == "3"
 			@pictures = Picture.search_picture("イラスト", word).page(params[:page]).per(20)
 		else
-			genres = Genre.where(is_active: true).where("genre LIKE?","%#{word}%").pluck("id")
+			genres = Genre.search_genre(word)
 			@genre_pictures = Picture.where(genre_id: genres).page(params[:page]).per(20)
 		end
 	end

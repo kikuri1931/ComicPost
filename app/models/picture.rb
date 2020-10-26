@@ -33,6 +33,8 @@ class Picture < ApplicationRecord
   # 検索窓でイラストまたはマンガを探すロジック
   def self.search_picture(status, word)
     where(status: status).where("title LIKE?","%#{word}%")
+                         .joins(:genre)
+                         .where(genres: {is_active: true})
   end
 
   # ジャンルが有効で、マンガまたはイラストを取得するロジック
