@@ -24,6 +24,9 @@ class PicturesController < ApplicationController
     if @picture.user.is_deleted && ['有料会員', '無料会員'].include?(current_user.status)
       redirect_to user_path(current_user)
     end
+    if !@picture.genre.is_active && ['有料会員', '無料会員'].include?(current_user.status)
+      redirect_to user_path(current_user)
+    end
     @picture_destroy_user = @picture.user == current_user ||
                             current_user.status == "講師"
     @pictures = @picture.user.pictures.limit(3)
