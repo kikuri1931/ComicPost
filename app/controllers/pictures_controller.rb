@@ -44,7 +44,7 @@ class PicturesController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.page(params[:page]).per(18)
     else
-      @pictures = Picture.genre_active.page(params[:page]).per(18)
+      @pictures = Picture.genre_active.page(params[:page]).per(12)
     end
   end
 
