@@ -28,6 +28,7 @@
 //メディアクエリ
 $pc: 1200px;
 $tab: 768px;
+$small-tab: 550px;
 $sp: 500px;
 $small-sp: 330px;  
 
@@ -38,6 +39,11 @@ $small-sp: 330px;
 }
 @mixin tab {
   @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin small-tab {
+  @media (max-width: ($small-tab)) {
     @content;
   }
 }
@@ -83,7 +89,7 @@ header {
 }
 
 .header {
-  @include sp{
+  @include small-tab{
     background-color:#e3f2fd;
   }
 }
@@ -134,8 +140,8 @@ a {
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  @include sp {
-    margin-top: 120px;
+  @include small-tab {
+    margin-top: 140px;
   }
 }
 
