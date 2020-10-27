@@ -110,7 +110,7 @@
 		<%= render "pictures/users_picture", pictures:  @illustration_pictures %>
 	<% end %>
 
-	<% if  @illustration_pictures.count > 4 %>
+	<% if  @illustration_pictures.count > 3 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "illustrations", user_id: @user.id %>
 		</div>
@@ -123,7 +123,7 @@
 		<%= render "pictures/users_picture", pictures:  @comic_pictures %>
 	<% end %>
 
-	<% if @comic_pictures.count > 4 %>
+	<% if @comic_pictures.count > 3 %>
 		<div class="pull-right">
 			<%= link_to "もっと見る", controller: "pictures", action: "comics", user_id: @user.id %>
 		</div>
@@ -138,7 +138,7 @@
 				<%= render "pictures/picture_index", pictures:  @pictures %>
 			</div>
 
-	　　<% if @pictures.count > 4 %>
+	　　<% if @pictures.count > 3 %>
 				<div class="pull-right">
 					<%= link_to "もっと見る", pictures_path %>
 				</div>

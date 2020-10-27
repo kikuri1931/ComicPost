@@ -3,9 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //メディアクエリ
-$small-pc: 991px; 
+$pc: 1200px;
+$small-pc: 991px;
+$tab: 768px; 
 $sp: 600px; 
 
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
 @mixin small-pc {
   @media (max-width: ($small-pc)) {
     @content;
@@ -117,7 +129,13 @@ margin-top: 70px;
 }
 
 .picture-space {
-  margin: 30px 45px 0 0;
+      margin: 30px 45px 0 30px;
+  @include pc {
+    margin: 20px 20px 0 10px;
+  }
+  @include tab {
+    margin: 30px 45px 0 30px;
+  }
   @include sp {
     margin: 20px 20px 0 10px;
   }

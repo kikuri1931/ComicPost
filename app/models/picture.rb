@@ -27,7 +27,7 @@ class Picture < ApplicationRecord
     where(status: status).joins(:genre)
                          .where(genres: {is_active: true})
                          .order(id: "DESC")
-                         .limit(5)
+                         .limit(4)
   end
 
   # 検索窓でイラストまたはマンガを探すロジック
