@@ -49,7 +49,7 @@ class PicturesController < ApplicationController
   end
 
   def bookmarks
-    @bookmarks = current_user.bookmarks.page(params[:page]).per(20)
+    @bookmarks = current_user.bookmarks.page(params[:page]).per(30)
   end
 
   def comics
