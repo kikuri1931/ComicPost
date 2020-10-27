@@ -6,7 +6,7 @@
 $pc: 1200px;
 $small-pc: 991px; 
 $tab: 768px; 
-$sp: 600px;
+$sp: 500px;
 $minimum-sp: 330px;
 $small-sp: 300px; 
 
@@ -152,7 +152,7 @@ h1 .start {
 }
 
 .start-title {
-  @include tab {
+   @include tab {
     font-size: 30px;
   }
   @include sp {
