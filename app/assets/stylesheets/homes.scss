@@ -6,6 +6,9 @@
 $pc: 1200px;
 $small-pc: 991px; 
 $tab: 768px; 
+$sp: 600px;
+$minimum-sp: 330px;
+$small-sp: 300px; 
 
 @mixin pc {
   @media (max-width: ($pc)) {
@@ -19,6 +22,21 @@ $tab: 768px;
 }
 @mixin tab {
   @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+@mixin minimum-sp {
+  @media (max-width: ($minimum-sp)) {
+    @content;
+  }
+}
+@mixin small-sp {
+  @media (max-width: ($small-sp)) {
     @content;
   }
 }
@@ -53,12 +71,28 @@ $tab: 768px;
   @include tab {
     font-size: 28px;
   }
+  @include minimum-sp {
+    font-size: 25px;
+  }
+  @include small-sp {
+    font-size: 30px;
+  }
 }
 
 .about-content {
   margin-top: 50px;
   @include small-pc {
      margin-top: 60px;
+  }
+  @include tab {
+    h3{
+      font-size: 20px;
+    }
+  }
+  @include small-sp {
+    h3{
+      font-size: 22px;
+    }
   }
 }
 
@@ -107,6 +141,24 @@ $tab: 768px;
 	margin-top: 150px;
 }
 
+h1 .start {
+  @include small-sp {
+    font-size: 26px;
+  }
+}
+
 .inquiry-link {
   padding-bottom: 100px;
+}
+
+.start-title {
+  @include tab {
+    font-size: 30px;
+  }
+  @include sp {
+    font-size: 36px;
+  }
+  @include small-sp {
+    font-size: 26px;
+  }
 }
