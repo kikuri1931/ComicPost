@@ -60,8 +60,8 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-9 picture-image">
-				<%= render "picture_index", pictures: @pictures %>
+			<div class="col-md-8 col-md-offset-1 picture-image">
+				<%= render "recommendation_picture", pictures: @pictures %>
 				<div class="col-xs-12 center">
 					<%= paginate @pictures %>
 				</div>

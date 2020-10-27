@@ -39,12 +39,12 @@ class PicturesController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       @user_deleted_admin_accsess = check_registration(@user, current_user)
-      @pictures = @user.pictures.genre_active.page(params[:page]).per(20)
+      @pictures = @user.pictures.genre_active.page(params[:page]).per(15)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.page(params[:page]).per(20)
+      @pictures = @genre.pictures.page(params[:page]).per(18)
     else
-      @pictures = Picture.genre_active.page(params[:page]).per(20)
+      @pictures = Picture.genre_active.page(params[:page]).per(18)
     end
   end
 

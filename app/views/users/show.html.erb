@@ -135,7 +135,7 @@
 		<% if @user_picture_empty %>
 			<h2 class="picture-title">おすすめ作品</h2>
 			<div class="picture-image">
-				<%= render "pictures/picture_index", pictures:  @pictures %>
+				<%= render "pictures/recommendation_picture", pictures:  @pictures %>
 			</div>
 
 	　　<% if @pictures.count > 3 %>
