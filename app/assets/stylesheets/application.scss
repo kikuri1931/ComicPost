@@ -27,15 +27,27 @@
 
 //メディアクエリ
 $pc: 1200px;
-$sp: 600px; 
+$tab: 768px;
+$sp: 500px;
+$small-sp: 330px;  
 
 @mixin pc {
   @media (max-width: ($pc)) {
     @content;
   }
 }
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
 @mixin sp {
   @media (max-width: ($sp)) {
+    @content;
+  }
+}
+@mixin small-sp {
+  @media (max-width: ($small-sp)) {
     @content;
   }
 }
@@ -234,12 +246,23 @@ header .pull-right {
 //会員登録画面専用CSS 
 .registration-title {
   margin-top: 70px;
+  @include tab {
+    font-size: 30px;
+  }
+  @include small-sp {
+    font-size: 25px;
+  }
 }
 
 .signup-text {
   margin-top: 20px;
+  @include tab {
+    margin: 20px;
+    font-size: 13px;
+  }
   @include sp {
     margin: 20px;
+    font-size: 12px;
   }
 }
 
@@ -259,6 +282,9 @@ header .pull-right {
   margin-top: 100px;
   h2 {
     font-size: 34px;
+    @include small-sp {
+      font-size: 28px;
+    }
   }
 }
 
@@ -299,6 +325,11 @@ header .pull-right {
 }
 
 #tab-contents {
+  h3 {
+    @include small-sp {
+      font-size: 20px;
+    }
+  }
   .tab {
     padding: 30px;
     background: #fbfeff;;
