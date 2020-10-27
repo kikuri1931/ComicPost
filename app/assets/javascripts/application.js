@@ -17,13 +17,16 @@
 //= require_tree .
 
 $(document).ready( function(){
+  // rooms/:idの時は下からスクロールそれ以外は上からスクロール
   if(document.URL.match('/rooms/*')) {
     $(window).scrollTop(document.body.scrollHeight);
   }
   else{
     $('html,body').animate({ scrollTop: 0 }, 0.1);
   }
+  // rooms/:idの時は下からスクロールそれ以外は上からスクロール
 
+  // タブメニュー
   $('#tab-contents .tab[id != "paid"]').hide();
 
   $('#tab-menu a').on('click', function(event) {
@@ -33,7 +36,9 @@ $(document).ready( function(){
     $($(this).attr("href")).show();
     event.preventDefault();
   });
+  // タブメニュー
 
+  // 「無料会員」というタブを押したときの処理
   $('.free-link').click(function(event) {
     $("#paid-forms .tab").hide();
     var postal_code = document.getElementById('user_postal_code')
@@ -43,7 +48,9 @@ $(document).ready( function(){
     var telephone_number = document.getElementById('user_telephone_number')
     telephone_number.removeAttribute("required","required");
   });
+  // 「無料会員」というタブを押したときの処理
 
+  // 「有料会員」というタブを押したときの処理
   $('.paid-link').click(function(event) {
     $("#paid-forms .tab").show();
     var postal_code = document.getElementById('user_postal_code')
@@ -53,17 +60,21 @@ $(document).ready( function(){
     var telephone_number = document.getElementById('user_telephone_number')
     telephone_number.setAttribute("required","required");
   });
+  // 「有料会員」というタブを押したときの処理
 
+  // スライダー
   $('#slider').slick({
     dots: true,
     rtl: true, 
     autoplaySpeed: 4000, 
   });
+  // スライダー
 
+  // ハンバーガーメニュー
   $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
     $('#sp-menu').fadeToggle();
     event.preventDefault();
   });
-
+  // ハンバーガーメニュー
 });
