@@ -7,7 +7,9 @@
 			</div>
 		<% end %>
 		<%= link_to user_path(picture.user)do %>
-			<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
+			<div class="index-image">
+				<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
+			</div>
 			<div class="index-nowrap">
 				<% if picture.user.nickname.blank? %>
 					<span class="index-title"><%= picture.user.name %></span>

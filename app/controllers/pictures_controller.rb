@@ -44,7 +44,7 @@ class PicturesController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.page(params[:page]).per(18)
     else
-      @pictures = Picture.genre_active.page(params[:page]).per(12)
+      @pictures = Picture.genre_active.page(params[:page]).per(13)
     end
   end
 
@@ -62,7 +62,7 @@ class PicturesController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.where(status: "マンガ").page(params[:page]).per(18)
     else
-      @pictures = Picture.picture_status("マンガ").page(params[:page]).per(12)
+      @pictures = Picture.picture_status("マンガ").page(params[:page]).per(13)
     end
   end
 
@@ -76,7 +76,7 @@ class PicturesController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @pictures = @genre.pictures.where(status: "イラスト").page(params[:page]).per(18)
     else
-      @pictures = Picture.picture_status("イラスト").page(params[:page]).per(12)
+      @pictures = Picture.picture_status("イラスト").page(params[:page]).per(13)
     end
   end
 
