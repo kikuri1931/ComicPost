@@ -69,7 +69,7 @@
 			<!-- 投稿ユーザプロフィール -->
 			<div class="profile-image">
 				<%= link_to user_path(@picture.user) do %>
-					<%= attachment_image_tag @picture.user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image_square.jpg", class: "img-circle" %>
+					<%= attachment_image_tag @picture.user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image_square.jpg" %>
 				<% end %>
 			</div>
 
