@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//メディアクエリ
+$small-pc: 991px; 
+$sp: 600px; 
+
+@mixin small-pc {
+  @media (max-width: ($small-pc)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+//メディアクエリ
+
 .title-space {
 	margin-top: 10px;
 }
@@ -25,7 +41,10 @@ margin-top: 70px;
 }
 
 .slick-next:before, .slick-prev:before {
-    color: #666!important;
+  color: #666!important;
+  @include small-pc {
+    display: none;
+  }
 }
 
 .genre-search {
@@ -42,10 +61,16 @@ margin-top: 70px;
 		padding: 15px 80px 10px 5px; 
 		font-size: 18px;
 	}
+	@include small-pc {
+    display: none;
+  }
 }
 
 .pictures {
 	margin-top:20px;
+	@include sp {
+    margin-top:120px;
+  }
 }
 
 .edit-destroy {
@@ -93,25 +118,13 @@ margin-top: 70px;
 
 .picture-space {
   margin: 30px 45px 0 0;
-}
-
-@media screen and (max-width:991px) {
-  .genre-search {
-    display: none;
-  }
-  .slick-next:before, .slick-prev:before {
-    display: none;
-  }
-  .picture-user {
-  display: none;
-  }
-}
-
-@media screen and (max-width:600px) {
-  .picture-space {
+  @include sp {
     margin: 20px 20px 0 10px;
   }
-  .pictures {
-    margin-top:120px;
+}
+
+.picture-user {
+	@include small-pc {
+  	display: none;
   }
 }

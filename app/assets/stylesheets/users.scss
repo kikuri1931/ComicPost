@@ -2,8 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//メディアクエリ
+$small-pc: 991px; 
+$tab: 768px; 
+$sp: 600px; 
+
+@mixin small-pc {
+  @media (max-width: ($small-pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+//メディアクエリ
+
 .profile {
 	margin-top: 100px;
+  @include sp {
+    margin-top: 50px;
+  }
 }
 
 .bookmark-link {
@@ -16,6 +41,12 @@
 
 .edit-user-title {
   margin: 60px 0 0 110px;
+  @include small-pc {
+    margin-left:20px;
+  }
+  @include sp {
+    margin: 120px 0 0 20px;
+  }
 }
 
 .picture-title {
@@ -23,29 +54,8 @@
   color: #3a3000; 
 }
 
-@media screen and (max-width:991px) {
-  .edit-user-title {
-    margin-left:20px;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .profile-image {
-    margin-top: 50px;
-  }
-  .withdraw {
+.withdraw {
+  @include tab {
     margin-top: 30px;
-  }
-}
-
-@media screen and (max-width:600px) {
-  .edit-user-title {
-    margin: 120px 0 0 20px;
-  }
-  .profile-image {
-    margin-top: 120px;
-  }
-  .profile {
-    margin-top: 50px;
   }
 }

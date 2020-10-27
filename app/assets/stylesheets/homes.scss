@@ -2,6 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//メディアクエリ
+$pc: 1200px;
+$small-pc: 991px; 
+$tab: 768px; 
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+@mixin small-pc {
+  @media (max-width: ($small-pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+//メディアクエリ
+
 .top-image {
 	background: image-url("/images/sketch.jpg");
   background-size: cover;
@@ -21,14 +43,23 @@
 	padding-top: 245px;
   text-align: center;
 	font-size: 50px;
+  @include tab {
+    font-size: 34px;
+  }
 }
 
 .about-title {
 	margin-top: 50px;
+  @include tab {
+    font-size: 28px;
+  }
 }
 
 .about-content {
   margin-top: 50px;
+  @include small-pc {
+     margin-top: 60px;
+  }
 }
 
 .about-image1 {
@@ -38,6 +69,9 @@
   margin-top: 10px;
   height: 280px;
   border-radius: 10%;
+  @include pc {
+    margin-top: 0;
+  }
 }
 
 .about-image2 {
@@ -47,6 +81,12 @@
   margin-top: 30px;
   height: 280px;
   border-radius: 10%;
+  @include pc {
+    margin-top: 65px;
+  }
+  @include small-pc {
+    margin-top: 0;
+  }
 }
 
 .about-image3 {
@@ -55,6 +95,12 @@
   margin-top: 30px;
   height: 280px;
   border-radius: 10%;
+  @include pc {
+    margin-top: 45px;
+  }
+  @include small-pc {
+    margin-top: 0;
+  }
 }
 
 .start {
@@ -63,37 +109,4 @@
 
 .inquiry-link {
   padding-bottom: 100px;
-}
-
-@media screen and (max-width:1200px) {
- .about-image {
-    margin-top: 0;
-  }
-  .about-image2 {
-    margin-top: 65px;
-  }
-  .about-image3 {
-    margin-top: 45px;
-  }
-}
-
-@media screen and (max-width:991px) {
- .about-content {
-    margin-top: 60px;
-  }
-  .about-image2 {
-    margin-top: 0;
-  }
-  .about-image3 {
-    margin-top: 0;
-  }
-}
-
-@media screen and (max-width:768px) {
-  .top-image h1 {
-    font-size: 34px;
-  }
-  .about-title {
-    font-size: 28px;
-  }
 }

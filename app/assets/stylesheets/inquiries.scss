@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//メディアクエリ
+$sp: 600px; 
+
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+//メディアクエリ
+
 .confirm {
 	background-color: white;
 	padding: 5px;
@@ -16,21 +26,22 @@
 
 .thanks-title {
 	margin-top: 70px;
+	@include sp {
+    margin-top: 50px;
+  }
 }
 
 .thanks-text {
 	margin-bottom: 50px;
+	@include sp {
+		margin: 50px;
+	}
 }
 
 .inquiry-title {
 	padding-top: 30px;
+	@include sp {
+		padding-top: 20px;
+	}
 }
 
-@media screen and (max-width:600px) {
-  .inquiry-title {
-    padding-top: 20px;
-  }
-  .thanks-text {
-    margin: 50px;
-  }
-}

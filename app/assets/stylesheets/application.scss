@@ -16,12 +16,30 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//タイトルフォント
 @font-face {
   font-family: 'Magnolia';
   src: font-url('Magnolia_Script.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+//タイトルフォント
+
+//メディアクエリ
+$pc: 1200px;
+$sp: 600px; 
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+//メディアクエリ
 
 //全ページ共通CSS
 body {
@@ -52,6 +70,12 @@ header {
   }
 }
 
+.header {
+  @include sp{
+    background-color:#e3f2fd;
+  }
+}
+
 .form-space {
   padding-top: 30px;
 }
@@ -76,6 +100,9 @@ a {
 
 .signin-title {
   margin-top: 60px;
+  @include sp {
+    margin: 120px 0 0 20px;
+  }
 }
 
 .picture-image {
@@ -86,12 +113,18 @@ a {
 
 .nothing {
   padding-top: 30px;
+  @include sp {
+    padding: 30px 0 0 20px;
+  }
 }
 
 .profile-image {
   margin-top: 50px;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
+  @include sp {
+    margin-top: 120px;
+  }
 }
 
 .center {
@@ -105,6 +138,99 @@ a {
 }
 //全ページ共通CSS
 
+//ハンバーガーメニューCSS
+#hm-icon{
+  @include pc {
+    position: fixed;
+    right: 20px;
+    top: 5px;
+    z-index: 10;
+  }
+}
+
+.menu-trigger,
+.menu-trigger span {
+  @include pc {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+  }
+}
+
+.menu-trigger {
+  @include pc {
+    position: relative;
+    width: 40px;
+    height: 45px;
+  }
+}
+
+.menu-trigger span {
+  @include pc {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #337ab7;
+    &:nth-of-type(1) {
+      top: 10px;
+    }
+    &:nth-of-type(2) {
+      top: 26px;
+    }
+    &:nth-of-type(3) {
+      bottom: 0;
+    }
+  }
+}
+
+header .pull-right {
+  @include pc {
+    display: none;
+  }
+}
+
+.menu-trigger.active span {
+  @include pc {
+    &:nth-of-type(1) {
+      transform: translateY(10px) rotate(-45deg);
+      background-color: #fff;
+    }
+    &:nth-of-type(2) {
+      opacity: 0;
+    }
+    &:nth-of-type(3) {
+      transform: translateY(-22px) rotate(45deg);
+      background-color: #fff;
+    }
+  }
+}
+
+#sp-menu {
+  @include pc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+    li{
+      text-align: center;
+      margin-bottom: 30px;
+      list-style: none;
+    }
+    a{
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  } 
+}
+//ハンバーガーメニューCSS
+
 //会員登録画面専用CSS 
 .registration-title {
   margin-top: 70px;
@@ -112,10 +238,16 @@ a {
 
 .signup-text {
   margin-top: 20px;
+  @include sp {
+    margin: 20px;
+  }
 }
 
 .signup-title {
   margin: 70px 0 10px 20px;
+  @include sp {
+    margin: 130px 0 0 20px;
+  }
 }
 .signup-formspace {
   padding-top: 20px;
@@ -190,94 +322,3 @@ a {
   }
 }
 //会員登録画面タブメニューのCSS 
-
-@media screen and (max-width:1200px) {
-   #hm-icon{
-    position: fixed;
-    right: 20px;
-    top: 5px;
-    z-index: 10;
-  }
-  .menu-trigger,
-  .menu-trigger span {
-    display: inline-block;
-    transition: all .4s;
-    box-sizing: border-box;
-  }
-  .menu-trigger {
-    position: relative;
-    width: 40px;
-    height: 45px;
-  }
-  .menu-trigger span {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #337ab7;
-    &:nth-of-type(1) {
-      top: 10px;
-    }
-    &:nth-of-type(2) {
-      top: 26px;
-    }
-    &:nth-of-type(3) {
-      bottom: 0;
-    }
-  }
-  header .pull-right {
-    display: none;
-  }
-  .menu-trigger.active span {
-    &:nth-of-type(1) {
-      transform: translateY(10px) rotate(-45deg);
-      background-color: #fff;
-    }
-    &:nth-of-type(2) {
-      opacity: 0;
-    }
-    &:nth-of-type(3) {
-      transform: translateY(-22px) rotate(45deg);
-      background-color: #fff;
-    }
-  }
-  #sp-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #000;
-    color: #fff;
-    width: 100%;
-    min-height: 100%;
-    display: none;
-    z-index: 9;
-    li{
-      text-align: center;
-      margin-bottom: 30px;
-      list-style: none;
-    }
-    a{
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  } 
-}
-
-@media screen and (max-width:600px) {
-  .signup-text {
-    margin: 20px;
-  }
-  .header {
-    background-color:#e3f2fd;
-  }
-  .signin-title {
-    margin: 130px 0 0 20px;
-  }
-  .nothing {
-    padding: 30px 0 0 20px;
-  }
-  .thanks-title {
-    margin-top: 50px;
-  }
-}
