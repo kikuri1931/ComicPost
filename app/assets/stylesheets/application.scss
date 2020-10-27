@@ -118,8 +118,8 @@ a {
 
 .signin-title {
   margin-top: 60px;
-  @include sp {
-    margin: 120px 0 0 20px;
+  @include small-tab {
+    margin: 140px 0 0 20px;
   }
 }
 
