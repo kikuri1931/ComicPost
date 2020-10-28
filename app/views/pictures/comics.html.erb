@@ -4,7 +4,7 @@
 		<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 		<% if params[:user_id] %>
 			<div class="col-md-12 picture-image">
-				<%= render "userpicture_index", pictures: @pictures %>
+				<%= render "picture_index", pictures: @pictures %>
 			</div>
 			<div class="col-xs-12 center">
 				<%= paginate @pictures %>
