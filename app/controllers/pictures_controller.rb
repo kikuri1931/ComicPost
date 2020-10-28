@@ -96,7 +96,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture = Picture.find(params[:id])
     @picture.destroy
-    redirect_to user_path(current_user)
+    redirect_to user_path(current_user), alert: "削除が無事に完了しました。"
   end
 
   private
