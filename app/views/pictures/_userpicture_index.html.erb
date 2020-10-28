@@ -6,6 +6,7 @@
 				<span class="index-title"><%= picture.title %></span>
 			</div>
 		<% end %>
+		
 		<%= link_to user_path(picture.user)do %>
 			<div class="index-image">
 				<%= attachment_image_tag picture.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
@@ -16,6 +17,7 @@
 				<% else %>
 					<span class="index-title"><%= picture.user.nickname %></span>
 				<% end %>
+			</div>
 		<% end %>		
 	</div>
 <% end %>

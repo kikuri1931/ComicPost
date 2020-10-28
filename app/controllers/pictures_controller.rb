@@ -38,31 +38,35 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @user_deleted_admin_accsess = check_registration(@user, current_user)
+      if @user.is_deleted && ['有料会員', '無料会員'].include?(current_user.status)
+        redirect_to user_path(current_user)
+      end
       @pictures = @user.pictures.genre_active.page(params[:page]).per(30)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.page(params[:page]).per(18)
+      @pictures = @genre.pictures.user_active.page(params[:page]).per(18)
     else
-      @pictures = Picture.genre_active.page(params[:page]).per(13)
+      @pictures = Picture.genre_user_active.page(params[:page]).per(12)
     end
   end
 
   def bookmarks
-    @bookmarks = current_user.bookmarks.page(params[:page]).per(30)
+    @bookmarks = current_user.bookmarks.joins(:user).where(users: {is_deleted: false})
   end
 
   def comics
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @user_deleted_admin_accsess = check_registration(@user, current_user)
-      @pictures = @user.pictures.picture_status("マンガ").page(params[:page]).per(30)
+      if @user.is_deleted && ['有料会員', '無料会員'].include?(current_user.status)
+        redirect_to user_path(current_user)
+      end
+      @pictures = @user.pictures.picture_genre_active("マンガ").page(params[:page]).per(30)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.where(status: "マンガ").page(params[:page]).per(18)
+      @pictures = @genre.pictures.picture_user_active("マンガ").page(params[:page]).per(18)
     else
-      @pictures = Picture.picture_status("マンガ").page(params[:page]).per(13)
+      @pictures = Picture.picture_user_genre_active("マンガ").page(params[:page]).per(12)
     end
   end
 
@@ -70,13 +74,15 @@ class PicturesController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @user_deleted_admin_accsess = check_registration(@user, current_user)
-      @pictures = @user.pictures.picture_status("イラスト").page(params[:page]).per(30)
+      if @user.is_deleted && ['有料会員', '無料会員'].include?(current_user.status)
+        redirect_to user_path(current_user)
+      end
+      @pictures = @user.pictures.picture_genre_active("イラスト").page(params[:page]).per(30)
     elsif params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @pictures = @genre.pictures.where(status: "イラスト").page(params[:page]).per(18)
+      @pictures = @genre.pictures.picture_user_active("イラスト").page(params[:page]).per(18)
     else
-      @pictures = Picture.picture_status("イラスト").page(params[:page]).per(13)
+      @pictures = Picture.picture_user_genre_active("イラスト").page(params[:page]).per(12)
     end
   end
 

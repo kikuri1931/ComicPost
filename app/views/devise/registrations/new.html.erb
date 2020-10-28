@@ -42,7 +42,13 @@
             </h3>
             <b>
               <ul>
-                <li class="line-spacing">講義では ○○○ というWeb会議ツールを使用します。 ○○○ の登録をしてくださいますよう、ご協力お願いいたします。</li>
+                <li class="line-spacing">
+                  1ヶ月の料金は<%= Payment.this_month_payment.to_s(:delimited, delimiter: ',') %>円
+                  (税込み<%= Payment.taxin_payment.floor.to_s(:delimited, delimiter: ',') %>円)です。支払い方法は登録されたメールアドレスに連絡します。
+                </li>
+                <li class="line-spacing">
+                  講義では ○○○ というWeb会議ツールを使用します。 ○○○ の登録をしてくださいますよう、ご協力お願いいたします。
+                </li>
                 <li class="line-spacing">講義の内容を外部に持ち出すことを禁止しています。</li>
                 <li class="line-spacing">自分の作品以外のイラスト、マンガの無断転載は禁止しております。</li>
                 <li class="line-spacing">料金が支払われない場合、または上記違反が発覚した場合はサービス利用を中止させていただく場合があります。</li>

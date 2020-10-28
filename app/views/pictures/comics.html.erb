@@ -3,21 +3,12 @@
 		<h1 class="signin-title index-pagetitle">マンガ</h1>
 		<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 		<% if params[:user_id] %>
-			<% if !@user.is_deleted %>
-				<div class="col-md-12 picture-image">
-					<%= render "picture_index", pictures: @pictures %>
-				</div>
-				<div class="col-xs-12 center">
-					<%= paginate @pictures %>
-				</div>
-			<% elsif @user_deleted_admin_accsess %>
-				<div class="col-md-12 picture-image">
-					<%= render "userpicture_index", pictures: @pictures %>
-				</div>
-				<div class="col-xs-12 center">
-					<%= paginate @pictures %>
-				</div>
-			<% end %>
+			<div class="col-md-12 picture-image">
+				<%= render "userpicture_index", pictures: @pictures %>
+			</div>
+			<div class="col-xs-12 center">
+				<%= paginate @pictures %>
+			</div>
 		 	<!-- ユーザ詳細画面で「もっと見る」を押したときの処理 -->
 
 		<% else %>

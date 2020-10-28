@@ -24,9 +24,9 @@ class UsersController < ApplicationController
       end
     end
     # @userとログインユーザがEntryモデルに相互登録されていることを確かめるロジック
-    @comic_pictures = @user.pictures.user_picture_limit5("マンガ")
-    @illustration_pictures = @user.pictures.user_picture_limit5("イラスト")
-    @pictures = Picture.joins(:genre).where(genres: {is_active: true}).limit(4)
+    @comic_pictures = @user.pictures.user_picture_limit4("マンガ")
+    @illustration_pictures = @user.pictures.user_picture_limit4("イラスト")
+    @pictures = Picture.genre_user_active.limit(4)
     @admin_user = @user != current_user && 
                   ['講師'].include?(current_user.status) && 
                   ['有料会員','無料会員'].include?(@user.status) 

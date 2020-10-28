@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
 			@pictures = Picture.search_picture("イラスト", word).page(params[:page]).per(30)
 		else
 			genres = Genre.search_genre(word)
-			@genre_pictures = Picture.where(genre_id: genres).page(params[:page]).per(30)
+			@genre_pictures = Picture.search_genre_picture(genres).page(params[:page]).per(30)
 		end
 	end
 end
