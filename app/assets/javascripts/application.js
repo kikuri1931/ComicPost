@@ -41,6 +41,10 @@ $(document).ready( function(){
   // 「無料会員」というタブを押したときの処理
   $('.free-link').click(function(event) {
     $("#paid-forms .tab").hide();
+    var paid = document.getElementById('user_status_有料会員')
+    paid.setAttribute("disabled","disabled");
+    var free = document.getElementById('user_status_無料会員')
+    free.removeAttribute("disabled","disabled");
     var postal_code = document.getElementById('user_postal_code')
     postal_code.removeAttribute("required","required");
     var address = document.getElementById('user_address')
@@ -53,6 +57,10 @@ $(document).ready( function(){
   // 「有料会員」というタブを押したときの処理
   $('.paid-link').click(function(event) {
     $("#paid-forms .tab").show();
+    var paid = document.getElementById('user_status_有料会員')
+    paid.removeAttribute("disabled","disabled");
+    var free = document.getElementById('user_status_無料会員')
+    free.setAttribute("disabled","disabled");
     var postal_code = document.getElementById('user_postal_code')
     postal_code.setAttribute("required","required");
     var address = document.getElementById('user_address')
