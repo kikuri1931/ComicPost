@@ -8,6 +8,7 @@ $small-pc: 991px;
 $tab: 768px; 
 $sp: 600px; 
 $xsp: 400px; 
+$minimum-xsp: 350px;
 $small-xsp: 300px; 
 
 @mixin pc {
@@ -35,8 +36,13 @@ $small-xsp: 300px;
     @content;
   }
 }
+@mixin minimum-xsp {
+  @media (max-width: ($minimum-xsp)) {
+    @content;
+  }
+}
 @mixin small-xsp {
-  @media (max-width: ($xsp)) {
+  @media (max-width: ($small-xsp)) {
     @content;
   }
 }
@@ -162,6 +168,12 @@ margin-top: 70px;
   }
   @include sp {
     margin: 20px 0 0 10px;
+  }
+  @include xsp {
+    margin: 20px 10px 0 20px;
+  }
+  @include minimum-xsp {
+    margin: 20px 5px 0 10px;
   }
 }
 
