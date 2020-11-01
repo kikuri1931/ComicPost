@@ -47,20 +47,9 @@
 				</h6>
 
 				<p><%= simple_format(@picture.introduction) %></p>
-
-				<% if @picture.user == current_user || current_user.status == "講師" %>
-					<h5 class="image-title">コメントから判断したみんなの評価</h5>
-					<div>
-						<div class="col-md-4" style="height: 20px;">
-							
-						</div>
-					</div>
-					<% if @picture.comments.exists? %>
-						<%= (@picture.comments.sum(:score) / @picture.comments.count).round(1) %>
-					<% else %>
-						<p>コメントがないので、集計していません。</p>
-					<% end %>
-				<% end %>
+				<div class="comment_<%= @picture.id %>">
+					<%= render 'evaluation', picture: @picture  %>
+				</div>
 			</div>
 			<!-- イラスト・マンガ詳細表示 -->
 
