@@ -47,8 +47,8 @@
 				</h6>
 
 				<p><%= simple_format(@picture.introduction) %></p>
-				<div class="comment_<%= @picture.id %>">
-					<%= render 'evaluation', picture: @picture  %>
+				<div class="comment_evaluation">
+					<%= render 'evaluation', picture: @picture %>
 				</div>
 			</div>
 			<!-- イラスト・マンガ詳細表示 -->

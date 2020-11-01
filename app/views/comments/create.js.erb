@@ -1,2 +1,3 @@
 $("textarea").val("");
-$(".comment_<%= @picture.id %>").html("<%= j(render 'comments/index', picture: @picture) %>");
+$(".comment_<%= @picture.id %>").html("<%= j(render 'index', picture: @picture) %>");
+$(".comment_evaluation").html("<%= j(render 'pictures/evaluation', picture: @picture) %>");
