@@ -13,6 +13,9 @@
 			</div>
 			<div class="col-xs-12 comment-balloon">
 				<%= simple_format(comment.comment) %>
+				<% if @picture.user == current_user %>
+					<p>このコメントの評価　[<%= comment.score %>]</p>
+				<% end %>
 				<%= comment.created_at.strftime("%Y-%m-%d %H:%M")%><br>
 				<% if comment.user == current_user %>
 					<%= link_to "コメント削除", picture_comment_path(comment.picture, comment), method: :delete, remote: true, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
