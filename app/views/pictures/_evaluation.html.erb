@@ -3,7 +3,7 @@
 	<% if picture.comments.exists? %>
 		<h1><%= (picture.comments.sum(:score) / picture.comments.count).round(1) %></h1>
 	<% else %>
-		<p>コメントがないので、集計していません。</p>
+		<h1>0.0</h1>
 	<% end %>
 	<div class="col-sm-12 col-md-12 evaluation">
 		<p>評価の目安</p>
