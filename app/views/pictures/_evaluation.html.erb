@@ -1,11 +1,11 @@
 <% if picture.user == current_user || current_user.status == "講師" %>
-	<h4 class="image-title" style="margin-top: 20px;">コメントから判断したみんなの評価</h4>
+	<h4 class="evaluation">コメントから判断したみんなの評価</h4>
 	<% if picture.comments.exists? %>
 		<h1><%= (picture.comments.sum(:score) / picture.comments.count).round(1) %></h1>
 	<% else %>
 		<p>コメントがないので、集計していません。</p>
 	<% end %>
-	<div class="col-sm-12 col-md-12" style="margin-top: 20px;">
+	<div class="col-sm-12 col-md-12 evaluation">
 		<p>評価の目安</p>
 	</div>
 	<div class="col-sm-4 col-md-4">
