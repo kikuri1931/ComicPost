@@ -48,7 +48,7 @@
 
 				<p><%= simple_format(@picture.introduction) %></p>
 
-				<% if @picture.user == current_user %>
+				<% if @picture.user == current_user || current_user.status == "講師" %>
 					<h5 class="image-title">コメントから判断したみんなの評価</h5>
 					<div>
 						<div class="col-md-4" style="height: 20px;">
