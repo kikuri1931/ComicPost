@@ -127,6 +127,11 @@ GEM
     ed25519 (1.2.4)
     erubi (1.9.0)
     execjs (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.13.1)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
@@ -371,6 +376,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   ed25519
+  factory_bot_rails
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
