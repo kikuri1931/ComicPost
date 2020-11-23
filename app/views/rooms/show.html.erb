@@ -22,7 +22,7 @@
     <div class="col-xs-12 message-form" style="position: fixed;">
       <div class="col-md-6 col-md-offset-2 message-form">
         <%= form_with model: @message, data: {remote: true} do |f| %>
-          <%= f.text_area :message, rows: "4", placeholder: "メッセージを入力して下さい" , class: "form-control" %>
+          <%= f.text_area :message, rows: "4", placeholder: "メッセージを入力して下さい" , class: "form-control", :required => true %>
           <%= f.hidden_field :room_id, value: @room.id %>
           <%= f.submit "送信", class: "form-submit" %>
         <% end %>
