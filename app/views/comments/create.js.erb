@@ -1,3 +1,4 @@
 $("textarea").val("");
 $(".comment_<%= @picture.id %>").html("<%= j(render 'index', picture: @picture) %>");
 $(".comment_evaluation").html("<%= j(render 'pictures/evaluation', picture: @picture) %>");
+$(window).scrollTop(document.body.scrollHeight);
