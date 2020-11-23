@@ -1,12 +1,13 @@
 <div class="container">
-	<div class="row">
+	<div class="col-md-offset-1">
 		<h2 class="signin-title">ジャンル一覧・追加</h2>
 	</div>
 	<!-- ジャンル新規登録 -->
-	<div class="row new-genre">
-		<div class="col-lg-1">ジャンル</div>
+	<%= render "layouts/errors", validation: @genre %>
+	<div class="new-genre col-md-11 col-md-offset-1">
+		<div class="col-md-12">ジャンル</div>
 		<%= form_for @genre do |f| %>
-			<div class="col-sm-3 col-lg-2"><%= f.text_field :genre %></div>
+			<div class="col-sm-3 col-lg-3"><%= f.text_field :genre %></div>
 			<div class="col-sm-3 col-lg-2">
 				<label><%= f.radio_button :is_active, true %> 有効</label>
 				<label><%= f.radio_button :is_active, false %> 無効</label>
@@ -17,7 +18,7 @@
 	<!-- ジャンル新規登録 -->
 
 	<!-- ジャンル一覧 -->
-	<div class="col-md-8">
+	<div class="col-md-8 col-md-offset-1">
 		<table class="table">
 			<thead>
 				<tr class="active">

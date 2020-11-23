@@ -8,8 +8,12 @@ class GenresController < ApplicationController
 
 	def create
 	  @genre = Genre.new(genre_params)
-	  @genre.save
-	  redirect_to genres_path
+	  if @genre.save
+	  	redirect_to genres_path
+	  else
+	  	@genres = Genre.all.page(params[:page]).per(10)
+	  	render :index
+	  end
 	end
 
 	def edit
