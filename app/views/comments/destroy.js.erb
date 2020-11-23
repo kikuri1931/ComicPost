@@ -1,2 +1,4 @@
 $(".comment_<%= @picture.id %>").html("<%= j(render 'index', picture: @picture) %>");
 $(".comment_evaluation").html("<%= j(render 'pictures/evaluation', picture: @picture) %>");
+$('html,body').animate({ scrollTop: 0 }, 0.1);
+$("#comment-delete").html("<%= j(render'layouts/success_message') %>");

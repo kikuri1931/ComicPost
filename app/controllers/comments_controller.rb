@@ -12,7 +12,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @picture = Picture.find(params[:picture_id])
-    Comment.find_by(id: params[:id], picture_id: params[:picture_id]).destroy
+    if Comment.find_by(id: params[:id], picture_id: params[:picture_id]).destroy
+      flash[:alert] = "コメント削除が無事に完了しました。"
+    end
   end
 
   private
