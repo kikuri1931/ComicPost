@@ -23,7 +23,7 @@ class GenresController < ApplicationController
 	def update
 	  @genre = Genre.find(params[:id])
 	  if @genre.update(genre_params)
-	  	redirect_to genres_path
+	  	redirect_to genres_path, alert: "ジャンル変更が無事成功しました。"
 	  else
 	  	render :edit
 	  end
