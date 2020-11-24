@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
 		@payment= Payment.new(payment: Payment.this_month_payment, taxin_payment:  Payment.taxin_payment.floor, status: "支払い済み")
 		@payment.user_id = @user.id
 		@payment.save
-		redirect_to user_payments_path(@user)
+		redirect_to user_payments_path(@user), alert: "お支払い情報を無事更新しました。"
 	end
 	
 	private
