@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
-		<h1 class="signin-title">ジャンル編集</h1>
+		<h1 class="signin-title col-md-offset-1">ジャンル編集</h1>
+		<%= render "layouts/errors", validation: @genre %>
 		<div class="edit-genre">
 			<div class="col-lg-1 col-lg-offset-2">ジャンル</div>
 			<%= form_for @genre do |f| %>
