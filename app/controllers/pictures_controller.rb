@@ -13,7 +13,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new picture_params
     @picture.user_id = current_user.id
     if @picture.save
-      redirect_to picture_path(@picture)
+      redirect_to picture_path(@picture), alert: "作品をを無事に登録できました。"
     else 
       render :new
     end
