@@ -9,7 +9,7 @@ class GenresController < ApplicationController
 	def create
 	  @genre = Genre.new(genre_params)
 	  if @genre.save
-	  	redirect_to genres_path
+	  	redirect_to genres_path, alert: "ジャンル追加が無事成功しました。"
 	  else
 	  	@genres = Genre.all.page(params[:page]).per(10)
 	  	render :index
