@@ -13,7 +13,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new picture_params
     @picture.user_id = current_user.id
     if @picture.save
-      redirect_to picture_path(@picture), alert: "作品をを無事に登録できました。"
+      redirect_to picture_path(@picture), alert: "作品を無事に登録できました。"
     else 
       render :new
     end
@@ -93,7 +93,7 @@ class PicturesController < ApplicationController
   def update
     @picture = Picture.find(params[:id])
     if @picture.update(picture_params)
-      redirect_to picture_path(@picture)
+      redirect_to picture_path(@picture), alert: "作品を無事に更新できました。"
     else
       render :edit
     end
