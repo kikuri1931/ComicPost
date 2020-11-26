@@ -106,7 +106,7 @@
 <div class="container">
 	<!-- @userの投稿イラスト一覧 -->
 	<% if  @illustration_pictures.exists? %>
-		<h2 class="picture-title">イラスト</h2>
+		<h2 class="picture-title">イラスト作品</h2>
 		<%= render "pictures/users_picture", pictures:  @illustration_pictures %>
 	<% end %>
 
@@ -119,7 +119,7 @@
 
 	<!-- @userの投稿マンガ一覧 -->
 	<% if @comic_pictures.exists? %>
-		<h2 class="picture-title">マンガ</h2>
+		<h2 class="picture-title">マンガ作品</h2>
 		<%= render "pictures/users_picture", pictures:  @comic_pictures %>
 	<% end %>
 
