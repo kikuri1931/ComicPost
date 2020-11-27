@@ -19,8 +19,11 @@ describe '有料会員(マイページ)のテスト' do
       it 'ステータスが表示される' do
         expect(page).to have_content(user_paid.status)
       end
-      it '編集リンクが表示される' do
+      it '個人情報編集リンクが表示される' do
         expect(page).to have_link '登録情報を編集する', href: edit_user_path(user_paid)
+      end
+      it '作品投稿リンクが表示される' do
+        expect(page).to have_link '作品を投稿する', href: new_picture_path
       end
       it 'お気に入りリンクが表示される' do
         expect(page).to have_link 'お気に入り', href: bookmarks_path
@@ -81,6 +84,9 @@ describe '有料会員(マイページ)のテスト' do
       it 'チャットリンクが表示されない' do
         expect(page).to have_no_link 'チャットする', href: rooms_path
       end
+      it '作品投稿リンクが表示されない' do
+        expect(page).to have_no_link '作品を投稿する', href: new_picture_path
+      end
       it 'オススメ作品が表示されない' do
         expect(page).to have_no_content('おすすめ作品')
       end
@@ -137,6 +143,9 @@ describe '有料会員(マイページ)のテスト' do
       end
       it 'チャットリンクが表示されない' do
         expect(page).to have_no_link 'チャットする', href: rooms_path
+      end
+      it '作品投稿リンクが表示されない' do
+        expect(page).to have_no_link '作品を投稿する', href: new_picture_path
       end
       it 'オススメ作品が表示されない' do
         expect(page).to have_no_content('おすすめ作品')
@@ -197,6 +206,9 @@ describe '有料会員(マイページ)のテスト' do
       end
       it 'チャットリンクが表示されない' do
         expect(page).to have_no_link 'チャットする', href: rooms_path
+      end
+      it '作品投稿リンクが表示されない' do
+        expect(page).to have_no_link '作品を投稿する', href: new_picture_path
       end
       it 'オススメ作品が表示されない' do
         expect(page).to have_no_content('おすすめ作品')
