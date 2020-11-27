@@ -143,4 +143,49 @@ describe 'ユーザー認証のテスト' do
       end
     end
   end
+
+  describe '退会ユーザログイン' do
+    let(:user_paid2) { create(:user, :paid, is_deleted: true) }
+    let(:user_free2) { create(:user, :free, is_deleted: true) }
+    let(:user_admin2) { create(:user, :admin, is_deleted: true) }
+
+    context '有料会員' do
+      before do
+        visit new_user_session_path
+      end
+      it 'ログインに失敗する' do
+        fill_in 'user[email]', with: user_paid2.email
+        fill_in 'user[password]', with: user_paid2.password
+        click_button 'ログインする'
+
+        expect(current_path).to eq(new_user_session_path)
+      end
+    end
+
+    context '無料会員' do
+      before do
+        visit new_user_session_path
+      end
+      it 'ログインに失敗する' do
+        fill_in 'user[email]', with: user_free2.email
+        fill_in 'user[password]', with: user_free2.password
+        click_button 'ログインする'
+
+        expect(current_path).to eq(new_user_session_path)
+      end
+    end
+
+    context '管理者' do
+      before do
+        visit new_user_session_path
+      end
+      it 'ログインに失敗する' do
+        fill_in 'user[email]', with: user_admin2.email
+        fill_in 'user[password]', with: user_admin2.password
+        click_button 'ログインする'
+
+        expect(current_path).to eq(new_user_session_path)
+      end
+    end
+  end
 end
