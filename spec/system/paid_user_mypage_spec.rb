@@ -6,6 +6,9 @@ describe '有料会員(マイページ)のテスト' do
     let!(:user_paid2) { create(:user, :paid) }
     let!(:user_free) { create(:user, :free) }
     let!(:user_admin) { create(:user, :admin) }
+    let!(:deleted_user_paid) { create(:user, :paid, is_deleted: true) }
+    let!(:deleted_user_free) { create(:user, :free, is_deleted: true) }
+    let!(:deleted_user_admin) { create(:user, :admin, is_deleted: true) }
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: user_paid.email
@@ -125,6 +128,13 @@ describe '有料会員(マイページ)のテスト' do
       end
     end
 
+    context '他人(退会有料会員)のマイページ遷移不能の確認' do
+      it '画面遷移に失敗する' do
+        visit user_path(deleted_user_paid)
+        expect(current_path).to eq(user_path(user_paid))
+      end
+    end
+
     context '他人(無料会員)のマイページの確認' do
       before do 
         visit user_path(user_free)
@@ -182,6 +192,13 @@ describe '有料会員(マイページ)のテスト' do
       end
       it 'ニックネームが表示される' do
         expect(page).to have_content(user_free.nickname)
+      end
+
+      context '他人(退会無料会員)のマイページ遷移不能の確認' do
+        it '画面遷移に失敗する' do
+          visit user_path(deleted_user_free)
+          expect(current_path).to eq(user_path(user_paid))
+        end
       end
     end
 
@@ -242,6 +259,13 @@ describe '有料会員(マイページ)のテスト' do
       end
       it 'ニックネームが表示される' do
         expect(page).to have_content(user_admin.nickname)
+      end
+    end
+
+    context '他人(退会講師)のマイページ遷移不能の確認' do
+      it '画面遷移に失敗する' do
+        visit user_path(deleted_user_admin)
+        expect(current_path).to eq(user_path(user_paid))
       end
     end
   end
