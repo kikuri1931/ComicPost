@@ -38,7 +38,12 @@ describe '無料会員(マイページ)のテスト' do
         expect(page).to have_no_button 'この人とチャットを始める'
       end
       it '個人情報が表示されない' do
-        expect(page).to have_no_css('table-bordered')
+        expect(page).to have_no_content('氏名')
+        expect(page).to have_no_content('氏名(かな)')
+        expect(page).to have_no_content('郵便番号')
+        expect(page).to have_no_content('住所')
+        expect(page).to have_no_content('電話番号')
+        expect(page).to have_no_content('メールアドレス')
       end
     end
 
@@ -97,7 +102,12 @@ describe '無料会員(マイページ)のテスト' do
         expect(page).to have_no_button 'この人とチャットを始める'
       end
       it '個人情報が表示されない' do
-        expect(page).to have_no_css('table-bordered')
+        expect(page).to have_no_content('氏名')
+        expect(page).to have_no_content('氏名(かな)')
+        expect(page).to have_no_content('郵便番号')
+        expect(page).to have_no_content('住所')
+        expect(page).to have_no_content('電話番号')
+        expect(page).to have_no_content('メールアドレス')
       end
       it 'ニックネームが登録されていないとき氏名が表示される' do
         expect(page).to have_content(user_paid.name)
@@ -164,7 +174,12 @@ describe '無料会員(マイページ)のテスト' do
         expect(page).to have_no_button 'この人とチャットを始める'
       end
       it '個人情報が表示されない' do
-        expect(page).to have_no_css('table-bordered')
+        expect(page).to have_no_content('氏名')
+        expect(page).to have_no_content('氏名(かな)')
+        expect(page).to have_no_content('郵便番号')
+        expect(page).to have_no_content('住所')
+        expect(page).to have_no_content('電話番号')
+        expect(page).to have_no_content('メールアドレス')
       end
       it 'ニックネームが登録されていないとき氏名が表示される' do
         expect(page).to have_content(user_free2.name)
@@ -234,7 +249,12 @@ describe '無料会員(マイページ)のテスト' do
         expect(page).to have_no_button 'この人とチャットを始める'
       end
       it '個人情報が表示されない' do
-        expect(page).to have_no_css('table-bordered')
+        expect(page).to have_no_content('氏名')
+        expect(page).to have_no_content('氏名(かな)')
+        expect(page).to have_no_content('郵便番号')
+        expect(page).to have_no_content('住所')
+        expect(page).to have_no_content('電話番号')
+        expect(page).to have_no_content('メールアドレス')
       end
     end
 
