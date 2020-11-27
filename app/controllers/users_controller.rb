@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   def edit_possible_user
     @user = User.find(params[:id])
-    unless @user == current_user || current_user.status == "講師"
+    unless @user == current_user || current_user.status == "講師" && ['有料会員','無料会員'].include?(@user.status)
       redirect_to user_path(current_user)
     end
   end
