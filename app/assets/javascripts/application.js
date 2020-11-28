@@ -85,4 +85,30 @@ $(document).ready( function(){
     event.preventDefault();
   });
   // ハンバーガーメニュー
+
+  // 画像投稿プレビュー
+  $('#picture_picture_images_images').on('change', function (e) {
+    let images_count = $(".upload_image").length ;
+    let uploaded_image_count =$(".uploaded_image").length;
+    for (let i =0; i < images_count; i++){
+      $(".upload_image").first().remove();
+    };
+    for(let i =0; i < e.target.files.length; i++){
+       var reader = new FileReader();
+       reader.onload = function(e){
+         $("#preview").append(`<img class='upload_image' src=${e.target.result}>`);
+       }
+       reader.readAsDataURL(e.target.files[i]);
+    }
+    if (e.target.files.length == 0){
+      $(".uploaded_image").each(function(index,element){
+        $(element).show();
+      });
+    }else{
+      $(".uploaded_image").each(function(index,element){
+        $(element).hide();
+      });
+    }
+  });
+  // 画像投稿プレビュー
 });

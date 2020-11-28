@@ -1,6 +1,13 @@
 <%= form_with model:[picture], local: true do |f| %>
-	<div class="col-sm-4 col-md-5 col-md-offset-1">
+	<div class="col-sm-4 col-md-7 preview_image">
 		<%= f.attachment_field :picture_images_images, multiple: true, class: "form-space" %>
+		<!-- 画像プレビュー機能 -->
+		<div id="preview">
+			<% @picture.picture_images.each do |picture_image| %>
+				<%= attachment_image_tag picture_image, :image, format: 'jpeg', fallback: "no_image_square.jpg", size: "150x150"  ,class:"uploaded_image" %>
+			<% end %>
+		</div>
+		<!-- 画像プレビュー機能 -->
 	</div>
 
 	<div class="col-sm-5 col-sm-offset-1 col-md-3">
