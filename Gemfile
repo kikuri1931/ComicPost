@@ -67,6 +67,11 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'webdrivers', '~> 4.0'
+  gem 'database_cleaner'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -83,7 +88,3 @@ gem 'rails-i18n'
 gem 'bxslider-rails'
 gem 'dotenv-rails'
 gem 'ed25519'
-
-group :production do
-  gem 'mysql2'
-end
