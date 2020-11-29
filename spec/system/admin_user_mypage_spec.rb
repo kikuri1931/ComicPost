@@ -248,7 +248,7 @@ describe '講師(マイページ)のテスト' do
       it 'チャット開始ボタンが表示される' do
         expect(page).to have_button 'この人とチャットを始める'
       end
-      it '個人情報が表示される' do
+      it '個人情報が表示されない' do
         expect(page).to have_no_content('氏名')
         expect(page).to have_no_content('氏名(かな)')
         expect(page).to have_no_content('郵便番号')
