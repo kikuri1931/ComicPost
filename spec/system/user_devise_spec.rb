@@ -189,3 +189,71 @@ describe 'ユーザー認証のテスト' do
     end
   end
 end
+
+describe '会員登録画面表示の確認' do
+  before do
+    visit new_user_registration_path
+  end
+  context '有料会員登録画面表示確認' do
+    it '登録ボタンが表示されている' do
+      expect(page).to have_content '有料会員'
+    end
+    it '氏名フォームが表示される' do
+      expect(page).to have_field 'user[name]'
+    end
+    it '氏名(かな)フォームが表示される' do
+      expect(page).to have_field 'user[name_kana]'
+    end
+    it '郵便番号フォームが表示される' do
+      expect(page).to have_field 'user[postal_code]'
+    end
+    it '住所フォームが表示される' do
+      expect(page).to have_field 'user[address]'
+    end
+    it '電話番号フォームが表示される' do
+      expect(page).to have_field 'user[telephone_number]'
+    end
+    it 'メールアドレスフォームが表示される' do
+      expect(page).to have_field 'user[email]'
+    end
+    it 'パスワードフォームが表示される' do
+      expect(page).to have_field 'user[password]'
+    end
+    it 'パスワード(確認)フォームが表示される' do
+      expect(page).to have_field 'user[password_confirmation]'
+    end
+  end
+
+  context '無料会員登録画面表示確認' do
+    before do
+      find(".free-link").click
+    end
+    it '登録ボタンが表示されている' do
+      expect(page).to have_content '無料会員'
+    end
+    it '氏名フォームが表示される' do
+      expect(page).to have_field 'user[name]'
+    end
+    it '氏名(かな)フォームが表示される' do
+      expect(page).to have_field 'user[name_kana]'
+    end
+    it '郵便番号フォームが表示されない' do
+      expect(page).to have_no_field 'user[postal_code]'
+    end
+    it '住所フォームが表示されない' do
+      expect(page).to have_no_field 'user[address]'
+    end
+    it '電話番号フォームが表示されない' do
+      expect(page).to have_no_field 'user[telephone_number]'
+    end
+    it 'メールアドレスフォームが表示される' do
+      expect(page).to have_field 'user[email]'
+    end
+    it 'パスワードフォームが表示される' do
+      expect(page).to have_field 'user[password]'
+    end
+    it 'パスワード(確認)フォームが表示される' do
+      expect(page).to have_field 'user[password_confirmation]'
+    end
+  end
+end
