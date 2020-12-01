@@ -60,6 +60,7 @@ describe 'チャット機能のテスト' do
 
     context '相手のメッセージ表示の確認' do
       before do
+        create(:message, room: room, user: user_admin)
         click_link 'ログアウト'
         visit new_user_session_path
         fill_in 'user[email]', with: user_paid2.email
@@ -68,7 +69,7 @@ describe 'チャット機能のテスト' do
       end
       it '相手のメッセージが表示される' do
         visit room_path(room)
-        expect(page).to have_content 'こんにちは'
+        expect(page).to have_css '.other-message'
       end
     end
   end
