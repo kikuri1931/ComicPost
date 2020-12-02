@@ -4,8 +4,8 @@ describe '検索機能のテスト' do
   let!(:user) { create(:user, :paid) }
   let!(:user2) { create(:user, :paid, nickname: Faker::Lorem.characters(number: 20)) }
   let!(:deleted_user) { create(:user, :paid, is_deleted: true) }
-  let!(:genre) { create(:genre) }
-  let!(:deleted_genre) { create(:genre, is_active: false) }
+  let!(:genre) { create(:genre, :active) }
+  let!(:deleted_genre) { create(:genre, :delete) }
   let!(:comic) { create(:picture, :comic, user: user, genre: genre) }
   let!(:deleted_user_comic) { create(:picture, :comic, user: deleted_user, genre: genre) }
   let!(:deleted_comic) { create(:picture, :comic, user: user, genre: deleted_genre) }
