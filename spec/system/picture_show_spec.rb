@@ -121,7 +121,7 @@ describe '作品詳細画面のテスト' do
     end
   end
 
-  describe '詳細画面(投稿ユーザと講師以外ログイン)のテスト' do
+  describe '詳細画面(無料会員ログイン)のテスト' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: user_free.email
@@ -220,7 +220,7 @@ describe '作品詳細画面のテスト' do
   describe '画面遷移のテスト' do
     let!(:deleted_user_picture) { create(:picture, :comic, user: deleted_user, genre: genre) }
     let!(:deleted_genre_picture) { create(:picture, :comic, user: user_paid, genre: deleted_genre) }
-    context '有料会員または無料会員の画面遷移確認' do
+    context '有料会員の画面遷移確認' do
       before do
         visit new_user_session_path
         fill_in 'user[email]', with: user_paid.email
@@ -234,6 +234,22 @@ describe '作品詳細画面のテスト' do
       it 'ジャンル無効の作品に遷移できない' do
         visit picture_path(deleted_genre_picture)
         expect(current_path).to eq(user_path(user_paid))
+      end
+    end
+    context '無料会員の画面遷移確認' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user_free.email
+        fill_in 'user[password]', with: user_free.password
+        click_button 'ログインする'
+      end
+      it '退会ユーザの作品に遷移できない' do
+        visit picture_path(deleted_user_picture)
+        expect(current_path).to eq(user_path(user_free))
+      end
+      it 'ジャンル無効の作品に遷移できない' do
+        visit picture_path(deleted_genre_picture)
+        expect(current_path).to eq(user_path(user_free))
       end
     end
     context '講師の画面遷移の確認' do
