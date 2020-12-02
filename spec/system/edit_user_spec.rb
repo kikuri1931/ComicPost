@@ -385,4 +385,20 @@ describe 'ユーザ編集ページのテスト' do
       expect(current_path).to eq(edit_user_path(user_free))
     end
   end
+
+  context '退会の確認' do
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user_free.email
+      fill_in 'user[password]', with: user_free.password
+      click_button 'ログインする'
+      visit edit_user_path(user_free)
+    end
+    it '退会できる' do
+      page.accept_confirm do
+        click_link '退会'
+      end
+      expect(current_path).to eq(root_path)
+    end
+  end
 end
