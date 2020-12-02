@@ -94,7 +94,7 @@ describe 'ヘッダーのテスト' do
     end
   end
 
-  describe '有料会員または無料会員がログインしている場合' do
+  describe '有料会員がログインしている場合' do
     let(:user_paid) { create(:user, :paid) }
     before do
       visit new_user_session_path
@@ -129,6 +129,61 @@ describe 'ヘッダーのテスト' do
       it 'マイページ画面に遷移する' do
         click_link 'ComicPost'
         expect(current_path).to eq(user_path(user_paid))
+      end
+      it 'マンガ一覧画面に遷移する' do
+        click_link 'マンガ'
+        expect(current_path).to eq(comics_path)
+      end
+      it 'イラスト一覧画面に遷移する' do
+        click_link 'イラスト'
+        expect(current_path).to eq(illustrations_path)
+      end
+      it 'お問合せ画面に遷移する' do
+        click_link 'お問い合わせ'
+        expect(current_path).to eq(inquiries_new_path)
+      end
+      it 'ログアウトする' do
+        click_link 'ログアウト'
+        expect(page).to have_content 'ようこそ、ComicPostへ！！'
+      end
+    end
+  end
+
+  describe '無料会員がログインしている場合' do
+    let(:user_free) { create(:user, :free) }
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user_free.email
+      fill_in 'user[password]', with: user_free.password
+      click_button 'ログインする'
+    end
+    context 'ヘッダーの表示を確認' do
+      it 'タイトルが表示される' do
+        expect(page).to have_link 'ComicPost', href: user_path(user_free)
+      end
+      it '検索窓が表示される' do
+        expect(page).to have_css('#word')
+        expect(page).to have_css('#range')
+        expect(page).to have_button('検索')
+      end
+      it 'マンガ一覧リンクが表示される' do
+        expect(page).to have_link 'マンガ', href: comics_path
+      end
+      it 'イラスト一覧リンクが表示される' do
+        expect(page).to have_link 'イラスト', href: illustrations_path
+      end
+      it 'お問合せリンクが表示される' do
+        expect(page).to have_link 'お問い合わせ', href: inquiries_new_path
+      end
+      it 'ログアウトリンクが表示される' do
+        expect(page).to have_link 'ログアウト', href: destroy_user_session_path
+      end
+    end
+
+    context 'ヘッダーのリンクを確認' do
+      it 'マイページ画面に遷移する' do
+        click_link 'ComicPost'
+        expect(current_path).to eq(user_path(user_free))
       end
       it 'マンガ一覧画面に遷移する' do
         click_link 'マンガ'
