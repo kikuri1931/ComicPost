@@ -9,7 +9,9 @@ describe '有料会員(マイページ)のテスト' do
     let!(:deleted_user_paid) { create(:user, :paid, is_deleted: true) }
     let!(:deleted_user_free) { create(:user, :free, is_deleted: true) }
     let!(:deleted_user_admin) { create(:user, :admin, is_deleted: true) }
+    let!(:genre) { create(:genre, :active) }
     before do
+      create_list(:picture, 4, :comic, user: user_admin, genre: genre)
       visit new_user_session_path
       fill_in 'user[email]', with: user_paid.email
       fill_in 'user[password]', with: user_paid.password
@@ -70,6 +72,13 @@ describe '有料会員(マイページ)のテスト' do
     context 'オススメ作品表示の確認' do 
       it '作品を投稿していないときオススメ作品が表示される' do
         expect(page).to have_content('おすすめ作品')
+      end
+      it 'もっと見るが表示される' do
+        expect(page).to have_content('もっと見る')
+      end
+      it '画面遷移できる' do
+        click_link 'もっと見る'
+        expect(current_path).to eq(pictures_path) 
       end
     end
 
@@ -368,6 +377,15 @@ describe '有料会員(マイページ)のテスト' do
       end
     end
 
+    context '画面遷移の確認' do
+      it '画面遷移できる' do
+        click_link 'もっと見る'
+        expect(current_path).to eq('comics') 
+        expect(page).to have_no_content(user_paid6.name)
+        expect(page).to have_no_content(user_admin3.name)
+      end
+    end
+
     context '他人(有料会員)の表示確認' do
       before do 
         visit user_path(user_paid6)
@@ -426,5 +444,26 @@ describe '有料会員(マイページ)のテスト' do
         expect(page).to have_content('もっと見る')
       end
     end
-  end    
+  end
+
+  describe '有料会員マイページ(ジャンル無効作品)のテスト' do
+    let!(:user_paid5) { create(:user, :paid) }
+    let!(:deleted_genre) { create(:genre, :delete) }
+    let!(:picture1) { create(:picture, :illustration, user: user_paid5, genre: deleted_genre) }
+    let!(:picture2) { create(:picture, :illustration, user: user_paid5, genre: deleted_genre) }
+
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user_paid5.email
+      fill_in 'user[password]', with: user_paid5.password
+      click_button 'ログインする'
+    end
+
+    context '表示の確認' do
+      it 'ジャンル無効作品が表示されない' do
+        expect(page).to have_no_content(picture1.title)
+        expect(page).to have_no_content(picture2.title)
+      end
+    end
+  end            
 end
