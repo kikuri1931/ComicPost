@@ -3,9 +3,11 @@ require 'rails_helper'
 describe '作品詳細画面のテスト' do
   let!(:user_admin) { create(:user, :admin) }
   let!(:user_paid) { create(:user, :paid) }
+  let!(:deleted_user) { create(:user, :paid, is_deleted: true) }
   let!(:user_nickname) { create(:user, :paid, nickname: Faker::Lorem.characters(number: 5)) }
   let!(:user_free) { create(:user, :free) }
-  let!(:genre) { create(:genre) }
+  let!(:genre) { create(:genre, :active) }
+  let!(:deleted_genre) { create(:genre, :delete) }
   let!(:picture) { create(:picture, :comic, user: user_paid, genre: genre) }
   let!(:picture_nickname) { create(:picture, :comic, user: user_nickname, genre: genre) }
 
@@ -198,7 +200,7 @@ describe '作品詳細画面のテスト' do
       create_list(:picture, 3, :comic, user: user_paid, genre: genre)
       visit new_user_session_path
       fill_in 'user[email]', with: user_paid.email
-      fill_in 'user[password]', with: user_paid.password
+      fill_in 'user[password]', with: user_admin.password
       click_button 'ログインする'
       visit picture_path(picture)
     end
@@ -211,6 +213,44 @@ describe '作品詳細画面のテスト' do
       it '作品が表示される' do
         click_link 'もっと見る'
         expect(page).to have_content 'マンガ・イラスト'
+      end
+    end
+  end
+
+  describe '画面遷移のテスト' do
+    let!(:deleted_user_picture) { create(:picture, :comic, user: deleted_user, genre: genre) }
+    let!(:deleted_genre_picture) { create(:picture, :comic, user: user_paid, genre: deleted_genre) }
+    context '有料会員または無料会員の画面遷移確認' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user_paid.email
+        fill_in 'user[password]', with: user_paid.password
+        click_button 'ログインする'
+      end
+      it '退会ユーザの作品に遷移できない' do
+        visit picture_path(deleted_user_picture)
+        expect(current_path).to eq(user_path(user_paid))
+      end
+      it 'ジャンル無効の作品に遷移できない' do
+        visit picture_path(deleted_genre_picture)
+        expect(current_path).to eq(user_path(user_paid))
+      end
+    end
+    context '講師の画面遷移の確認' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user_admin.email
+        fill_in 'user[password]', with: user_paid.password
+        click_button 'ログインする'
+        visit picture_path(deleted_user_picture)
+      end
+      it '退会ユーザの作品に遷移できる' do
+        visit picture_path(deleted_user_picture)
+        expect(current_path).to eq(picture_path(deleted_user_picture))
+      end
+      it 'ジャンル無効の作品に遷移できる' do
+        visit picture_path(deleted_genre_picture)
+        expect(current_path).to eq(picture_path(deleted_genre_picture))
       end
     end
   end
