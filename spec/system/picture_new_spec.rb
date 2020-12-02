@@ -3,7 +3,7 @@ require 'rails_helper'
 describe '新規作品関連機能のテスト' do
   let!(:user) { create(:user, :admin) }
   let!(:user_free) { create(:user, :free) }
-  let!(:genre) { create(:genre) }
+  let!(:genre) { create(:genre, :active) }
 
   describe '作品投稿のテスト' do
     before do
