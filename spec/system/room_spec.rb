@@ -28,7 +28,7 @@ describe 'チャット機能のテスト' do
     end
   end
 
-  describe 'チャットルーム作成のテスト' do
+  describe 'チャットルーム作成のテスト', :js => true do
     let!(:room) { create(:room) }
     before do
       create(:entry, room: room, user: user_admin)
@@ -52,9 +52,10 @@ describe 'チャット機能のテスト' do
       end
       it 'メッセージを送信できる' do
         visit room_path(room)
-        fill_in 'message[message]', with: 'こんにちは'
+        fill_in 'message[message]', with: Faker::Lorem.characters(number:20)
         click_button '送信'
-        expect(page).to have_content 'こんにちは'
+        sleep 1
+        expect(page).to have_css '.mymessage'
       end
     end
 
