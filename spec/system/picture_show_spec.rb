@@ -31,6 +31,12 @@ describe '作品詳細画面のテスト' do
       it '削除リンクが表示される' do
         expect(page).to have_link 'この作品を削除'
       end
+       it 'いいねが表示される' do
+        expect(page).to have_content 'いいね'
+      end
+      it 'お気に入り登録が表示される' do
+        expect(page).to have_content 'お気に入り'
+      end
       it 'タイトルが表示される' do
         expect(page).to have_content picture.title
       end
@@ -86,6 +92,12 @@ describe '作品詳細画面のテスト' do
       it '削除リンクが表示される' do
         expect(page).to have_link 'この作品を削除'
       end
+      it 'いいねが表示される' do
+        expect(page).to have_content 'いいね'
+      end
+      it 'お気に入り登録が表示されない' do
+        expect(page).to have_no_content 'お気に入り'
+      end
       it 'タイトルが表示される' do
         expect(page).to have_content picture.title
       end
@@ -121,7 +133,7 @@ describe '作品詳細画面のテスト' do
     end
   end
 
-  describe '詳細画面(無料会員ログイン)のテスト' do
+  describe '詳細画面(投稿ユーザ以外ログイン)のテスト' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: user_free.email
@@ -140,6 +152,12 @@ describe '作品詳細画面のテスト' do
       end
       it '削除リンクが表示されない' do
         expect(page).to have_no_link 'この作品を削除'
+      end
+       it 'いいねが表示される' do
+        expect(page).to have_content 'いいね'
+      end
+      it 'お気に入り登録が表示される' do
+        expect(page).to have_content 'お気に入り'
       end
       it 'タイトルが表示される' do
         expect(page).to have_content picture.title
