@@ -16,16 +16,16 @@
 				<tbody>
 					<% @users.each do |user| %>
 						<tr>
-							<td><%= user.status %></td>
-							<td><%= link_to user.name, user_path(user) %></td>
-							<td>
+							<td class="nowrap"><%= user.status %></td>
+							<td class="word-break"><%= link_to user.name, user_path(user) %></td>
+							<td class="nowrap">
   								<% unless user.is_deleted %>
   									<p>有効</p>
   								<% else %>
   									<p>退会済み</p>	
   								<% end %>
 							</td>
-							<td><%= link_to "支払い情報へ", user_payments_path(user) %></td>
+							<td class="nowrap"><%= link_to "支払い情報へ", user_payments_path(user) %></td>
 						</tr>
 					<% end %>	
 				</tbody>
