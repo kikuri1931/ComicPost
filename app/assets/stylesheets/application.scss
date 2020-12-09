@@ -150,6 +150,14 @@ a {
   justify-content: center; 
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
+.word-break {
+  word-break: break-all;
+}
+
 #error_explanation {
   background: #ffe6e6;
   margin-top: 20px;

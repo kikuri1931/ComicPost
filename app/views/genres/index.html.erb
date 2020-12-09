@@ -32,15 +32,15 @@
 			<tbody>
 				<% @genres.each do |genre| %>
 					<tr>
-						<td><%= genre.genre %></td>
-						<td>
+						<td class="word-break"><%= genre.genre %></td>
+						<td class="nowrap">
 							<% if genre.is_active %>
 								<p>有効</p>
 							<% else %>
 								<p>無効</p>
 							<% end %>
 						</td>
-						<td>
+						<td class="nowrap">
 							<%= link_to "編集する", edit_genre_path(genre) %>
 						</td>
 					</tr>

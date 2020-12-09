@@ -41,7 +41,7 @@
 						</tr>
 						<% @genres.each do |genre| %>
 							<tr>
-								<td>
+								<td class="word-break">
 									<%= link_to genre.genre, controller: "pictures", action: "index", genre_id: genre.id %>
 								</td>
 							</tr>
