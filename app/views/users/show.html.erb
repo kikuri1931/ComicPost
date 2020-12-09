@@ -15,9 +15,9 @@
 		<div class="col-md-9 col-md-offset-1">
 			<div class="col-md-12">
 				<%if @user.nickname.blank? %>
-					<h2 class="profile"><%= @user.name %></h2>
+					<h2 class="profile word-break"><%= @user.name %></h2>
 				<% else %>
-					<h2 class="profile"><%= @user.nickname %></h2>
+					<h2 class="profile word-break"><%= @user.nickname %></h2>
 				<% end %>
 			</div>
 		</div>
@@ -54,28 +54,28 @@
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th class="warning">氏名</th>
-							<td><%= @user.name %></td>
+							<th class="warning nowrap">氏名</th>
+							<td class="word-break"><%= @user.name %></td>
 						</tr>
 						<tr>
-							<th class="warning">氏名(かな)</th>
-							<td><%= @user.name_kana %></td>
+							<th class="warning nowrap">氏名(かな)</th>
+							<td class="word-break"><%= @user.name_kana %></td>
 						</tr>
 						<tr>
-							<th class="warning">郵便番号</th>
-							<td><%= @user.postal_code %></td>
+							<th class="warning nowrap">郵便番号</th>
+							<td class="word-break"><%= @user.postal_code %></td>
 						</tr>
 						<tr>
-							<th class="warning">住所</th>
-							<td><%= @user.address %></td>
+							<th class="warning nowrap">住所</th>
+							<td class="word-break"><%= @user.address %></td>
 						</tr>
 						<tr>
-							<th class="warning">電話番号</th>
-							<td><%= @user.telephone_number %></td>
+							<th class="warning nowrap">電話番号</th>
+							<td class="word-break"><%= @user.telephone_number %></td>
 						</tr>
 						<tr>
-							<th class="warning">メールアドレス</th>
-							<td><%= @user.email %></td>
+							<th class="warning nowrap">メールアドレス</th>
+							<td class="word-break"><%= @user.email %></td>
 						</tr>
 					</tbody>
 				</table>
