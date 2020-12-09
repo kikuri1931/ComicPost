@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<h2 class="signin-title"><%= @user.name %>さんの支払い情報</h2>
+		<h2 class="signin-title word-break"><%= @user.name %>さんの支払い情報</h2>
 
 		<% if @user.status == "有料会員" && @user.is_deleted == false %>
 			<div class="col-md-7">
