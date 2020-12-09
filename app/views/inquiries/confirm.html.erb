@@ -6,7 +6,7 @@
 
         <div class="col-md-10 form-space">
           <label>名前</label><br>
-          <div class="confirm">
+          <div class="confirm word-break">
             <%= f.hidden_field :name %>
             <%= @inquiry.name %>
           </div>
@@ -14,7 +14,7 @@
 
         <div class="col-md-10 form-space">
           <label>メールアドレス</label><br>
-          <div class="confirm">
+          <div class="confirm word-break">
             <%= f.hidden_field :email %>
             <%= @inquiry.email %>
           </div>
@@ -22,7 +22,7 @@
 
         <div class="col-md-12 form-space">
           <label>お問い合わせ内容</label><br>
-          <div class="confirm">
+          <div class="confirm word-break">
             <%= f.hidden_field :message %>
             <%= simple_format(@inquiry.message) %>
           </div>
