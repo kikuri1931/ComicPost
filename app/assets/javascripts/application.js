@@ -111,4 +111,10 @@ $(document).ready( function(){
     }
   });
   // 画像投稿プレビュー
+
+  //  iosの場合、selectのoptionが長いとき、省略されることを防ぐ。
+  $(function() {
+    $('select').append('<optgroup label=""></optgroup>');
+  });
+  //  iosの場合、selectのoptionが長いとき、省略されることを防ぐ。
 });
