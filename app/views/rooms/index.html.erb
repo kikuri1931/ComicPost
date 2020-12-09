@@ -15,11 +15,11 @@
 							<% entry = room.entries.where.not(user_id: current_user) %>
 							<% unless entry[0].user.status == "無料会員" %>
 								<tr>
-									<td>
+									<td class="word-break">
 									  <%= attachment_image_tag  entry[0].user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image_square.jpg", class: "img-circle" %>
 										<%= entry[0].user.name %>
 									</td>
-									<td>
+									<td class="nowrap">
 										<%= link_to "チャットする", room_path(room), class: "btn btn-warning" %>
 									</td>
 								</tr>
