@@ -37,7 +37,7 @@
 					</div>
 				</div>
 
-				<h2 class="image-title"><%= @picture.title %></h2>
+				<h2 class="image-title word-break"><%= @picture.title %></h2>
 
 				<h6>
 					<%= link_to user_path(@picture.user) do %>
@@ -50,7 +50,7 @@
 					<% end %>
 				</h6>
 
-				<p><%= simple_format(@picture.introduction) %></p>
+				<p><%= simple_format @picture.introduction, class: "word-break" %></p>
 				<div class="comment_evaluation">
 					<%= render 'evaluation', picture: @picture %>
 				</div>
@@ -88,12 +88,14 @@
 					<% if @picture.user.nickname.blank? %>
 						<tr>
 							<th class="nowrap">名前</th>
-							<th><%= link_to @picture.user.name, user_path(@picture.user) %></th>
+							<th><%= link_to @picture.user.name, user_path(@picture.user), class: "word-break" %></th>
 						</tr>
 					<% else %>
 						<tr>
 							<th class="nowrap">ニックネーム</th>
-							<th><p><%= link_to @picture.user.nickname, user_path(@picture.user) %></p></th>
+							<th>
+								<p><%= link_to @picture.user.nickname, user_path(@picture.user), class: "word-break" %></p>
+							</th>
 						</tr>
 					<% end %>
 						<tr>

@@ -12,7 +12,7 @@
 				<% end %>
 			</div>
 			<div class="col-xs-12 comment-balloon">
-				<%= simple_format(comment.comment) %>
+				<%= simple_format comment.comment, class: "word-break" %>
 				<% if @picture.user == current_user || current_user.status == "講師" %>
 					<p>このコメントの評価　[<%= comment.score %>]</p>
 				<% end %>
