@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h2 class="signin-title"><%= params[:word] %>検索結果</h2>
+		<h2 class="signin-title word-break"><%= params[:word] %>検索結果</h2>
 		<!-- ユーザ検索結果 -->
 		<% if @range == '1' %>
 			<% if @users.exists? %>
@@ -15,8 +15,8 @@
 						<tbody>
 							<% @users.each do |user| %>
 								<tr>
-									<td><%= user.status %></td>
-									<td>
+									<td class="nowrap"><%= user.status %></td>
+									<td class="word-break">
 										<% if params[:word].blank? && user.nickname.blank? %>
 											<%= link_to user.name, user_path(user) %>
 										<% elsif params[:word].blank? %>
