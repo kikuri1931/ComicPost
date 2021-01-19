@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(document).ready( function(){
+$(document).ready(function(){
   // rooms/:idの時は下からスクロールそれ以外は上からスクロール
   if(document.URL.match('/rooms/*')) {
     $(window).scrollTop(document.body.scrollHeight);
@@ -89,7 +89,6 @@ $(document).ready( function(){
   // 画像投稿プレビュー
   $('#picture_picture_images_images').on('change', function (e) {
     let images_count = $(".upload_image").length ;
-    let uploaded_image_count =$(".uploaded_image").length;
     for (let i =0; i < images_count; i++){
       $(".upload_image").first().remove();
     };
@@ -112,9 +111,9 @@ $(document).ready( function(){
   });
   // 画像投稿プレビュー
 
-  //  iosの場合、selectのoptionが長いとき、省略されることを防ぐ。
+  //  iOSの場合、selectのoptionが長いとき、省略されることを防ぐ。
   $(function() {
     $('select').append('<optgroup label=""></optgroup>');
   });
-  //  iosの場合、selectのoptionが長いとき、省略されることを防ぐ。
+  //  iOSの場合、selectのoptionが長いとき、省略されることを防ぐ。
 });
